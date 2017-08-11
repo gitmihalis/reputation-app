@@ -4,8 +4,8 @@ default: &default
   adapter: postgresql
   pool: 5
   timeout: 5000
-  username: credible
-  password: foodfast
+  username: postgres
+  password:
 
 development:
   <<: *default

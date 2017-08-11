@@ -1,3 +1,3 @@
 class Category < ApplicationRecord
-  has_many: reviews
+  has_many :reviews
 end
