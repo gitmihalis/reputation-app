@@ -10,10 +10,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170810215633) do
+ActiveRecord::Schema.define(version: 20170811152638) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "categories", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.text     "content"
+    t.integer  "review_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["review_id"], name: "index_comments_on_review_id", using: :btree
+  end
+
+  create_table "flags", force: :cascade do |t|
+    t.text     "reason"
+    t.integer  "review_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["review_id"], name: "index_flags_on_review_id", using: :btree
+    t.index ["user_id"], name: "index_flags_on_user_id", using: :btree
+  end
 
   create_table "profiles", force: :cascade do |t|
     t.string   "avatar"
@@ -24,9 +48,23 @@ ActiveRecord::Schema.define(version: 20170810215633) do
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_profiles_on_user_id", using: :btree
   end
-# dont store the users ids on the review, 
-# create store them in a bridge table that has a reference 
-# to that review
+
+  create_table "reviews", force: :cascade do |t|
+    t.text     "content"
+    t.boolean  "positive"
+    t.boolean  "retracted"
+    t.string   "image_url"
+    t.string   "reference_url"
+    t.integer  "author_id"
+    t.integer  "receiver_id"
+    t.integer  "category_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["author_id"], name: "index_reviews_on_author_id", using: :btree
+    t.index ["category_id"], name: "index_reviews_on_category_id", using: :btree
+    t.index ["receiver_id"], name: "index_reviews_on_receiver_id", using: :btree
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
