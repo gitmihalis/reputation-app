@@ -87,7 +87,7 @@ review3 = category1.reviews.create!({
   author_id: 3,
   receiver_id: 1,
   content: "Such fun doing things!",
-  positive: true,
+  positive: false,
   retracted: false,
   image_url: nil,
   reference_url: nil
@@ -96,6 +96,24 @@ review4 = category1.reviews.create!({
   author_id: 1,
   receiver_id: 3,
   content: "Everything went as expected!",
+  positive: true,
+  retracted: false,
+  image_url: nil,
+  reference_url: nil
+})
+review5 = category1.reviews.create!({
+  author_id: 3,
+  receiver_id: 4,
+  content: "Neat!",
+  positive: false,
+  retracted: false,
+  image_url: nil,
+  reference_url: nil
+})
+review6 = category1.reviews.create!({
+  author_id: 2,
+  receiver_id: 3,
+  content: "Awesome!",
   positive: true,
   retracted: false,
   image_url: nil,
@@ -112,6 +130,10 @@ puts "Seeding flag data..."
 
 review1.flags.create!({
   user_id: 1,
+  reason: "Inappropriate"
+})
+review6.flags.create!({
+  user_id: 3,
   reason: "Inappropriate"
 })
 
