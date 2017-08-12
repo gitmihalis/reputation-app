@@ -24,12 +24,15 @@ RSpec.describe User, type: :model do
       )
     end
 
-    # PASSWORD
-    context 'Password:' do
+    # VALID INPUTS
+    context 'Valid inputs:' do
       it "Should save when all the required fields are correct" do
         expect(@user.valid?).to eq(true)
       end
+    end
 
+    # PASSWORD
+    context 'Password:' do
       it "Should match password and password_confirmation" do
         expect(@user.password_digest.present?).to eq(true)
       end
