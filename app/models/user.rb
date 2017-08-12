@@ -1,5 +1,8 @@
 class User < ApplicationRecord
   has_secure_password
+
+  before_save { email.downcase }
+
   has_many :authored_reviews, foreign_key: "author_id", class_name: "Review"
   has_many :received_reviews, foreign_key: "receiver_id", class_name: "Review"
   has_many :rebuttals, through: :reviews
@@ -16,6 +19,7 @@ class User < ApplicationRecord
                        length: { in: 4..16 },
                        presence: true
   validates :password_confirmation, presence: { message: "Sorry, must be matched with password." }
+
 end
 
 # t.string   "first_name"
