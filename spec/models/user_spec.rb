@@ -28,7 +28,7 @@ RSpec.describe User, type: :model do
       @user.password = nil
       @user.save
 
-      expect(@user.error.full_messages).to match("Password can't be blank")
+      expect(@user.errors.full_messages.to_s).to match("Password can't be blank")
     end
 
   end # end of describe 'Validations'

@@ -3,5 +3,5 @@ class Profile < ApplicationRecord
 
   validates :user_id, presence: true
   validates :bio, presence: true
-  validates :avatar, format: { with: /^[\w-]+\.(jpe?g|png|gif)$/ }
+  validates :avatar, format: { with: /\A[\w-]+\.(jpe?g|png|gif)\z/ }
 end

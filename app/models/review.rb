@@ -6,7 +6,7 @@ class Review < ApplicationRecord
   has_many :flags
 
   validates :content, presence: true
-  validates :image_url, format: { with: /^[\w-]+\.(jpe?g|png|gif)$/ }
+  validates :image_url, format: { with: /\A[\w-]+\.(jpe?g|png|gif)\z/ }, allow_nil: true
   validates :author_id, presence: true
   validates :category_id, presence: true
   validates :receiver_id, presence: true

@@ -28,10 +28,41 @@ User.destroy_all
 
 puts "Seeding user data..."
 
-user1 = User.create!(id: 1, first_name: "Eduardo", last_name: "Matsushita", email: "eduardo@credible.ca", password_digest: "password", admin: true)
-user2 = User.create!(id: 2, first_name: "Laura", last_name: "Penstone", email: "laura@credible.ca", password_digest: "password", admin: true)
-user3 = User.create!(id: 3, first_name: "Mihalis", last_name: "Fthenos", email: "mihalis@credible.ca", password_digest: "password", admin: true)
-user4 = User.create!(id: 4, first_name: "John", last_name: "Doe", email: "john@example.com", password_digest: "password", admin: false)
+user1 = User.create!(
+  id: 1, 
+  first_name: "Eduardo", 
+  last_name: "Matsushita", 
+  email: "eduardo@credible.ca", 
+  password: 'password', 
+  password_confirmation: 'password' , 
+  admin: true
+)
+user2 = User.create!(
+  id: 2, 
+  first_name: "Laura", 
+  last_name: "Penstone", 
+  email: "laura@credible.ca", 
+  password: "password",
+  password_confirmation: "password",
+  admin: true
+ )
+user3 = User.create!(
+  id: 3, 
+  first_name: "Mihalis", 
+  last_name: "Fthenos", 
+  email: "mihalis@credible.ca", 
+  password: "password", 
+  password_confirmation: "password",
+  admin: true
+)
+user4 = User.create!(
+  id: 4, first_name: "John", 
+  last_name: "Doe", 
+  email: "john@example.com", 
+  password: "password",
+  password_confirmation: "password",
+  admin: false
+)
 
 puts "Seeding profile data..."
 
@@ -71,7 +102,7 @@ review1 = category1.reviews.create!({
   content: "It was a pleasure working with Eduardo!",
   positive: true,
   retracted: false,
-  image_url: nil,
+  image_url: 'nil.png',
   reference_url: nil
 })
 review2 = category2.reviews.create!({
@@ -80,7 +111,7 @@ review2 = category2.reviews.create!({
   content: "This was a great time!",
   positive: true,
   retracted: false,
-  image_url: nil,
+  image_url: 'nil.png',
   reference_url: nil
 })
 review3 = category1.reviews.create!({
