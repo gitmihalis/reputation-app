@@ -10,7 +10,7 @@ class User < ApplicationRecord
   validates :last_name, presence: { message: "Must be given please." }
   validates :email, uniqueness: { case_sensitive: false },
                     presence: { message: "Sorry, %{value} seems wrong." },
-                    format: { with: /^[_a-zA-Z0-9\\-]+(\.[a-zA-Z0-9\\-]+)*@[a-zA-Z0-9\\-]+(\.[a-zA-Z0-9\\-]+)*(\.[a-z]{2,6})$/ }
+                    format: { with: /\A[_a-zA-Z0-9\\-]+(\.[a-zA-Z0-9\\-]+)*@[a-zA-Z0-9\\-]+(\.[a-zA-Z0-9\\-]+)*(\.[a-z]{2,6})\z/ }
   validates :password, confirmation: true,
                        length: { in: 4..16 },
                        presence: true
