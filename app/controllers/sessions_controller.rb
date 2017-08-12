@@ -3,15 +3,15 @@ class SessionsController < ApplicationController
   end
 
   def create
-    user = User.find_by_email(params[:email])
+    user = User.find_by(email: params[:session][:email].downcase)
     # If the user exists AND the password is valid
-    if user && user.authenticate_with_credentials(params[:email], params[:password])
-      # Set the user id in the cookie.
-      sessions[:user_id] = user.id
-      redirect_to '/'
+    if user && user.authenticate(params[:session][:password])
+      # Set the user id in the browser cookie.
+      log_in user
+      redirect_to user
     else
-      # If user login info is not valid,
-      redirect_to '/login'
+      flash.now[:danger] = 'Invalid email/password combination'
+      render 'new'
     end
   end
 
