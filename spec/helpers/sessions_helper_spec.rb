@@ -10,6 +10,23 @@ require 'rails_helper'
 #     end
 #   end
 # end
+
 RSpec.describe SessionsHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  before :each do
+    @user = User.create({
+      first_name: 'Nobody',
+      last_name: 'McJones',
+      email: 'test@sessions.ca',
+      admin: false
+    })
+  end
+
+  describe "#log_in" do
+    it "should log in a user" do
+      helper.log_in(@user)
+      expect(session[:user_id]).to eq(@user.id)
+    end
+  end
+
+
 end
