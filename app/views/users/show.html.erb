@@ -3,7 +3,7 @@
 <p> I'm <%= @user.first_name %>, with ID: <%= @user.id %> </p>
 
 <h2> Reviews </h2>
-<%= @reviews.each do |r| %>
+<% @reviews.each do |r| %>
   <p> <strong> <%= r.author.first_name %> <%= r.author.last_name %> </strong> </p>
   <p> <%= r.content %> </p>
 <% end %>
