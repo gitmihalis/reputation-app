@@ -1,5 +1,4 @@
 class User < ApplicationRecord
-  has_secure_password
 
   before_save { email.downcase }
 
@@ -19,7 +18,8 @@ class User < ApplicationRecord
                        length: { in: 4..16 },
                        presence: true
   validates :password_confirmation, presence: { message: "Sorry, must be matched with password." }
-
+  
+  has_secure_password
 end
 
 # t.string   "first_name"
