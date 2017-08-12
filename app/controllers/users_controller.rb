@@ -11,11 +11,14 @@ class UsersController < ApplicationController
       redirect_to '/register'
     end
   end
+
+  def show
+    @user = User.find params[:id]
+    @reviews = @user.received_reviews
+  end
   
   private # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
   def user_params
     params.require(:user).permit(:name, :username, :email, :password, :password_confirmation)
   end
-
-end
