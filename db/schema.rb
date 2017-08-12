@@ -70,7 +70,4 @@ ActiveRecord::Schema.define(version: 20170811155202) do
     t.boolean  "admin"
   end
 
-  # add_foreign_key "comments", "reviews"
-  # add_foreign_key "flags", "reviews"
-  # add_foreign_key "flags", "users"
 end
