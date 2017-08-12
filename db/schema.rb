@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170811155202) do
+ActiveRecord::Schema.define(version: 20170812173647) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,12 +21,12 @@ ActiveRecord::Schema.define(version: 20170811155202) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "rebuttals", force: :cascade do |t|
+  create_table "comments", force: :cascade do |t|
     t.text     "content"
     t.integer  "review_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    # t.index ["review_id"], name: "index_comments_on_review_id", using: :btree
+    t.index ["review_id"], name: "index_comments_on_review_id", using: :btree
   end
 
   create_table "flags", force: :cascade do |t|
@@ -51,8 +51,8 @@ ActiveRecord::Schema.define(version: 20170811155202) do
 
   create_table "reviews", force: :cascade do |t|
     t.text    "content"
-    t.boolean "positive"
-    t.boolean "retracted"
+    t.boolean "positive",      default: true
+    t.boolean "retracted",     default: false
     t.string  "image_url"
     t.string  "reference_url"
     t.integer "author_id"
@@ -65,9 +65,9 @@ ActiveRecord::Schema.define(version: 20170811155202) do
     t.string   "last_name"
     t.string   "email"
     t.string   "password_digest"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-    t.boolean  "admin"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.boolean  "admin",           default: false
   end
 
 end
