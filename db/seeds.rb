@@ -20,7 +20,7 @@ unless Rails.env.development?
 end
 
 Flag.destroy_all
-Comment.destroy_all
+Rebuttal.destroy_all
 Profile.destroy_all
 Category.destroy_all
 Review.destroy_all
@@ -120,9 +120,9 @@ review6 = category1.reviews.create!({
   reference_url: nil
 })
 
-puts "Seeding comment data..."
+puts "Seeding rebuttal data..."
 
-review1.create_comment({
+review1.create_rebuttal({
   content: "I didn't do that!"
 })
 

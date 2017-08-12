@@ -21,12 +21,12 @@ ActiveRecord::Schema.define(version: 20170811155202) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "comments", force: :cascade do |t|
+  create_table "rebuttals", force: :cascade do |t|
     t.text     "content"
     t.integer  "review_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["review_id"], name: "index_comments_on_review_id", using: :btree
+    # t.index ["review_id"], name: "index_comments_on_review_id", using: :btree
   end
 
   create_table "flags", force: :cascade do |t|
@@ -70,7 +70,7 @@ ActiveRecord::Schema.define(version: 20170811155202) do
     t.boolean  "admin"
   end
 
-  add_foreign_key "comments", "reviews"
-  add_foreign_key "flags", "reviews"
-  add_foreign_key "flags", "users"
+  # add_foreign_key "comments", "reviews"
+  # add_foreign_key "flags", "reviews"
+  # add_foreign_key "flags", "users"
 end
