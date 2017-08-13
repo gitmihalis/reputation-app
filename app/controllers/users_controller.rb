@@ -13,9 +13,13 @@ class UsersController < ApplicationController
   end
 
   def show
+    @authors = []
     @user = User.find params[:id]
-    @reviewsUnparsed = @user.received_reviews
-    @reviews = JSON.parse @reviewsUnparsed
+    @reviews = @user.received_reviews
+
+    @reviews.each do |review|
+      @authors.push(review.author)
+    end
 
   end
 

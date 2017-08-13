@@ -2,7 +2,8 @@ class Main extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      reviews: this.props.reviews
+      reviews: this.props.reviews,
+      authors: this.props.authors
     };
     this.addReview = this.addReview.bind(this);
   }
@@ -22,20 +23,24 @@ class Main extends React.Component {
 
   componentWillMount() {
     console.log(this.state.reviews)
+    console.log(this.state.authors)
   }
 
 
   render() {
+    let i = -1;
     const listReviews = this.state.reviews.map((review) => {
-      return (
-        <div key={review.id}>
-          <p>{review.author_id} {review.received_id}</p>
-          <p>{review.content}</p>
-        </div>
-        )
+    i++;
+    return (
+      <div key={review.id}>
+        <p>{this.state.authors[i].first_name} {this.state.authors[i].last_name}</p>
+        <p>{review.content}</p>
+      </div>
+    )
     });
     return (
       <div>
+        < OrderForm />
         <h1>React reviews:</h1>
         {listReviews}
       </div>
