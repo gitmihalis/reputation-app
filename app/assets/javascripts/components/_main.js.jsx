@@ -1,22 +1,17 @@
 class Main extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      reviews: [{
-        id: 1,
-        first_name: null,
-        last_name: null,
-        content: "There are no reviews yet!"
-      }]
+      reviews: this.props.reviews
     };
     this.addReview = this.addReview.bind(this);
   }
 
   addReview(){
     const newReview = { //Put together new message
-      id: 2,
-      first_name: this.props.user_first_name,
-      last_name: "Test",
+      id: 668,
+      author_id: 4,
+      receiver_id: 1,
       content: "Test review!"
     };
     const newReviews = this.state.reviews.concat(newReview);
@@ -26,16 +21,23 @@ class Main extends React.Component {
   }
 
   componentWillMount() {
-    this.addReview();
+    console.log(this.state.reviews)
   }
 
 
   render() {
+    const listReviews = this.state.reviews.map((review) => {
+      return (
+        <div key={review.id}>
+          <p>{review.author_id} {review.received_id}</p>
+          <p>{review.content}</p>
+        </div>
+        )
+    });
     return (
       <div>
-        <p>{this.props.user_first_name} {this.props.user_last_name}</p>
-        <p>{this.state.reviews.first_name} {this.state.reviews.last_name}</p>
-        <p>{this.state.reviews[1].content}</p>
+        <h1>React reviews:</h1>
+        {listReviews}
       </div>
     );
   }
