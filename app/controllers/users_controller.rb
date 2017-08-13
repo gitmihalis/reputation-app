@@ -14,8 +14,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find params[:id]
-    @reviewsgross = @user.received_reviews
-    @reviews = JSON.parse @reviewsgross
+    @reviewsUnparsed = @user.received_reviews
+    @reviews = JSON.parse @reviewsUnparsed
 
   end
 
