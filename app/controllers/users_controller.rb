@@ -21,6 +21,19 @@ class UsersController < ApplicationController
       @authors.push(review.author)
     end
 
+    @authorsneg = []
+    @reviewsneg = Review.where({receiver_id: @user.id, positive: false})
+
+    @reviewsneg.each do |review|
+      @authorsneg.push(review.author)
+    end
+
+    @received = []
+    @reviewswritten = Review.where({author_id: @user.id})
+
+    @reviewswritten.each do |review|
+      @received.push(review.receiver)
+    end
   end
 
   private # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

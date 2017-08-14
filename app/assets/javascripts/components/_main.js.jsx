@@ -6,24 +6,51 @@ class Main extends React.Component {
       authors: this.props.authors
     };
     this.addReview = this.addReview.bind(this);
+    this.showNegReviews = this.showNegReviews.bind(this);
+    this.showAllReviews = this.showAllReviews.bind(this);
+    this.showWrittenReviews = this.showWrittenReviews.bind(this);
   }
 
-  addReview(){
-    const newReview = { //Put together new message
-      id: 668,
-      author_id: 4,
-      receiver_id: 1,
-      content: "Test review!"
-    };
+  addReview(reviewData){
+    const newReview = reviewData;
+    const newAuthor = {first_name: "First Name", last_name: "Last Name"};
     const newReviews = this.state.reviews.concat(newReview);
+    const newAuthors = this.state.authors.concat(newAuthor);
     this.setState({
-      reviews: newReviews
+      reviews: newReviews,
+      authors: newAuthors
+    });
+  }
+
+  showNegReviews(){
+    this.setState({
+      reviews: this.props.reviewsneg,
+      authors: this.props.authorsneg
+    });
+  }
+
+  showAllReviews(){
+    this.setState({
+      reviews: this.props.reviews,
+      authors: this.props.authors
+    });
+  }
+
+  showWrittenReviews(){
+    this.setState({
+      reviews: this.props.reviewswritten,
+      authors: this.props.received
     });
   }
 
   componentWillMount() {
-    console.log(this.state.reviews)
     console.log(this.state.authors)
+    // console.log(this.props.reviewswritten)
+    // console.log(this.props.received)
+    // console.log(this.props.reviewsneg)
+    // console.log(this.props.authorsneg)
+    // console.log(this.state.reviews)
+    // console.log(this.state.authors)
   }
 
 
@@ -40,10 +67,18 @@ class Main extends React.Component {
     });
     return (
       <div>
-        < OrderForm />
         <h1>React reviews:</h1>
+        <p onClick={event => { this.showNegReviews() } } ><strong> Show Negative Reviews </strong></p>
+        <p onClick={event => { this.showAllReviews() } } ><strong> Show All Reviews </strong></p>
+        <p onClick={event => { this.showWrittenReviews() } } ><strong> Show Written Reviews </strong></p>
         {listReviews}
+        < NewReview addReview = {this.addReview} reviews = {this.state.reviews} />
       </div>
     );
   }
+
+  componentDidUpdate(){
+    this.showAllReviews
+  }
+
 }
