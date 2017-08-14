@@ -13,6 +13,7 @@ RSpec.describe Profile, type: :model do
         id: 1,
         first_name: "Eduardo",
         last_name: "Matsushita",
+        username: "eduardoM",
         email: "eduardo@credible.ca",
         password: 'password',
         password_confirmation: 'password' ,

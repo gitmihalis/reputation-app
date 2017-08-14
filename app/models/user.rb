@@ -11,6 +11,8 @@ class User < ApplicationRecord
 
   validates :first_name, presence: { message: "Must be given please." }
   validates :last_name, presence: { message: "Must be given please." }
+  validates :username, presence: { message: "Must be given please." },
+                       uniqueness: true
   validates :email, uniqueness: { case_sensitive: false },
                     presence: { message: "Sorry, email format seems wrong." },
                     format: { with: /\A[_a-zA-Z0-9\\-]+(\.[a-zA-Z0-9\\-]+)*@[a-zA-Z0-9\\-]+(\.[a-zA-Z0-9\\-]+)*(\.[a-z]{2,6})\z/ }
@@ -18,14 +20,6 @@ class User < ApplicationRecord
                        length: { in: 4..16 },
                        presence: true
   validates :password_confirmation, presence: { message: "Sorry, must be matched with password." }
-  
+
   has_secure_password
 end
-
-# t.string   "first_name"
-# t.string   "last_name"
-# t.string   "email"
-# t.string   "password_digest"
-# t.datetime "created_at",      null: false
-# t.datetime "updated_at",      null: false
-# t.boolean  "admin"
