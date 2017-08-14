@@ -1,6 +1,6 @@
 var NewReview = React.createClass({
   handleClick() {
-    var id = [1222333];
+    var i = [999];
     var author_id = this.refs.author_id_test.value;
     var review = this.refs.review_test.value;
     var reviewObject = {

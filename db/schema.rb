@@ -68,5 +68,4 @@ ActiveRecord::Schema.define(version: 20170812173647) do
     t.datetime "updated_at",                      null: false
     t.boolean  "admin",           default: false
   end
-
 end
