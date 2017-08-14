@@ -18,6 +18,7 @@ RSpec.describe User, type: :model do
       @user = User.create(
         first_name: 'Jack',
         last_name: 'Sparrow',
+        username: 'jackS',
         email: 'jSparrow@credible.com',
         password: 'password',
         password_confirmation: 'password'
@@ -88,6 +89,29 @@ RSpec.describe User, type: :model do
         @user.save
 
         expect(@user.errors.full_messages.to_s).to match("Must be given please.")
+      end
+    end
+
+    # USERNAME
+    context 'Username:' do
+      it "Should not save when created without a username" do
+        @user.username = nil
+        @user.save
+
+        expect(@user.errors.full_messages.to_s).to match("Must be given please.")
+      end
+
+      it "Should not save when new user input an username that already exists" do
+        @user1 = User.create(
+          first_name: 'Jackie',
+          last_name: 'Sparrow',
+          username: 'jackS',
+          email: 'jackieS@credible.com',
+          password: 'password',
+          password_confirmation: 'password'
+        )
+
+        expect(@user1.errors.full_messages.to_s).to match("Username has already been taken")
       end
     end
 
