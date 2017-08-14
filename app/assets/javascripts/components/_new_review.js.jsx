@@ -14,7 +14,7 @@ var NewReview = React.createClass({
       url: '/reviews',
       type: 'POST',
       data: {
-        data: reviewObject
+        review: reviewObject
         },
         success: (response) => {
           console.log('it worked!', response);
