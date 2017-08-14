@@ -35,6 +35,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.6', '>= 3.6.1'
 end
 
+gem 'react-rails'
 
 
 group :development do
