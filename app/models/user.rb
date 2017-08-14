@@ -1,5 +1,7 @@
 class User < ApplicationRecord
 
+  attr_accessor :remember_token
+
   before_save { email.downcase }
 
   has_many :authored_reviews, foreign_key: "author_id", class_name: "Review"
@@ -20,6 +22,25 @@ class User < ApplicationRecord
   validates :password_confirmation, presence: { message: "Sorry, must be matched with password." }
   
   has_secure_password
+
+  # Returns the hash digest of the given string.
+  def User.digest(string)
+    cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
+                                                  BCrypt::Engine.cost
+    BCrypt::Password.create(string, cost: cost)
+  end
+
+  # Returns a random token.
+  def User.new_token
+    SecureRandom.urlsafe_base64
+  end
+
+  # Remembers a user in the database for use in persistent sessions.
+  def remember
+    self.remember_token = User.new_token
+    update_attribute(:remember_digest, User.digest(remember_token))
+  end
+
 end
 
 # t.string   "first_name"
@@ -28,4 +49,5 @@ end
 # t.string   "password_digest"
 # t.datetime "created_at",      null: false
 # t.datetime "updated_at",      null: false
-# t.boolean  "admin"
+# t.boolean  "admin",           default: false
+# t.string   "remember_digest"
