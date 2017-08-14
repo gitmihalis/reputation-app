@@ -7,16 +7,18 @@ class UsersController < ApplicationController
     if user.save
       session[:user_id] = user.id
       redrect to "/profile/#{user.username}"
-    else 
+    else
       redirect_to '/register'
     end
   end
 
   def show
     @user = User.find params[:id]
-    @reviews = @user.received_reviews
+    @reviewsUnparsed = @user.received_reviews
+    @reviews = JSON.parse @reviewsUnparsed
+
   end
-  
+
   private # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
   def user_params

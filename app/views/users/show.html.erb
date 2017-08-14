@@ -7,3 +7,5 @@
   <p> <strong> <%= r.author.first_name %> <%= r.author.last_name %> </strong> </p>
   <p> <%= r.content %> </p>
 <% end %>
+
+<%= react_component("Main", {user_first_name: @user.first_name, user_last_name: @user.last_name, reviews: @reviews}) %>
