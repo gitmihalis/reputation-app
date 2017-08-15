@@ -24,7 +24,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
-
+gem 'react-rails'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -34,8 +34,9 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.6', '>= 3.6.1'
 end
 
-gem 'react-rails'
-
+group :test do
+  gem 'shoulda-matchers'
+end
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.

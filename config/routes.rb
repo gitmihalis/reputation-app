@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     root to: 'reviews#index'
     resources :reviews, only: [:index, :destroy, :edit]
     resources :users, only: [:index, :destroy]
-    resources :catagories, only: [:index, :new, :create, :destroy]
+    resources :categories, only: [:index, :new, :create, :destroy]
     resources :flags, only: [:index]
   end
 

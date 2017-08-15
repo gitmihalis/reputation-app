@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170814220102) do
+ActiveRecord::Schema.define(version: 20170814185548) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 20170814220102) do
     t.integer  "review_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["review_id"], name: "index_rebuttals_on_review_id", using: :btree
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -71,4 +72,6 @@ ActiveRecord::Schema.define(version: 20170814220102) do
     t.string   "username"
   end
 
+  add_foreign_key "flags", "reviews"
+  add_foreign_key "flags", "users"
 end
