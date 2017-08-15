@@ -8,4 +8,4 @@
   <p> <%= r.content %> </p>
 <% end %>
 
-<%= react_component("Main", {user_first_name: @user.first_name, user_last_name: @user.last_name, reviews: @reviews, authors: @authors, reviewsneg: @reviewsneg, authorsneg: @authorsneg, reviewswritten: @reviewswritten, received: @received}) %>
+<%= react_component("Main", {user_first_name: @user.first_name, user_last_name: @user.last_name, reviews: @reviews, authors: @authors, reviewsneg: @reviewsneg, authorsneg: @authorsneg, reviewswritten: @reviewswritten, received: @received, token: form_authenticity_token, categories: @categories }) %>

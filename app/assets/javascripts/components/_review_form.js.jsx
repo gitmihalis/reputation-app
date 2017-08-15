@@ -4,9 +4,9 @@ var ReviewForm = React.createClass({
     var author_id = 2;
     var receiver_id = 1;
     var content = this.refs.review.value;
-    var category_id = this.refs.category.value;
+    var category_id = this.refs.category_id.value;
     var reference_url = null;
-    if (this.refs.ref_url.value) { reference_url = this.refs.ref_url.value; }
+    if (this.refs.reference_url.value) { reference_url = this.refs.reference_url.value; }
     var positive = true;
     if (this.refs.positive.checked) { positive = false; }
     // var image_url = null;
@@ -24,41 +24,45 @@ var ReviewForm = React.createClass({
     $.ajax({
       url: '/reviews',
       type: 'POST',
+      headers: {
+        'X-CSRF-Token': this.props.token.toString()
+        },
       data: {
         review: reviewObject
         },
         success: (response) => {
           console.log('it worked!', response);
-          console.log(this.props.showAllReviews)
           this.props.addReview(reviewObject)
           i.push(i.last + 1)
       }
     });
-    this.props.close
   },
 
   onClick: function(e){
-    this.handleClick();
-    this.props.close(e);
+    this.handleClick(); //Send data to the controller/database
+    this.props.close(e); //Cose the modal
   },
 
   render() {
+    //List the categories in the FORM select dropdown
+    var current_user = "NAME TEMP" // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< FIX NAME
+    const listCategories = this.props.categories.map((category) => {
     return (
+      <option key={category.id} value={category.id}>{category.name}</option>
+      )
+    });
+    return (
+      //THE FORM <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<  ADD IMAGE UPLOAD
       <div>
-      <span>Reviewing NAME as a... </span>
-        <select ref='category'>
-          <option value="1">Buyer</option>
-          <option value="2">Seller</option>
-          <option value="3">Driver</option>
-          <option value="4">Labourer</option>
-          <option value="5">Service</option>
-          <option value="6">Other</option>
-        </select>
+        <span>Reviewing {current_user} as a... </span>
+          <select ref='category_id'>
+            {listCategories}
+          </select>
         <div>
           <textarea rows='10' cols='60' ref='review' placeholder='Enter a review' />
         </div>
         <p>IMAGE UPLOAD HERE</p>
-        <span> Reference URL (optional): </span> <input ref='ref_url' placeholder='http://...' />
+        <span> Reference URL (optional): </span> <input ref='reference_url' placeholder='http://...' />
         <div>
           <input type='checkbox' ref='positive'/> <span>This is a negative review</span>
         </div>

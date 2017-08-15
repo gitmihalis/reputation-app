@@ -13,6 +13,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @categories = Category.all
     @authors = []
     @user = User.find params[:id]
     @reviews = @user.received_reviews

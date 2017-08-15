@@ -44,13 +44,7 @@ class Main extends React.Component {
   }
 
   componentWillMount() {
-    console.log(this.state.authors)
-    // console.log(this.props.reviewswritten)
-    // console.log(this.props.received)
-    // console.log(this.props.reviewsneg)
-    // console.log(this.props.authorsneg)
-    // console.log(this.state.reviews)
-    // console.log(this.state.authors)
+    //console.log(this.state.authors)
   }
 
 
@@ -67,7 +61,11 @@ class Main extends React.Component {
     });
     return (
       <div>
-        <ReviewBox addReview = {this.addReview} reviews = {this.state.reviews} />
+        <ReviewBox
+          addReview = {this.addReview}
+          reviews = {this.state.reviews}
+          token = {this.props.token}
+          categories = {this.props.categories} />
         <h1>React reviews:</h1>
         <p onClick={event => { this.showNegReviews() } } ><strong> Show Negative Reviews </strong></p>
         <p onClick={event => { this.showAllReviews() } } ><strong> Show All Reviews </strong></p>
