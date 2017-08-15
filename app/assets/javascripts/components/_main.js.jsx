@@ -67,12 +67,12 @@ class Main extends React.Component {
     });
     return (
       <div>
+        <ReviewBox addReview = {this.addReview} reviews = {this.state.reviews} />
         <h1>React reviews:</h1>
         <p onClick={event => { this.showNegReviews() } } ><strong> Show Negative Reviews </strong></p>
         <p onClick={event => { this.showAllReviews() } } ><strong> Show All Reviews </strong></p>
         <p onClick={event => { this.showWrittenReviews() } } ><strong> Show Written Reviews </strong></p>
         {listReviews}
-        < NewReview addReview = {this.addReview} reviews = {this.state.reviews} />
       </div>
     );
   }
