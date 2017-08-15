@@ -1,13 +1,28 @@
+provide(title: Sign up for a new Credible account.)
+<h1>Create a new creddible account.</h1>
+<h4>Start to build your online reputation and let people see how great it can be to do business with you!</h4>
 
-<h1>Signup!</h1>
 
 <%= form_for :user, url: '/users' do |f| %>
+<div>
+  Choose a username: <%= f.text_field :username %>
+</div>
+<div>
   First: <%= f.text_field :first_name %>
+</div>
+<div>
   Last: <%= f.text_field :last_name %>
+</div>
+<div>
   Email: <%= f.text_field :email %>
+</div>
+<div>  
   Password: <%= f.password_field :password %>
+</div>
+<div>  
   Password Confirmation: <%= f.password_field :password_confirmation %>
+</div>
+<div>  
   <%= f.submit "Create my account" %>
-
 <% end %>
 <!-- Register Page! -->
