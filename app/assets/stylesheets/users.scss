@@ -10,16 +10,27 @@ h1 {
 }
 
 .right-box{
-  width: 66%;
+  width: 60%;
   display: inline;
-  float: left;
+  float: right;
+  padding-right: 3%;
 }
 
 .left-side-bar{
-  width: 33%;
+  width: 30%;
   display: inline;
   height: 100%;
   float: left;
+  padding-left: 3%;
+  text-align: center;
+}
+
+.bio-box {
+  color: #292929;
+  font-size: 0.9em;
+  line-height: 1.7em;
+  background-color: #ebebeb;
+  padding: 10px 20px;
 }
 
 .write-review-button{
@@ -41,7 +52,7 @@ h1 {
 }
 
 .avatar{
-  width: 90%;
+  width: 100%;
   overflow: hidden;
 }
 

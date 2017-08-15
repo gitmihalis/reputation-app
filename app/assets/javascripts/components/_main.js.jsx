@@ -78,7 +78,11 @@ class Main extends React.Component {
           <p onClick={event => { this.showWrittenReviews() } } ><strong> Show Written Reviews </strong></p>
         </div>
         <div className = "right-box">
-          <h1>React reviews:</h1>
+          <h1> {this.props.receiver.first_name} {this.props.receiver.last_name}</h1>
+          <div className = "bio-box">
+            <p> Hard coded Bio. There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.  </p>
+          </div>
+          <h1>Reviews:</h1>
           {listReviews}
         </div>
       </div>
