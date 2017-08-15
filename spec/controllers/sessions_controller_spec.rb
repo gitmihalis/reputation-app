@@ -21,15 +21,17 @@ RSpec.describe SessionsController, type: :controller do
 
   describe "POST sessions#create" do
     it "should login to user's profile page" do
-      params =  {
-        'session' => {
-          'email' => @user.email,
-          'password' => @user.password
-        }
-      }
-      post :create, params
+      post :create, params: { session: { email: @user.email,
+                                         password: @user.password } }
       expect redirect_to user_path(@user)
     end
+
+    it "should not redirect with bad credentials" do
+      post :create, params: { session: { email: @user.email,
+                                         password: "incorrect password"}}
+      should_not redirect_to user_path(@user)
+    end
+    
   end
 
 end
