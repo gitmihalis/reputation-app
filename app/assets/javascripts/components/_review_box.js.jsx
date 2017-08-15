@@ -13,7 +13,7 @@ class ReviewBox extends React.Component {
   render() {
     return (
       <div>
-        <a onClick={this.onClickFunc} href='#'>Write a Review</a>
+        <a onClick={this.onClickFunc} href='#' className="write-review-button" >Write a Review</a>
         {this.state.showReply && < ReviewModal close={this.onClickFunc} addReview = {this.props.addReview} reviews = {this.props.reviews} token = {this.props.token} categories = {this.props.categories} current_user = {this.props.current_user} receiver = {this.props.receiver}/ >}
       </div>
     )

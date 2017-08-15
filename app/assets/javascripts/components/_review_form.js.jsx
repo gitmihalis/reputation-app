@@ -54,22 +54,22 @@ var ReviewForm = React.createClass({
     });
     return (
       //THE FORM <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<  ADD IMAGE UPLOAD
-      <div>
-        <span>Reviewing {receiver.first_name} as a... </span>
-          <select ref='category_id'>
-            {listCategories}
-          </select>
-        <div>
-          <textarea rows='10' cols='60' ref='review' placeholder='Enter a review' />
-        </div>
-        <p>IMAGE UPLOAD HERE</p>
-        <span> Reference URL (optional): </span> <input ref='reference_url' placeholder='http://...' />
-        <div>
-          <input type='checkbox' ref='positive'/> <span>This is a negative review</span>
-        </div>
-        <div>
-          <button onClick={this.onClick}>Submit</button>
-        </div>
+        <div className = "review-form">
+          <span>Reviewing {receiver.first_name} as a... </span>
+            <select ref='category_id'>
+              {listCategories}
+            </select>
+          <div>
+            <textarea rows='10' ref='review' placeholder='Enter a review' />
+          </div>
+          <p>IMAGE UPLOAD HERE</p>
+          <span> Reference URL (optional): </span> <input ref='reference_url' placeholder='http://...' />
+          <div>
+            <input type='checkbox' ref='positive'/> <span>This is a negative review</span>
+          </div>
+          <div>
+            <button onClick={this.onClick}>Submit</button>
+          </div>
       </div>
     )
   }

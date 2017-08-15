@@ -68,11 +68,19 @@ class Main extends React.Component {
           categories = {this.props.categories}
           current_user = {this.props.current_user}
           receiver = {this.props.receiver}/>
-        <h1>React reviews:</h1>
-        <p onClick={event => { this.showNegReviews() } } ><strong> Show Negative Reviews </strong></p>
-        <p onClick={event => { this.showAllReviews() } } ><strong> Show All Reviews </strong></p>
-        <p onClick={event => { this.showWrittenReviews() } } ><strong> Show Written Reviews </strong></p>
-        {listReviews}
+
+        <div className = "left-side-bar">
+          <div className = "avatar">
+            <img className = "resize-image" src = "https://content-static.upwork.com/uploads/2014/10/02123010/profile-photo_friendly.jpg" />
+          </div>
+          <p onClick={event => { this.showNegReviews() } } ><strong> Show Negative Reviews </strong></p>
+          <p onClick={event => { this.showAllReviews() } } ><strong> Show All Reviews </strong></p>
+          <p onClick={event => { this.showWrittenReviews() } } ><strong> Show Written Reviews </strong></p>
+        </div>
+        <div className = "right-box">
+          <h1>React reviews:</h1>
+          {listReviews}
+        </div>
       </div>
     );
   }

@@ -1,11 +1,73 @@
 @import url('https://fonts.googleapis.com/css?family=Lato');
 $brand-green: #00a085;
 
+body{
+  font-family: Lato;
+}
 h1 {
   color: $brand-green;
   font-family: Lato;
 }
 
-.writeReview{
+.right-box{
+  width: 66%;
+  display: inline;
+  float: left;
+}
 
+.left-side-bar{
+  width: 33%;
+  display: inline;
+  height: 100%;
+  float: left;
+}
+
+.write-review-button{
+  background-color: transparent;
+  color: $brand-green;
+  font-size: 1.2em;
+  border-radius: 7px;
+  border: 2px solid $brand-green;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 10px 15px;
+  vertical-align: middle;
+  margin: 20px;
+  float: right;
+  &:hover{
+    background-color: $brand-green;
+    color: white;
+  }
+}
+
+.avatar{
+  width: 90%;
+  overflow: hidden;
+}
+
+.resize-image{
+  width: inherit;
+}
+
+.center-form {
+    margin: auto;
+    width: 85%;
+}
+
+.review-form textarea {
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+  width: 100%;
+}
+
+.review-form select {
+    background: #FFFFFF url('down-arrow.png') no-repeat right;
+    font-size: 1em;
+    text-overflow: '';
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 35px;
+    color: #525252;
+    margin-bottom: 10px;
 }
