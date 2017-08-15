@@ -8,9 +8,9 @@ class UsersController < ApplicationController
     if user.save
       flash.now[:success] = "Your new account has been created!" 
       # session[:user_id] = user.id
-      redirect_to "/profile/#{user.id}"
+      redirect_to user_path(user)
     else 
-      redirect_to '/register'
+      render 'new'
     end
   end
 
