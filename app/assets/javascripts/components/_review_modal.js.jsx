@@ -13,7 +13,9 @@ class ReviewModal extends React.Component {
           reviews = {this.props.reviews}
           close = {this.props.close}
           token = {this.props.token}
-          categories = {this.props.categories} />
+          categories = {this.props.categories}
+          current_user = {this.props.current_user}
+          receiver = {this.props.receiver} />
       </div>
     </div>
     )

@@ -13,7 +13,7 @@ class Main extends React.Component {
 
   addReview(reviewData){
     const newReview = reviewData;
-    const newAuthor = {first_name: "First Name", last_name: "Last Name"};
+    const newAuthor = {first_name: this.props.current_user.first_name, last_name: this.props.current_user.last_name };
     const newReviews = this.state.reviews.concat(newReview);
     const newAuthors = this.state.authors.concat(newAuthor);
     this.setState({
@@ -44,7 +44,7 @@ class Main extends React.Component {
   }
 
   componentWillMount() {
-    //console.log(this.state.authors)
+    // console.log(this.props.current_user)
   }
 
 
@@ -65,7 +65,9 @@ class Main extends React.Component {
           addReview = {this.addReview}
           reviews = {this.state.reviews}
           token = {this.props.token}
-          categories = {this.props.categories} />
+          categories = {this.props.categories}
+          current_user = {this.props.current_user}
+          receiver = {this.props.receiver}/>
         <h1>React reviews:</h1>
         <p onClick={event => { this.showNegReviews() } } ><strong> Show Negative Reviews </strong></p>
         <p onClick={event => { this.showAllReviews() } } ><strong> Show All Reviews </strong></p>

@@ -1,8 +1,8 @@
 var ReviewForm = React.createClass({
   handleClick() {
     var i = [999];
-    var author_id = 2;
-    var receiver_id = 1;
+    var author_id = this.props.current_user.id;
+    var receiver_id = this.props.receiver.id;
     var content = this.refs.review.value;
     var category_id = this.refs.category_id.value;
     var reference_url = null;
@@ -45,7 +45,8 @@ var ReviewForm = React.createClass({
 
   render() {
     //List the categories in the FORM select dropdown
-    var current_user = "NAME TEMP" // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< FIX NAME
+    var current_user = this.props.current_user;
+    var receiver = this.props.receiver;
     const listCategories = this.props.categories.map((category) => {
     return (
       <option key={category.id} value={category.id}>{category.name}</option>
@@ -54,7 +55,7 @@ var ReviewForm = React.createClass({
     return (
       //THE FORM <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<  ADD IMAGE UPLOAD
       <div>
-        <span>Reviewing {current_user} as a... </span>
+        <span>Reviewing {receiver.first_name} as a... </span>
           <select ref='category_id'>
             {listCategories}
           </select>
