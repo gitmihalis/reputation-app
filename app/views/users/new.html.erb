@@ -1,16 +1,13 @@
-<<<<<<< HEAD
 
 <h1>Signup!</h1>
 
 <%= form_for :user, url: '/users' do |f| %>
-
-  Name: <%= f.text_field :name %>
+  First: <%= f.text_field :first_name %>
+  Last: <%= f.text_field :last_name %>
   Email: <%= f.text_field :email %>
   Password: <%= f.password_field :password %>
   Password Confirmation: <%= f.password_field :password_confirmation %>
-  <%= f.submit "Submit" %>
+  <%= f.submit "Create my account" %>
 
 <% end %>
-=======
 <!-- Register Page! -->
->>>>>>> 75f36e47bb7387936d49e5c4e8177fb8a312fbfe

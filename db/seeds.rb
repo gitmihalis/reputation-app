@@ -29,36 +29,37 @@ User.destroy_all
 puts "Seeding user data..."
 
 user1 = User.create!(
-  id: 1, 
-  first_name: "Eduardo", 
-  last_name: "Matsushita", 
-  email: "eduardo@credible.ca", 
-  password: 'password', 
-  password_confirmation: 'password' , 
+  first_name: "Eduardo",
+  last_name: "Matsushita",
+  username: "eduardoM",
+  email: "eduardo@credible.ca",
+  password: 'password',
+  password_confirmation: 'password' ,
   admin: true
 )
 user2 = User.create!(
-  id: 2, 
-  first_name: "Laura", 
-  last_name: "Penstone", 
-  email: "laura@credible.ca", 
+  first_name: "Laura",
+  last_name: "Penstone",
+  username: "lauraP",
+  email: "laura@credible.ca",
   password: "password",
   password_confirmation: "password",
   admin: true
  )
 user3 = User.create!(
-  id: 3, 
-  first_name: "Mihalis", 
-  last_name: "Fthenos", 
-  email: "mihalis@credible.ca", 
-  password: "password", 
+  first_name: "Mihalis",
+  last_name: "Fthenos",
+  username: "mihalisF",
+  email: "mihalis@credible.ca",
+  password: "password",
   password_confirmation: "password",
   admin: true
 )
 user4 = User.create!(
-  id: 4, first_name: "John", 
-  last_name: "Doe", 
-  email: "john@example.com", 
+  first_name: "John",
+  last_name: "Doe",
+  username: "johnD",
+  email: "john@example.com",
   password: "password",
   password_confirmation: "password",
   admin: false
@@ -97,8 +98,8 @@ category4 = Category.create!(name: "Driver")
 puts "Seeding review data..."
 
 review1 = category1.reviews.create!({
-  author_id: 2,
-  receiver_id: 1,
+  author: user2,
+  receiver: user1,
   content: "It was a pleasure working with Eduardo!",
   positive: true,
   retracted: false,
@@ -106,8 +107,8 @@ review1 = category1.reviews.create!({
   reference_url: nil
 })
 review2 = category2.reviews.create!({
-  author_id: 4,
-  receiver_id: 2,
+  author: user4,
+  receiver: user2,
   content: "This was a great time!",
   positive: true,
   retracted: false,
@@ -115,8 +116,8 @@ review2 = category2.reviews.create!({
   reference_url: nil
 })
 review3 = category1.reviews.create!({
-  author_id: 3,
-  receiver_id: 1,
+  author: user3,
+  receiver: user1,
   content: "Such fun doing things!",
   positive: false,
   retracted: false,
@@ -124,8 +125,8 @@ review3 = category1.reviews.create!({
   reference_url: nil
 })
 review4 = category1.reviews.create!({
-  author_id: 1,
-  receiver_id: 3,
+  author: user1,
+  receiver: user3,
   content: "Everything went as expected!",
   positive: true,
   retracted: false,
@@ -133,17 +134,17 @@ review4 = category1.reviews.create!({
   reference_url: nil
 })
 review5 = category1.reviews.create!({
-  author_id: 3,
-  receiver_id: 4,
-  content: "Neat!",
+  author: user3,
+  receiver: user4,
+  content: "Not so neat :( but ... later I will retract this",
   positive: false,
-  retracted: false,
+  retracted: true,
   image_url: nil,
   reference_url: nil
 })
 review6 = category1.reviews.create!({
-  author_id: 2,
-  receiver_id: 3,
+  author: user2,
+  receiver: user3,
   content: "Awesome!",
   positive: true,
   retracted: false,
@@ -153,18 +154,19 @@ review6 = category1.reviews.create!({
 
 puts "Seeding rebuttal data..."
 
-review1.create_rebuttal({
+# Create rebuttal on negative review
+review3.create_rebuttal({
   content: "I didn't do that!"
 })
 
 puts "Seeding flag data..."
 
 review1.flags.create!({
-  user_id: 1,
+  user: user1,
   reason: "Inappropriate"
 })
 review6.flags.create!({
-  user_id: 3,
+  user: user3,
   reason: "Inappropriate"
 })
 
