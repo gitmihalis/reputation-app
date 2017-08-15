@@ -4,26 +4,25 @@
   left: 0;
   border-bottom: 2px solid $dark-true-green;
   box-shadow: 0 0 10px #999;
-  .container {
-    padding: .4em .9em;
-    background: $true-green;
-  }
-
+  padding: .4em .9em;
+  background: $true-green;
+  display: flex;
+  justify-content: flex-end;
+  width: 100;
   .brand {
+    width: 80%;
     display: inline-block;
     font-size: 2em;
 
     #logo {
-      position: relative;
-      top: 3px;
+      position: absolute;
+      top: 20px;
+      left: 1.5em;
       text-decoration: none;
       color: white;
       text-shadow: 2px 2px $dark-true-green;
       font-family: serif;
     }
-  }
-  nav {
-    display: inline-flex;
   }
   .nav-list {
     list-style: none;
