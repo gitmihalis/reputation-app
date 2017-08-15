@@ -38,6 +38,7 @@ user1 = User.create!(
   password_confirmation: 'password' ,
   admin: true
 )
+
 user2 = User.create!(
   id: 2,
   first_name: "Laura",
@@ -72,22 +73,26 @@ puts "Seeding profile data..."
 
 user1.create_profile({
   bio: "Whatevah!",
-  avatar: "eduardo.png",
+  avatar: open_asset('eduardoM.jpeg'),
   rep_status: "credible"
 })
+
 user2.create_profile({
   bio: "Nice to see you!",
-  avatar: "laura.png",
+  avatar: open_asset('lauraP.png'),
   rep_status: "credible"
 })
+
+byebug
+
 user3.create_profile({
   bio: "Sleeping!",
-  avatar: "mihalis.png",
+  avatar: open_asset('mihalisF.jpeg'),
   rep_status: "suspicious"
 })
 user4.create_profile({
   bio: "I'm a seller, trying to empty my apartment!",
-  avatar: "john.png",
+  avatar: open_asset('johnD.png'),
   rep_status: "credible"
 })
 

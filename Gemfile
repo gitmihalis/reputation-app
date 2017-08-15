@@ -28,14 +28,15 @@ gem 'bcrypt', '~> 3.1.7'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem 'react-rails'
+gem 'carrierwave'
+gem 'rmagick'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
   gem 'rspec-rails', '~> 3.6', '>= 3.6.1'
 end
-
-gem 'react-rails'
-
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
