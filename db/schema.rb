@@ -74,4 +74,5 @@ ActiveRecord::Schema.define(version: 20170814220102) do
 
   add_foreign_key "flags", "reviews"
   add_foreign_key "flags", "users"
+
 end
