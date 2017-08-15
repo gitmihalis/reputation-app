@@ -1,21 +1,22 @@
-    <%= form_for :user, url: '/users' do |f| %>
-      <div>
-        Choose a username: <%= f.text_field :username %>
+    <%= form_for :user, url: '/users', html: { class: "form"} do |f| %>
+      <div class="form-group">
+        <%= f.text_field :username, placeholder: "Username", class: "form-input" %>
       </div>
-      <div>
-        First: <%= f.text_field :first_name %>
+      <div class="form-group">
+        <%= f.text_field :first_name, placeholder: "First Name", class: "form-input" %>
       </div>
-      <div>
-        Last: <%= f.text_field :last_name %>
+      <div class="form-group">
+        <%= f.text_field :last_name, placeholder: "Last name", class: "form-input" %>
       </div>
-      <div>
-        Email: <%= f.text_field :email %>
+      <div class="form-group">
+        <%= f.text_field :email, placeholder: "Email", class: "form-input" %>
       </div>
-      <div>  
-        Password: <%= f.password_field :password %>
+      <div class="form-group">
+        <%= f.password_field :password, placeholder: "password", class: "form-input" %>
       </div>
-      <div>  
-        Password Confirmation: <%= f.password_field :password_confirmation %>
+      <div class="form-group">
+        <%= f.password_field :password_confirmation, 
+          placeholder: "Confirm Password", class: "form-input" %>
       </div>
-      <%= f.submit "Create my account" %>
+      <%= f.submit "Create my account", class: "btn" %>
     <% end %>

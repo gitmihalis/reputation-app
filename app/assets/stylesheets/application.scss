@@ -28,6 +28,8 @@ $light-grey: #eee;
 // IMPORT STYLES 
 @import 'normalize';
 @import 'layout';
+@import 'shared';
+@import 'forms';
 @import 'navigation';
 @import 'sessions';
 @import 'users';
