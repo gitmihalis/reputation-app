@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe SessionsController, type: :controller do
   before :each do
     @user = User.create!({
+      username: 'magnumMike40',
       first_name: "Mike",
       last_name: "Smith",
       email: "mike@example.org",

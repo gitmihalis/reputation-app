@@ -153,6 +153,7 @@ RSpec.describe User, type: :model do
   describe "user authentication" do
     setup do
       @user = User.create!(
+        username: 'CaptainJack',
         first_name: 'Jack',
         last_name: 'Sparrow',
         email: 'jSparrow@credible.com',
