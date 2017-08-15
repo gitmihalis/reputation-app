@@ -2,17 +2,42 @@
   display: fixed;
   top: 0;
   left: 0;
+  border-bottom: 2px solid $dark-true-green;
+  box-shadow: 0 0 10px #999;
   .container {
     padding: .4em .9em;
-    background: $truthgreen;
+    background: $true-green;
   }
 
   .brand {
     display: inline-block;
-    font-family: 
+    font-size: 2em;
+
+    #logo {
+      position: relative;
+      top: 3px;
+      text-decoration: none;
+      color: white;
+      text-shadow: 2px 2px $dark-true-green;
+      font-family: serif;
+    }
   }
   nav {
-    display: inline-block;
+    display: inline-flex;
+  }
+  .nav-list {
+    list-style: none;
+    li {
+      display: inline-block;
+      text-shadow: 1px 1px $dark-true-green;
+      margin: .2em;
+      a {
+        text-decoration: none;
+        font-size: 1em;
+        color: #fff;
+      }
+    }
+
   }
 
 }

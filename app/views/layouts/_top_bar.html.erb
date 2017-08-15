@@ -5,8 +5,12 @@
     </div>
     <nav>
       <ul class="nav-list">
-        <li><%= link_to "Help",   '#' %></li>
-        <li><%= link_to "Log in", '#' %></li>
+        <% if current_user %>
+          <li class="menu-item"><%= link_to 'Profile', user_path(current_user) %><li>
+          <li class="menu-item"><%= link_to "Logout", logout_path, class: "menu-border" %></li>
+        <% else %>
+          <li class="menu-item"><%= link_to "Login", login_path, class: "menu-border" %></li>
+        <% end %>
       </ul>
     </nav>
   </div>

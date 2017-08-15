@@ -13,15 +13,19 @@
 
  /////////////////////
  // VARIABLES ///////
- ///////////////////
-$truthgreen: #00A185;
-//...
+$true-green: #00A185;
+$dark-true-green: #008075;
+$light-grey: #eee;
+
+////////////////////
+// IMPORT FONTS
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
 
 
 
 //////////////////////
-// IMPORT STYLES ...
-/////////////////////
+// IMPORT STYLES 
 @import 'normalize';
 @import 'layout';
 @import 'navigation';
