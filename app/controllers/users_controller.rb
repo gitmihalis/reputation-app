@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     user = User.new(user_params)
     if user.save
       flash.now[:success] = "Your new account has been created!" 
-      # session[:user_id] = user.id
+      log_in user
       redirect_to user_path(user)
     else 
       render 'new'

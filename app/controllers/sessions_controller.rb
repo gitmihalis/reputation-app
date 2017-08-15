@@ -10,7 +10,8 @@ class SessionsController < ApplicationController
       # Set the user id in the browser cookie.
       flash.now[:success] = "You logged in!"
       log_in user
-      remember user
+      # TODO remember user needs to be integrated with login form 
+      remember user if params[:remember_me] == true
       redirect_to user
     else
       flash.now[:danger] = 'Invalid email/password combination'
