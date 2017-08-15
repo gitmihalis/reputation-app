@@ -13,9 +13,16 @@ RSpec.describe SessionsController, type: :controller do
 
   describe "GET sessions#destroy" do
     it "should log a user out" do
+      post :create, params: { session: { email: @user.email,
+      password: @user.password } }
       get :destroy
-      should set_session
       should redirect_to root_url
+    end
+
+    it "can't logout a user twice" do
+      get :destroy
+      get :destroy
+      # should not raise an error
     end
   end
 
