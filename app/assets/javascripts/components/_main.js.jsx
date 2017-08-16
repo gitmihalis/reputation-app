@@ -121,6 +121,7 @@ class Main extends React.Component {
       var review_date = Date(review.created_at).slice(4, 15)
       var author_first_name = this.state.authors[i].first_name
       var author_last_name = this.state.authors[i].last_name
+      var author_id = this.state.authors[i].id
       var receiver_name = this.props.receiver.first_name
       if (this.state.written){
         author_first_name = this.props.receiver.first_name
@@ -136,7 +137,7 @@ class Main extends React.Component {
             <div className = "circle-frame" />
           </span>
             <span className = "reviewer-name">
-              <p>{author_first_name} {author_last_name}</p>
+              <p><a href = {author_id } > {author_first_name} {author_last_name} </a></p>
           </span>
           {review_type(review, i, receiver_name)}
           <div className = "content">
