@@ -21,6 +21,8 @@ class UsersController < ApplicationController
     @reviews = @user.received_reviews
     @profile = Profile.where({user_id: @user.id})
     @review_categories = []
+    @written_review_categories = []
+    @neg_review_categories = []
 
     @reviews.each do |review|
       @authors.push(review.author)
@@ -32,6 +34,7 @@ class UsersController < ApplicationController
 
     @reviewsneg.each do |review|
       @authorsneg.push(review.author)
+      @neg_review_categories.push(@categories.where({id: review.category_id}))
     end
 
     @received = []
@@ -39,6 +42,7 @@ class UsersController < ApplicationController
 
     @reviewswritten.each do |review|
       @received.push(review.receiver)
+      @written_review_categories.push(@categories.where({id: review.category_id}))
     end
   end
 

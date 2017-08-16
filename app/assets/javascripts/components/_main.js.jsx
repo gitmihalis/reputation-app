@@ -43,6 +43,7 @@ class Main extends React.Component {
       title: "Negative Reviews",
       reviews: this.props.reviewsneg,
       authors: this.props.authorsneg,
+      review_categories: this.props.neg_review_categories,
       written: false
     });
   }
@@ -53,6 +54,7 @@ class Main extends React.Component {
       title: "All Reviews",
       reviews: this.props.reviews,
       authors: this.props.authors,
+      review_categories: this.props.review_categories,
       written: false
     });
   }
@@ -63,6 +65,7 @@ class Main extends React.Component {
       title: 'Reviews written by ' + this.props.receiver.first_name,
       reviews: this.props.reviewswritten,
       authors: this.props.received,
+      review_categories: this.props.written_review_categories,
       written: true
     });
   }
