@@ -96,24 +96,22 @@ class Main extends React.Component {
 
     //REVIEW_TYPE Display reviews with negative and positive styles
     const review_type = (review, i, receiver_name) => {
-      if (review.positive == true) {
-        return(
-          <span className = "reviewing-as">
-            <p>
-              Reviewed {receiver_name} as a {category_name(i)}
-            </p>
-          </span>
-        )
-      } else {
-        return(
-          <span className = "reviewing-as">
-            <p className = "red">
-              <img src="/assets/icons/thumbs_down_icon.png" width="20px" />
-              Reviewed {receiver_name} as a {category_name(i)}
-            </p>
-          </span>
-        )
+      var negative_class = null;
+      var negative_icon = () => { return null };
+      if (review.positive == false) { //If negative review, red colour and thumbs down
+        negative_class = "red";
+        negative_icon = () => {
+          return <img src="/assets/icons/thumbs_down_icon.png" width="20px" />
+        }
       }
+      return(
+        <span className = "reviewing-as">
+          <p className = {negative_class}>
+            {negative_icon()}
+            Reviewed {receiver_name} as a {category_name(i)}
+          </p>
+        </span>
+      )
     }
 
     // LIST REVIEWS : Render the reviews (different if written or received)
@@ -121,52 +119,33 @@ class Main extends React.Component {
     const listReviews = this.state.reviews.map((review) => {
       i++;
       var review_date = Date(review.created_at).slice(4, 15)
+      var author_first_name = this.state.authors[i].first_name
+      var author_last_name = this.state.authors[i].last_name
+      var receiver_name = this.props.receiver.first_name
       if (this.state.written){
-        var author_first_name = this.props.receiver.first_name
-        var author_last_name = this.props.receiver.last_name
-        var receiver_name = this.state.authors[i].first_name
-        return (
-          <div className = "review" key={review.id}>
-            <span className = "float-right">
-              <p> <img src="/assets/icons/calendar_icon.png" width="16px" /> {review_date} </p>
-            </span>
-            <span className = "float-left">
-              <div className = "circle-frame" />
-            </span>
-              <span className = "reviewer-name">
-                <p>{author_first_name} {author_last_name}</p>
-            </span>
-            {review_type(review, i, receiver_name)}
-            <div className = "content">
-              <p>{review.content}</p>
-            </div>
+        author_first_name = this.props.receiver.first_name
+        author_last_name = this.props.receiver.last_name
+        receiver_name = this.state.authors[i].first_name
+      }
+      return (
+        <div className = "review" key={review.id}>
+          <span className = "float-right">
+            <p> <img src="/assets/icons/calendar_icon.png" width="16px" /> {review_date} </p>
+          </span>
+          <span className = "float-left">
+            <div className = "circle-frame" />
+          </span>
+            <span className = "reviewer-name">
+              <p>{author_first_name} {author_last_name}</p>
+          </span>
+          {review_type(review, i, receiver_name)}
+          <div className = "content">
+            <p>{review.content}</p>
           </div>
-        )
-      } else {
-        var author_first_name = this.state.authors[i].first_name
-        var author_last_name = this.state.authors[i].last_name
-        var receiver_name = this.props.receiver.first_name
-        return (
-          <div className = "review" key={review.id}>
-            <span className = "float-right">
-              <p> <img src="/assets/icons/calendar_icon.png" width="16px" /> {Date(review.created_at).slice(4, 15)} </p>
-            </span>
-            <span className = "float-left">
-              <div className = "circle-frame" />
-            </span>
-              <span className = "reviewer-name">
-                <p>{author_first_name} {author_last_name}</p>
-            </span>
-            {review_type(review, i, receiver_name)}
-            <div className = "content">
-              <p>{review.content}</p>
-            </div>
-          </div>
-        )
-    }
-
-    //FINAL DISPLAY
+        </div>
+      )
     });
+
     return (
       <div>
         <div className = "left-side-bar">
