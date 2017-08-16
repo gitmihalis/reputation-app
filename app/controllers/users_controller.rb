@@ -6,10 +6,10 @@ class UsersController < ApplicationController
   def create
     user = User.new(user_params)
     if user.save
-      flash.now[:success] = "Your new account has been created!" 
+      flash.now[:success] = "Your new account has been created!"
       log_in user
       redirect_to user_path(user)
-    else 
+    else
       render 'new'
     end
   end
@@ -19,9 +19,12 @@ class UsersController < ApplicationController
     @authors = []
     @user = User.find params[:id]
     @reviews = @user.received_reviews
+    @profile = Profile.where({user_id: @user.id})
+    @review_categories = []
 
     @reviews.each do |review|
       @authors.push(review.author)
+      @review_categories.push(@categories.where({id: review.category_id}))
     end
 
     @authorsneg = []

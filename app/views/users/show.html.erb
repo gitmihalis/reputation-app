@@ -1,11 +1,17 @@
 <!-- Profile Pages -->
-<h1>Hi, I'm a user!</h1>
-<p> I'm <%= @user.first_name %>, with ID: <%= @user.id %> </p>
 
-<h2> Reviews </h2>
-<% @reviews.each do |r| %>
-  <p> <strong> <%= r.author.first_name %> <%= r.author.last_name %> </strong> </p>
-  <p> <%= r.content %> </p>
-<% end %>
-
-<%= react_component("Main", {user_first_name: @user.first_name, user_last_name: @user.last_name, reviews: @reviews, authors: @authors, reviewsneg: @reviewsneg, authorsneg: @authorsneg, reviewswritten: @reviewswritten, received: @received, token: form_authenticity_token, categories: @categories }) %>
+<%= react_component("Main", {
+    reviews: @reviews,
+    authors: @authors,
+    reviewsneg: @reviewsneg,
+    authorsneg: @authorsneg,
+    reviewswritten: @reviewswritten,
+    received: @received,
+    token: form_authenticity_token,
+    current_user: current_user,
+    receiver: @user,
+    profile: @profile[0],
+    categories: @categories,
+    review_categories: @review_categories
+  })
+%>
