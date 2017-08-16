@@ -6,7 +6,8 @@ class UsersController < ApplicationController
   def create
     user = User.new(user_params)
     if user.save
-      flash.now[:success] = "Your new account has been created!"
+      user.create_profile(avatar: 'default_avatar.jpg')
+      flash.now[:success] = "Your new account has been created!" 
       log_in user
       redirect_to user_path(user)
     else
