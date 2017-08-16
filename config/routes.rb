@@ -6,7 +6,8 @@ Rails.application.routes.draw do
   get '/register', to: 'users#new'
 
   resources :users, only: [:new, :create, :index, :show, :destroy]
-
+  resources :reviews, only: [:create, :destroy]
+  
   namespace :admin do
     root to: 'reviews#index'
     resources :reviews, only: [:index, :destroy, :edit]
@@ -19,12 +20,6 @@ Rails.application.routes.draw do
    # these routes are for showing users a login form, logging them in, and logging them out.
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
-
   get '/logout', to: 'sessions#destroy'
-
   get '/search', to: 'search#show'
-
-  resources :users
-
-  resources :reviews, only: [:create, :destroy]
 end
