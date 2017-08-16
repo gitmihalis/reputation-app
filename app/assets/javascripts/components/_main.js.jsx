@@ -181,7 +181,19 @@ class Main extends React.Component {
     return (
       <div>
         <div className = "left-side-bar">
-          <Profile profile = {this.props.profile} created_at = {this.props.receiver.created_at} />
+          <Profile
+            profile = {this.props.profile}
+            created_at = {this.props.receiver.created_at}
+           />
+          <div className = "select-reviews" onClick={event => { this.showAllReviews() } }>
+            <p><strong>All Reviews </strong></p>
+          </div>
+          <div className = "select-reviews" onClick={event => { this.showWrittenReviews() } } >
+            <p><strong>Written Reviews </strong></p>
+          </div>
+          <div className = "select-reviews" onClick={event => { this.showNegReviews() } }>
+            <p className = "negative" ><strong>Negative Reviews </strong></p>
+          </div>
         </div>
         <div className = "right-box">
         { topButton() }
