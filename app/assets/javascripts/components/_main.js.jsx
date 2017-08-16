@@ -71,7 +71,7 @@ class Main extends React.Component {
   }
 
   componentWillMount() {
-    //console.log("")  //GOOD FOR TESTING <<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    // console.log(this.props.current_user)  //GOOD FOR TESTING <<<<<<<<<<<<<<<<<<<<<<<<<<<<
   }
 
   //RENDERED TO THE PAGE
@@ -107,8 +107,12 @@ class Main extends React.Component {
         negative_icon = () => {
           return <img src="/assets/icons/thumbs_down_icon.png" width="20px" />
         }
-        rebuttal_button = () => {
-          return "test"
+        if (this.props.current_user){
+          if (this.props.current_user.id == this.props.receiver.id) {
+            rebuttal_button = () => {
+              return <Rebuttal />
+            }
+          }
         }
       }
       return(
