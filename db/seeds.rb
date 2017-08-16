@@ -83,8 +83,6 @@ user2.create_profile({
   rep_status: "credible"
 })
 
-byebug
-
 user3.create_profile({
   bio: "Sleeping!",
   avatar: open_asset('mihalisF.jpeg'),
