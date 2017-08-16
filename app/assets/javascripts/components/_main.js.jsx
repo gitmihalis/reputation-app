@@ -177,27 +177,11 @@ class Main extends React.Component {
       }
     };
 
-
     //RENDER THE LAYOUT
     return (
       <div>
         <div className = "left-side-bar">
-          <div className = "avatar">
-            <img className = "resize-image" src = "https://content-static.upwork.com/uploads/2014/10/02123010/profile-photo_friendly.jpg" />
-          </div>
-          <div className = "bio-box">
-            <p className = "date-joined"> <strong>Joined: {Date(this.props.receiver.created_at).slice(4, 15)}</strong> </p>
-            <p> {this.props.profile.bio}</p>
-          </div>
-          <div className = "select-reviews" onClick={event => { this.showAllReviews() } }>
-            <p><strong>All Reviews </strong></p>
-          </div>
-          <div className = "select-reviews" onClick={event => { this.showWrittenReviews() } } >
-            <p><strong>Written Reviews </strong></p>
-          </div>
-          <div className = "select-reviews" onClick={event => { this.showNegReviews() } }>
-            <p className = "negative" ><strong>Negative Reviews </strong></p>
-          </div>
+          <Profile profile = {this.props.profile} created_at = {this.props.receiver.created_at} />
         </div>
         <div className = "right-box">
         { topButton() }
