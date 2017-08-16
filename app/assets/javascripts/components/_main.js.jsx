@@ -21,13 +21,14 @@ class Main extends React.Component {
     const categories = this.props.categories.map((category) => {
       categories_and_id[category.id] = category.name
     });
+    var category_name = categories_and_id[reviewData.category_id]
 
     //Change the state to include the new review
     const newReview = reviewData;
     const newAuthor = {first_name: this.props.current_user.first_name, last_name: this.props.current_user.last_name };
     const newReviews = this.state.reviews.concat(newReview);
     const newAuthors = this.state.authors.concat(newAuthor);
-    const newCategories = this.state.review_categories.concat([ {0 : { name: categories_and_id[reviewData.category_id] } } ]);
+    const newCategories = this.state.review_categories.concat([ {0 : { name: category_name } } ]);
     this.setState({
       reviews: newReviews,
       authors: newAuthors,
@@ -75,7 +76,7 @@ class Main extends React.Component {
     //Javascipt to move the review button after scroll
     $(document).scroll(function() {
       var y = $(document).scrollTop(),
-          header = $("#test");
+          header = $("#scroll-jump");
       if(y >= 550)  {
           header.css({position: "fixed", "top" : "0", "left" : "0"});
       } else {
@@ -145,6 +146,34 @@ class Main extends React.Component {
       )
     });
 
+
+    const topButton = () => {
+      if (this.props.current_user) {
+        return(
+          <div id = "scroll-jump">
+          <ReviewBox
+            addReview = {this.addReview}
+            reviews = {this.state.reviews}
+            token = {this.props.token}
+            categories = {this.props.categories}
+            current_user = {this.props.current_user}
+            receiver = {this.props.receiver}
+            />
+          </div>
+        )
+      } else {
+        return (
+        <div id = "scroll-jump">
+          <a href="/login" className = "write-review-button"> Login </a>
+          <span className = "must-be-member" >
+            You must be a <a href = "/register">Credible Member</a> to leave a review
+          </span>
+        </div>
+        )
+      }
+    };
+
+
     //RENDER THE LAYOUT
     return (
       <div>
@@ -167,18 +196,10 @@ class Main extends React.Component {
           </div>
         </div>
         <div className = "right-box">
-        <div id = "test">
-          <ReviewBox
-            addReview = {this.addReview}
-            reviews = {this.state.reviews}
-            token = {this.props.token}
-            categories = {this.props.categories}
-            current_user = {this.props.current_user}
-            receiver = {this.props.receiver}/>
-        </div>
+        { topButton() }
           <h1 className = "name"> {this.props.receiver.first_name} {this.props.receiver.last_name}</h1>
           <h1 className = "review-type-title" >{this.state.title}</h1>
-          {listReviews}
+          { listReviews }
         </div>
       </div>
     );

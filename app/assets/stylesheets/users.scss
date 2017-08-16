@@ -6,8 +6,21 @@ body{
   font-family: Lato;
 }
 
+a {
+  color: inherit;
+}
+
 h1 {
   color: $brand-green;
+}
+
+.must-be-member{
+  float: right;
+  font-size: 0.8em;
+  width: 100px;
+  text-align: right;
+  margin-top: 20px;
+  margin-left: 25px;
 }
 
 .review-type-title{
