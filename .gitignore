@@ -22,3 +22,6 @@
 
 # Ignore all .DS_Store
 .DS_Store
+
+# Ignore uploads
+public/uploads

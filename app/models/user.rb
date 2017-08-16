@@ -21,7 +21,7 @@ class User < ApplicationRecord
   validates :password, confirmation: true,
                        length: { in: 4..16 },
                        presence: true
-  validates :password_confirmation, presence: { message: "Sorry, must be matched with password." }
+  validates :password_confirmation, presence: { message: "Must be given please." }
 
   has_secure_password
 

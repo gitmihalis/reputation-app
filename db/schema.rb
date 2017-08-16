@@ -68,8 +68,8 @@ ActiveRecord::Schema.define(version: 20170814220102) do
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
     t.boolean  "admin",           default: false
-    t.string   "remember_digest"
     t.string   "username"
+    t.string   "remember_digest"
   end
 
   add_foreign_key "flags", "reviews"
