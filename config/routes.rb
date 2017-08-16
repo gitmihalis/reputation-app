@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:new, :create, :index, :show, :destroy]
   resources :reviews, only: [:create, :destroy]
-  
+  resources :profiles, only: [:create, :update, :put]
   namespace :admin do
     root to: 'reviews#index'
     resources :reviews, only: [:index, :destroy, :edit]

@@ -1,9 +1,9 @@
-class ProfileController < ApplicationController
+class ProfilesController < ApplicationController
 
   def new
   end
 
-  def edit
+  def update
     profile = Profile.find_by(user: params[:session][:user_id])
     profile.avatar = params[:session][:avatar]
     if profile.save
