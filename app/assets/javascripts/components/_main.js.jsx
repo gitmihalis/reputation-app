@@ -5,6 +5,7 @@ class Main extends React.Component {
       title: "All Reviews",
       reviews: this.props.reviews,
       authors: this.props.authors,
+      review_categories: this.props.review_categories
     };
     this.addReview = this.addReview.bind(this);
     this.showNegReviews = this.showNegReviews.bind(this);
@@ -27,7 +28,7 @@ class Main extends React.Component {
     this.setState({
       title: "Negative Reviews",
       reviews: this.props.reviewsneg,
-      authors: this.props.authorsneg
+      authors: this.props.authorsneg,
     });
   }
 
@@ -48,7 +49,7 @@ class Main extends React.Component {
   }
 
   componentWillMount() {
-     console.log(this.state.reviews)
+     console.log(this.state.review_categories)
   }
 
 
@@ -63,17 +64,17 @@ class Main extends React.Component {
       }
     });
 
-    const review_type = (review) => {
-      if (review.positive == false) {
+    const review_type = (review, i) => {
+      if (review.positive == true) {
         return(
           <span className = "reviewing-as">
-            <p>Hard coded, Reviewing {this.props.receiver.first_name} as Seller</p>
+            <p>HC Reviewed {this.props.receiver.first_name} as {this.state.review_categories[i][0].name}</p>
           </span>
         )
       } else {
         return(
           <span className = "reviewing-as">
-            <p className = "red">Hard coded, Reviewing {this.props.receiver.first_name} as Seller</p>
+            <p className = "red"><img src="/assets/icons/thumbs_down_icon.png" width="20px" /> HC Reviewed {this.props.receiver.first_name} as {this.state.review_categories[0][0].name}</p>
           </span>
         )
       } }
@@ -92,7 +93,7 @@ class Main extends React.Component {
           <span className = "reviewer-name">
             <p>{this.state.authors[i].first_name} {this.state.authors[i].last_name}</p>
         </span>
-        {review_type(review)}
+        {review_type(review, i)}
         <div className = "content">
           <p>{review.content}</p>
         </div>
@@ -127,7 +128,7 @@ class Main extends React.Component {
         </div>
           <h1 className = "name"> {this.props.receiver.first_name} {this.props.receiver.last_name}</h1>
           <div className = "bio-box">
-            <p> Hard coded Bio. There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.  </p>
+            <p> {this.props.profile.bio}</p>
           </div>
           <h1 className = "review-type-title" >{this.state.title}</h1>
           {listReviews}

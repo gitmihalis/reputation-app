@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Lato');
 $brand-green: #00a085;
+$neg-red: #b54343;
 
 body{
   font-family: Lato;
@@ -70,7 +71,7 @@ h1 {
     float: right;
   }
   .red{
-    color: red;
+    color: $neg-red;
   }
 }
 

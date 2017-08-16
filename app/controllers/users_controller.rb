@@ -19,9 +19,12 @@ class UsersController < ApplicationController
     @authors = []
     @user = User.find params[:id]
     @reviews = @user.received_reviews
+    @profile = Profile.where({user_id: @user.id})
+    @review_categories = []
 
     @reviews.each do |review|
       @authors.push(review.author)
+      @review_categories.push(@categories.where({id: review.category_id}))
     end
 
     @authorsneg = []
