@@ -101,10 +101,14 @@ class Main extends React.Component {
     const review_type = (review, i, receiver_name) => {
       var negative_class = null;
       var negative_icon = () => { return null };
+      var rebuttal_button = () => { return null };
       if (review.positive == false) { //If negative review, red colour and thumbs down
         negative_class = "red";
         negative_icon = () => {
           return <img src="/assets/icons/thumbs_down_icon.png" width="20px" />
+        }
+        rebuttal_button = () => {
+          return "test"
         }
       }
       return(
@@ -113,6 +117,7 @@ class Main extends React.Component {
             {negative_icon()}
             Reviewed {receiver_name} as a {category_name(i)}
           </p>
+          {rebuttal_button()}
         </span>
       )
     }
@@ -150,7 +155,7 @@ class Main extends React.Component {
       )
     });
 
-
+    //Review button or login prompt - depending on current_user
     const topButton = () => {
       if (this.props.current_user) {
         return(
