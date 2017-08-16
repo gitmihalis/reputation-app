@@ -22,7 +22,7 @@ RSpec.describe Profile, type: :model do
 
       @profile = @user.create_profile({
         bio: "Whatevah!",
-        avatar: "eduardo.png",
+        avatar: "eduardoM.png",
         rep_status: "credible"
       })
     end
@@ -53,23 +53,5 @@ RSpec.describe Profile, type: :model do
         expect(@profile.errors.full_messages.to_s).to match("Bio can't be blank")
       end
     end
-
-    # AVATAR
-    context 'Avatar:' do
-      it "Should not save when created without an avatar" do
-        @profile.avatar = nil
-        @profile.save
-
-        expect(@profile.errors.full_messages.to_s).to match("Avatar is invalid")
-      end
-
-      it "Should not save when created with a file extension that doesn't match to jpg, png and gif" do
-        @profile.avatar = 'eduardo.txt'
-        @profile.save
-
-        expect(@profile.errors.full_messages.to_s).to match("Avatar is invalid")
-      end
-    end
-
   end # end of describe 'Validations'
 end

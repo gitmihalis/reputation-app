@@ -10,7 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 20170816191026) do
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,18 +48,19 @@ ActiveRecord::Schema.define(version: 20170816191026) do
     t.integer  "review_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["review_id"], name: "index_rebuttals_on_review_id", using: :btree
   end
 
   create_table "reviews", force: :cascade do |t|
-    t.text    "content"
-    t.boolean "positive",      default: true
-    t.boolean "retracted",     default: false
-    t.string  "image_url"
-    t.string  "reference_url"
-    t.integer "author_id"
-    t.integer "category_id"
-    t.integer "receiver_id"
+    t.text     "content"
+    t.boolean  "positive",      default: true
+    t.boolean  "retracted",     default: false
+    t.string   "image_url"
+    t.string   "reference_url"
+    t.integer  "author_id"
+    t.integer  "category_id"
+    t.integer  "receiver_id"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -72,7 +75,9 @@ ActiveRecord::Schema.define(version: 20170816191026) do
     t.string   "username"
   end
 
+
   add_foreign_key "flags", "reviews"
   add_foreign_key "flags", "users"
   add_foreign_key "profiles", "users"
+
 end

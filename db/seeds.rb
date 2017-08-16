@@ -26,6 +26,13 @@ Category.destroy_all
 Review.destroy_all
 User.destroy_all
 
+User.connection.execute('ALTER SEQUENCE users_id_seq RESTART WITH 1')
+Review.connection.execute('ALTER SEQUENCE reviews_id_seq RESTART WITH 1')
+Category.connection.execute('ALTER SEQUENCE categories_id_seq RESTART WITH 1')
+Profile.connection.execute('ALTER SEQUENCE profiles_id_seq RESTART WITH 1')
+Rebuttal.connection.execute('ALTER SEQUENCE rebuttals_id_seq RESTART WITH 1')
+Flag.connection.execute('ALTER SEQUENCE flags_id_seq RESTART WITH 1')
+
 puts "Seeding user data..."
 
 user1 = User.create!(
