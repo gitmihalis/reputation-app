@@ -65,7 +65,7 @@ var ReviewForm = React.createClass({
           <p>IMAGE UPLOAD HERE</p>
           <span> Reference URL (optional): </span> <input ref='reference_url' placeholder='http://...' />
           <div>
-            <input type='checkbox' ref='positive'/> <span>This is a negative review</span>
+            <input type='checkbox' ref='positive'/> <span className = "negative-warning">This is a negative review</span>
           </div>
           <div className = "button">
             <button onClick={this.onClick}>Submit</button>

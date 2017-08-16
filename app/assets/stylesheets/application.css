@@ -93,3 +93,8 @@ box-shadow: none !important;
     color: white;
   }
 }
+
+.review-form .negative-warning {
+    color: #b54343;
+    font-size: 0.7em;
+}
