@@ -40,6 +40,14 @@ class UsersController < ApplicationController
     @reviewswritten.each do |review|
       @received.push(review.receiver)
     end
+
+    # Calculate credibilty score
+    @total_of_reviews = @reviews.size
+    @positive_reviews = 0
+    @reviews.each do |review|
+      review.positive ? @positive_reviews += 1 : nil
+    end
+    @credibility_score = @positive_reviews * 100 / @total_of_reviews
   end
 
   private # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
