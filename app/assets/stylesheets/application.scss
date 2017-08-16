@@ -1,0 +1,24 @@
+ /*
+ If your creating a new style sheet, remember to import it below the IMPORT STYLES
+ */
+ 
+ /////////////////////
+ // VARIABLES ///////
+$true-green: #00A185;
+$dark-true-green: #008075;
+$light-grey: #eee;
+
+////////////////////
+// IMPORT FONTS
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
+//////////////////////
+// IMPORT STYLES 
+@import 'normalize';
+@import 'layout';
+@import 'shared';
+@import 'forms';
+@import 'navigation';
+@import 'sessions';
+@import 'users';
+@import 'welcome';
