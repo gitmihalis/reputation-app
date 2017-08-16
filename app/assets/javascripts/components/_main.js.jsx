@@ -14,8 +14,8 @@ class Main extends React.Component {
     this.showWrittenReviews = this.showWrittenReviews.bind(this);
   }
 
+  //ADD REVIEW
   addReview(reviewData){
-
     //Put all categories into a key-value pair for reference
     const categories_and_id = {}
     const categories = this.props.categories.map((category) => {
@@ -27,7 +27,7 @@ class Main extends React.Component {
     const newAuthor = {first_name: this.props.current_user.first_name, last_name: this.props.current_user.last_name };
     const newReviews = this.state.reviews.concat(newReview);
     const newAuthors = this.state.authors.concat(newAuthor);
-    const newCategories = this.state.review_categories.concat([{0 : {name: categories_and_id[reviewData.category_id]}}]);
+    const newCategories = this.state.review_categories.concat([ {0 : { name: categories_and_id[reviewData.category_id] } } ]);
     this.setState({
       reviews: newReviews,
       authors: newAuthors,
@@ -35,7 +35,6 @@ class Main extends React.Component {
       written: false
     });
   }
-
 
   //NEGATIVE REVIEWS
   showNegReviews(){
@@ -68,7 +67,7 @@ class Main extends React.Component {
   }
 
   componentWillMount() {
-      console.log("")
+    //console.log("")  //GOOD FOR TESTING <<<<<<<<<<<<<<<<<<<<<<<<<<<<
   }
 
   //RENDERED TO THE PAGE
@@ -146,6 +145,7 @@ class Main extends React.Component {
       )
     });
 
+    //RENDER THE LAYOUT
     return (
       <div>
         <div className = "left-side-bar">
@@ -183,9 +183,4 @@ class Main extends React.Component {
       </div>
     );
   }
-
-  componentDidUpdate(){
-    this.showAllReviews
-  }
-
 }
