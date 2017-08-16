@@ -48,7 +48,7 @@ class Main extends React.Component {
   }
 
   componentWillMount() {
-    // console.log(this.props.current_user)
+     console.log(this.state.reviews)
   }
 
 
@@ -63,23 +63,36 @@ class Main extends React.Component {
       }
     });
 
+    const review_type = (review) => {
+      if (review.positive == false) {
+        return(
+          <span className = "reviewing-as">
+            <p>Hard coded, Reviewing {this.props.receiver.first_name} as Seller</p>
+          </span>
+        )
+      } else {
+        return(
+          <span className = "reviewing-as">
+            <p className = "red">Hard coded, Reviewing {this.props.receiver.first_name} as Seller</p>
+          </span>
+        )
+      } }
+
     let i = -1;
     const listReviews = this.state.reviews.map((review) => {
     i++;
     return (
       <div className = "review" key={review.id}>
         <span className = "float-right">
-          <p>June 4th, 2017 </p>
+          <p> <img src="/assets/icons/calendar_icon.png" width="16px" /> {Date(review.created_at).slice(0, 15)} </p>
         </span>
         <span className = "float-left">
           <div className = "circle-frame" />
         </span>
           <span className = "reviewer-name">
             <p>{this.state.authors[i].first_name} {this.state.authors[i].last_name}</p>
-          </span>
-          <span className = "reviewing-as">
-            <p>Hard coded, Reviewing {this.props.receiver.first_name} as Seller</p>
-          </span>
+        </span>
+        {review_type(review)}
         <div className = "content">
           <p>{review.content}</p>
         </div>
@@ -103,7 +116,7 @@ class Main extends React.Component {
           </div>
         </div>
         <div className = "right-box">
-                <div id = "test">
+        <div id = "test">
           <ReviewBox
             addReview = {this.addReview}
             reviews = {this.state.reviews}
