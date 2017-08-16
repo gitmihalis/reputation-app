@@ -69,7 +69,8 @@ ActiveRecord::Schema.define(version: 20170816041455) do
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
     t.boolean  "admin",           default: false
-    t.string   "username"
     t.string   "remember_digest"
+    t.string   "username"
   end
+
 end
