@@ -30,8 +30,8 @@ h1 {
   height: 100%;
   float: left;
   padding-left: 3%;
-  text-align: center;
 }
+
 
 .review{
   .reviewer-name{
@@ -85,7 +85,10 @@ h1 {
   font-size: 0.9em;
   line-height: 1.7em;
   background-color: #ebebeb;
-  padding: 10px 20px;
+  padding: 5px 20px;
+  .date-joined{
+  color: #a6a6a6;
+  }
 }
 
 .write-review-button{
@@ -107,6 +110,7 @@ h1 {
 }
 
 .select-reviews{
+  text-align: center;
   border-bottom: 4px solid #ebebeb;
   padding: 15px 0;
   p{

@@ -67,7 +67,7 @@ var ReviewForm = React.createClass({
           <div>
             <input type='checkbox' ref='positive'/> <span>This is a negative review</span>
           </div>
-          <div>
+          <div className = "button">
             <button onClick={this.onClick}>Submit</button>
           </div>
       </div>

@@ -73,3 +73,23 @@
     color: #525252;
     margin-bottom: 10px;
 }
+.review-form button {
+-webkit-appearance:none;
+box-shadow: none !important;
+    -moz-appearance: none;
+    appearance: none;
+  background-color: white;
+  color: $brand-green;
+  font-size: 1.2em;
+  border-radius: 7px;
+  border: 3px solid $brand-green;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 10px 15px;
+  vertical-align: middle;
+  margin: 20px;
+  &:hover{
+    background-color: $brand-green;
+    color: white;
+  }
+}
