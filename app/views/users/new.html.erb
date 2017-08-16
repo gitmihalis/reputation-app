@@ -1,13 +1,13 @@
+<% provide(title: "Sign up for a new Credible account.") %>
+<div class="registration">
 
-<h1>Signup!</h1>
-
-<%= form_for :user, url: '/users' do |f| %>
-
-  Name: <%= f.text_field :name %>
-  Email: <%= f.text_field :email %>
-  Password: <%= f.password_field :password %>
-  Password Confirmation: <%= f.password_field :password_confirmation %>
-  <%= f.submit "Submit" %>
-
-<% end %>
-<!-- Register Page! -->
+  <div class="jumbo">
+    <header class="centered">
+      <h1>Create a new creddible account.</h1>
+      <%= image_tag 'icons8-security_checked.png'%>
+    </header>
+  </div>
+  <div class="wrapper">
+    <%= render 'users/partials/registration_form'%>
+  </div>
+</div>

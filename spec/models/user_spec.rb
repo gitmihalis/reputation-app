@@ -147,4 +147,23 @@ RSpec.describe User, type: :model do
 
   end # end of describe 'Validations'
 
+  ##############
+  # AUTHENTICATE
+  ##############
+  describe "user authentication" do
+    setup do
+      @user = User.create!(
+        username: 'CaptainJack',
+        first_name: 'Jack',
+        last_name: 'Sparrow',
+        email: 'jSparrow@credible.com',
+        password: 'password',
+        password_confirmation: 'password'
+      )
+    end
+
+    it "should return for flase for a user with nil digest" do
+      expect(@user.remember_me?('')).to be false
+    end
+  end
 end
