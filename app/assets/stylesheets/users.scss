@@ -4,9 +4,14 @@ $brand-green: #00a085;
 body{
   font-family: Lato;
 }
+
 h1 {
   color: $brand-green;
-  font-family: Lato;
+}
+
+.review-type-title{
+  font-size: 1.5em;
+  border-bottom: 2px solid $brand-green;
 }
 
 .right-box{
@@ -14,15 +19,61 @@ h1 {
   display: inline;
   float: right;
   padding-right: 3%;
+  padding-bottom: 30px;
 }
 
 .left-side-bar{
+  padding-top: 20px;
   width: 30%;
   display: inline;
   height: 100%;
   float: left;
   padding-left: 3%;
   text-align: center;
+}
+
+.review{
+  .reviewer-name{
+    padding-top: 10px;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #414141;
+    p{
+      padding: 10px 0 0 0 ;
+      margin: 0;
+    }
+  }
+  .reviewing-as{
+    color: $brand-green;
+    p{
+      padding: 0;
+      margin: 0;
+    }
+  }
+  .content{
+    font-family: Lato-light;
+    padding-bottom: 10px;
+    border-bottom: 2px solid $brand-green;
+    margin-bottom: 20px;
+  }
+  .circle-frame{
+    border-radius: 50%;
+    border: 1px solid black;
+    width: 55px;
+    height: 55px;
+  }
+  .float-left{
+    float: left;
+    padding-right: 15px;
+  }
+  .float-right{
+    float: right;
+  }
+}
+
+.name{
+  color: #414141;
+  font-size: 2.5em;
 }
 
 .bio-box {
@@ -34,7 +85,7 @@ h1 {
 }
 
 .write-review-button{
-  background-color: transparent;
+  background-color: white;
   color: $brand-green;
   font-size: 1.2em;
   border-radius: 7px;
@@ -51,6 +102,21 @@ h1 {
   }
 }
 
+.select-reviews{
+  border-bottom: 4px solid #ebebeb;
+  padding: 15px 0;
+  p{
+    margin: 0;
+    padding: 0;
+  }
+  &:hover{
+    background-color: #ebebeb;
+  }
+  .negative{
+    color: #b54343;
+  }
+}
+
 .avatar{
   width: 100%;
   overflow: hidden;
@@ -58,27 +124,4 @@ h1 {
 
 .resize-image{
   width: inherit;
-}
-
-.center-form {
-    margin: auto;
-    width: 85%;
-}
-
-.review-form textarea {
-    -webkit-box-sizing: border-box;
-       -moz-box-sizing: border-box;
-            box-sizing: border-box;
-  width: 100%;
-}
-
-.review-form select {
-    background: #FFFFFF url('down-arrow.png') no-repeat right;
-    font-size: 1em;
-    text-overflow: '';
-    padding-left: 10px;
-    padding-right: 10px;
-    height: 35px;
-    color: #525252;
-    margin-bottom: 10px;
 }
