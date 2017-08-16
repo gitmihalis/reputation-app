@@ -19,15 +19,6 @@ class Profile extends React.Component {
           <p className = "date-joined"> <strong>Joined: {Date(this.state.created_at).slice(4, 15)}</strong> </p>
           <p> {this.state.bio}</p>
         </div>
-        <div className = "select-reviews" onClick={event => { this.showAllReviews() } }>
-          <p><strong>All Reviews </strong></p>
-        </div>
-        <div className = "select-reviews" onClick={event => { this.showWrittenReviews() } } >
-          <p><strong>Written Reviews </strong></p>
-        </div>
-        <div className = "select-reviews" onClick={event => { this.showNegReviews() } }>
-          <p className = "negative" ><strong>Negative Reviews </strong></p>
-        </div>
       </div>
     );
   }
