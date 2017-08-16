@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css?family=Lato');
 $brand-green: #00a085;
 $neg-red: #b54343;
@@ -151,3 +152,13 @@ h1 {
 .resize-image{
   width: inherit;
 }
+
+.registration {
+  height: 100vh;
+}
+.registration > .wrapper {
+  width: 90%;
+  max-width: 340px;
+  margin: 2vh auto;
+}
+

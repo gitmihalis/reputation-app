@@ -19,3 +19,9 @@
 
 # Ignore Byebug command history file.
 .byebug_history
+
+# Ignore all .DS_Store
+.DS_Store
+
+# Ignore uploads
+public/uploads

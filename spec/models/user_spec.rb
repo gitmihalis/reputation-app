@@ -63,7 +63,7 @@ RSpec.describe User, type: :model do
         @user.password_confirmation = nil
         @user.save
 
-        expect(@user.errors.full_messages.to_s).to match("Sorry, must be matched with password")
+        expect(@user.errors.full_messages.to_s).to match("Must be given please.")
       end
 
       it "Should not save when password doesn't match password_confirmation" do

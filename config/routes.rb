@@ -22,6 +22,8 @@ Rails.application.routes.draw do
 
   get '/logout', to: 'sessions#destroy'
 
+  get '/search', to: 'search#show'
+
   resources :users
 
   resources :reviews, only: [:create, :destroy]

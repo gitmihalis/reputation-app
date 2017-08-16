@@ -26,6 +26,13 @@ Category.destroy_all
 Review.destroy_all
 User.destroy_all
 
+User.connection.execute('ALTER SEQUENCE users_id_seq RESTART WITH 1')
+Review.connection.execute('ALTER SEQUENCE reviews_id_seq RESTART WITH 1')
+Category.connection.execute('ALTER SEQUENCE categories_id_seq RESTART WITH 1')
+Profile.connection.execute('ALTER SEQUENCE profiles_id_seq RESTART WITH 1')
+Rebuttal.connection.execute('ALTER SEQUENCE rebuttals_id_seq RESTART WITH 1')
+Flag.connection.execute('ALTER SEQUENCE flags_id_seq RESTART WITH 1')
+
 puts "Seeding user data..."
 
 user1 = User.create!(
@@ -37,6 +44,7 @@ user1 = User.create!(
   password_confirmation: 'password' ,
   admin: true
 )
+
 user2 = User.create!(
   first_name: "Laura",
   last_name: "Penstone",
@@ -69,22 +77,24 @@ puts "Seeding profile data..."
 
 user1.create_profile({
   bio: "Whatevah!",
-  avatar: "eduardo.png",
+  avatar: open_asset('eduardoM.jpeg'),
   rep_status: "credible"
 })
+
 user2.create_profile({
   bio: "Nice to see you!",
-  avatar: "laura.png",
+  avatar: open_asset('lauraP.png'),
   rep_status: "credible"
 })
+
 user3.create_profile({
   bio: "Sleeping!",
-  avatar: "mihalis.png",
+  avatar: open_asset('mihalisF.jpeg'),
   rep_status: "suspicious"
 })
 user4.create_profile({
   bio: "I'm a seller, trying to empty my apartment!",
-  avatar: "john.png",
+  avatar: open_asset('johnD.png'),
   rep_status: "credible"
 })
 
