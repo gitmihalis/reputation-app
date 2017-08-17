@@ -40,6 +40,7 @@ class Main extends React.Component {
       review_categories: newCategories,
       written: false
     });
+    window.location.reload()
   }
 
   addRebuttal(rebuttalData){
@@ -47,7 +48,6 @@ class Main extends React.Component {
     this.setState({
       rebuttals: this.state.rebuttals
     });
-    window.location.reload()
   }
 
   //NEGATIVE REVIEWS
@@ -125,7 +125,7 @@ class Main extends React.Component {
         <span className = "reviewing-as">
           <p className = {negative_class}>
             {negative_icon()}
-            Reviewed <a href = { receiver_id } >{receiver_name}</a> as a {category_name(i)}
+            Reviewed <a href = {receiver_id} >{receiver_name}</a> as a {category_name(i)}
           </p>
         </span>
       )
@@ -141,6 +141,7 @@ class Main extends React.Component {
       var author_id = this.state.authors[i].id
       var receiver_id = this.props.receiver.id
       var receiver_name = this.props.receiver.first_name
+      var receiver_last_name = this.props.receiver.last_name
       var review_id = review.id
       var rebuttal_button = () => { return null };
       var retract_button = () => { return null };
@@ -168,27 +169,42 @@ class Main extends React.Component {
       }
       if (this.state.rebuttals[review_id] && this.state.rebuttals[review_id][0]){
         rebuttal_comment = () => {
-          return this.state.rebuttals[review_id][0]["content"]
+          return (
+            <div className = "rebuttal-comment">
+              <div className = "float-left">
+                <div className = "circle-frame" />
+              </div>
+              <span className = "rebuttal-name">
+                <p><a href = {receiver_id} >{receiver_name} {receiver_last_name}</a></p>
+              </span>
+              <div className = "content">
+              {this.state.rebuttals[review_id][0]["content"]}
+              </div>
+            </div>
+          )
         }
         var rebuttal_button = () => { return null };
       }
       return (
         <div className = "review" key={review.id}>
-          <span className = "float-right">
-            <p> <img src="/assets/icons/calendar_icon.png" width="16px" /> {review_date}</p>
-          </span>
-          <span className = "float-left">
-            <div className = "circle-frame" />
-          </span>
+          <div className = "review-header">
+            <span className = "float-right">
+              <p> <img src="/assets/icons/calendar_icon.png" width="16px" /> {review_date}</p>
+            </span>
+            <div className = "float-left">
+              <div className = "circle-frame" />
+            </div>
             <span className = "reviewer-name">
               <p><a href = { author_id } > {author_first_name} {author_last_name} </a></p>
-          </span>
-          {review_type(review, i, receiver_name, receiver_id)}
+            </span>
+            {review_type(review, i, receiver_name, receiver_id)}
+           </div>
           <div className = "content">
             <p>{review.content}</p>
             {rebuttal_button()}
             {retract_button()}
             {rebuttal_comment()}
+
           </div>
         </div>
       )

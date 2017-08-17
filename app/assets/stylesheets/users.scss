@@ -48,6 +48,19 @@ h1 {
 
 
 .review{
+  border: 1px solid #cfcfcf;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  margin: 20px 0;
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, .2);
+  .review-header{
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    border-bottom: 1px solid #cfcfcf;
+    background-color: #f1f1f1;
+    padding: 10px;
+    padding-bottom: 20px;
+  }
   .reviewer-name{
     padding-top: 10px;
     font-size: 1.1em;
@@ -73,10 +86,10 @@ h1 {
     }
   }
   .content{
-    font-family: Lato-light;
+    padding: 10px;
+    font-family: Lato;
     padding-bottom: 10px;
-    border-bottom: 2px solid $brand-green;
-    margin-bottom: 20px;
+    /*border-bottom: 2px solid $brand-green;*/
   }
   .circle-frame{
     border-radius: 50%;
