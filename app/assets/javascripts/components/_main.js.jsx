@@ -92,12 +92,37 @@ class Main extends React.Component {
   }
 
   componentWillMount() {
-    console.log(this.state.review_profiles[0][0].avatar)
-    //GOOD FOR TESTING <<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    //console.log(this.state.review_profiles[0][0].avatar)
   }
 
-  //RENDERED TO THE PAGE
+  //RENDER<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
   render() {
+    //TOP BUTTON - depending on current_user
+    const topButton = () => {
+      if (this.props.current_user) {
+        return(
+          <div id = "scroll-jump">
+          <ReviewBox
+            addReview = {this.addReview}
+            reviews = {this.state.reviews}
+            token = {this.props.token}
+            categories = {this.props.categories}
+            current_user = {this.props.current_user}
+            receiver = {this.props.receiver}
+            />
+          </div>
+        )
+      } else {
+        return (
+        <div id = "scroll-jump">
+          <a href="/login" className = "write-review-button"> Login </a>
+          <span className = "must-be-member" >
+            You must be a <a href = "/register">Credible Member</a> to leave a review
+          </span>
+        </div>
+        )
+      }
+    };
     //Javascipt to move the review button after scroll
     $(document).scroll(function() {
       var y = $(document).scrollTop(),
@@ -143,61 +168,50 @@ class Main extends React.Component {
     let i = -1;
     const listReviews = this.state.reviews.map((review) => {
       i++;
+      var review_id = review.id
       var review_date = Date(review.created_at).slice(4, 15)
+      var reviewer_image = this.state.review_profiles[i][0].avatar.url;
+      var reviewer_status = this.state.review_profiles[i][0].rep_status
+
       var author_first_name = this.state.authors[i].first_name
       var author_last_name = this.state.authors[i].last_name
       var author_id = this.state.authors[i].id
+
       var receiver_id = this.props.receiver.id
       var receiver_name = this.props.receiver.first_name
       var receiver_last_name = this.props.receiver.last_name
-      var review_id = review.id
+
+      var rebuttal_image = this.props.profile.avatar.url // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
       var rebuttal_button = () => { return null };
-      var retract_button = () => { return null };
       var rebuttal_comment = () => { return null };
-      var reviewer_image = this.state.review_profiles[i][0].avatar.url;
-      var reviewer_status = this.state.review_profiles[i][0].rep_status
-      console.log(this.state.review_profiles[i][0].avatar.url)
-      if (this.state.written){
+      var retract_button = () => { return null };
+
+      // IF REVIEW WRITTEN
+      if (this.state.written){ //Variables are different when the reviews are written
         reviewer_image = this.props.profile.avatar.url;
         reviewer_status = this.props.profile.rep_status;
+
         author_first_name = this.props.receiver.first_name
         author_last_name = this.props.receiver.last_name
         author_id = this.props.receiver.id
+
         receiver_id = this.state.authors[i].id
         receiver_name = this.state.authors[i].first_name
         receiver_last_name = this.state.authors[i].last_name
 
-        //REBUTTAL IF WRITTEN
-        if (this.state.rebuttals[review_id] && this.state.rebuttals[review_id][0]){
-          rebuttal_comment = () => {
-            return (
-              <div className = "rebuttal-comment">
-                <div className = "float-left">
-                  <div className = "circle-frame" >
-                    <img className = "resize-image" src = "IMAGE" />
-                  </div>
-                </div>
-                <span className = "rebuttal-name">
-                  <p><a href = {receiver_id} >{receiver_name} {receiver_last_name}</a></p>
-                </span>
-                <div className = "content">
-                {this.state.rebuttals[review_id][0]["content"]}
-                </div>
-              </div>
-            )
-          }
-        }
+        rebuttal_image = this.state.review_profiles[i][0].avatar.url;
       }
 
-      //REBUTTAL BUTTON
+      //If REVIEW NEGATIVE
       if (!review.positive){
+        //Rebuttal Button
         if (this.props.current_user){
           if (this.props.current_user.id == receiver_id) {
             rebuttal_button = () => {
               return <Rebuttal review_id = {review_id} token = {this.props.token} addRebuttal = {this.addRebuttal} />
             }
           }
-          //RETRACT BUTTON
+          //Retract Button
           if (this.props.current_user.id == review.author_id) {
             retract_button = () => {
               return "retract!"
@@ -205,15 +219,14 @@ class Main extends React.Component {
           }
         }
       }
-
-      //REBUTTAL
+      //Rebuttal comments
       if (this.state.rebuttals[review_id] && this.state.rebuttals[review_id][0]){
         rebuttal_comment = () => {
           return (
             <div className = "rebuttal-comment">
               <div className = "float-left">
                 <div className = "circle-frame" >
-                  <img className = "resize-image" src = "" />
+                  <img className = "resize-image" src = {rebuttal_image} />
                 </div>
               </div>
               <span className = "rebuttal-name">
@@ -227,6 +240,8 @@ class Main extends React.Component {
         }
         var rebuttal_button = () => { return null };
       }
+
+      //THE REVIEW HTML <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
       return (
         <div className = "review" key={review.id}>
           <div className = "review-header">
@@ -257,36 +272,11 @@ class Main extends React.Component {
       )
     });
 
-    //Review button or login prompt - depending on current_user
-    const topButton = () => {
-      if (this.props.current_user) {
-        return(
-          <div id = "scroll-jump">
-          <ReviewBox
-            addReview = {this.addReview}
-            reviews = {this.state.reviews}
-            token = {this.props.token}
-            categories = {this.props.categories}
-            current_user = {this.props.current_user}
-            receiver = {this.props.receiver}
-            />
-          </div>
-        )
-      } else {
-        return (
-        <div id = "scroll-jump">
-          <a href="/login" className = "write-review-button"> Login </a>
-          <span className = "must-be-member" >
-            You must be a <a href = "/register">Credible Member</a> to leave a review
-          </span>
-        </div>
-        )
-      }
-    };
 
-    //RENDER THE LAYOUT
+    //RENDER THE LAYOUT <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     return (
       <div>
+        //PROFILE
         <div className = "left-side-bar">
           <Profile
             profile = {this.props.profile}
@@ -303,6 +293,8 @@ class Main extends React.Component {
             <p><strong>Written Reviews </strong></p>
           </div>
         </div>
+
+        //CONTENT (REVIEWS)
         <div className = "right-box">
         { topButton() }
           <h1 className = "name"> {this.props.receiver.first_name} {this.props.receiver.last_name}</h1>
