@@ -181,10 +181,8 @@ class Main extends React.Component {
     return (
       <div>
         <div className = "left-side-bar">
-          <Profile
-            profile = {this.props.profile}
-            created_at = {this.props.receiver.created_at}
-           />
+          <Profile avatar={this.props.profile.avatar}
+                    bio={this.props.profile.bio} />
           <div className = "select-reviews" onClick={event => { this.showAllReviews() } }>
             <p><strong>All Reviews </strong></p>
           </div>

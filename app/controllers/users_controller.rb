@@ -19,8 +19,10 @@ class UsersController < ApplicationController
     @categories = Category.all
     @authors = []
     @user = User.find params[:id]
+
+    @profile = @user.profile
+
     @reviews = @user.received_reviews
-    @profile = Profile.where({user_id: @user.id})
     @review_categories = []
     @written_review_categories = []
     @neg_review_categories = []
