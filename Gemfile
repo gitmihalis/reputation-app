@@ -9,7 +9,6 @@ end
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.5'
 
-gem 'react-rails'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Use Puma as the app server
@@ -30,6 +29,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'bcrypt', '~> 3.1.7'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+gem 'turbolinks', '~> 5.0', '>= 5.0.1'
 gem 'react-rails'
 gem 'carrierwave'
 gem 'rmagick'

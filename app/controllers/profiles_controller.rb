@@ -4,14 +4,19 @@ class ProfilesController < ApplicationController
   end
 
   def update
-
     profile = Profile.find_by(id: params[:id])
-    byebug
-    # profile.avatar = params[:session][:avatar]
-    if profile.update(profile_params)
-      render json: { status: 'OK' }
-    else 
-      render json: { error: 'Could not upload image'}
+    if profile.update!(profile_params)
+      respond_to do |format|
+        format.html { redirect_to user_path(3), notice: 'Profile was successfully updated.' }
+        format.json { render json: profile, status: :created, location: profile }
+        format.js
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to user_path(3), notice: 'Oh no! Profile was not updated.' }
+        format.json { render json: profile, status: :rejected, location: profile }
+        format.js
+      end
     end
   end
 

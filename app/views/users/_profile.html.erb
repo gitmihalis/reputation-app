@@ -1,13 +1,12 @@
 <div class="profile">
-  <%= form_for @profile, :html => {:multipart => true} do |f| %>
   <div class="avatar">
     <%= image_tag @profile.avatar %>
   </div>
   <div class="bio-box">
     <p class="date-joined"> <strong>Joined: <%= @profile.created_at %></strong> </p>
   </div>
-
-    <%= f.file_field :avatar %><br/>
-    <%= f.submit "Change Avatar"  %><br/>
+  <%= form_tag profile_path(@profile), method: :put, multipart: true do %>
+    <%= file_field_tag 'profile[avatar]' %><br/>
+    <%= submit_tag "Change Avatar"  %><br/>
   <% end %>
 </div>
