@@ -2,6 +2,7 @@ class Main extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      isCurrentUser: true,
       title: "All Reviews",
       reviews: this.props.reviews,
       authors: this.props.authors,
@@ -181,8 +182,6 @@ class Main extends React.Component {
     return (
       <div>
         <div className = "left-side-bar">
-          <Profile avatar={this.props.profile.avatar}
-                    bio={this.props.profile.bio} />
           <div className = "select-reviews" onClick={event => { this.showAllReviews() } }>
             <p><strong>All Reviews </strong></p>
           </div>

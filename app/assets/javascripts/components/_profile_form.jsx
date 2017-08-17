@@ -6,20 +6,32 @@ class ProfileForm extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    console.log('submit handled!')
+    // make the ajax request here and update the database
+    $.ajax({
+      url: `/profiles/${this.props.id}`,
+      type: 'PATCH',
+      headers: {
+        'X-CSRF-Token': this.props.formToken.toString()
+      },
+      data: {
+        profile: { avatar: event.target.value }
+        },
+        success: (response) => {
+          console.log('it worked!', response);
+      }
+    });
   }
 
   render() {
     return (
-      <div>
-        <div className="avatar">
-          <img className="resize-image" src={this.props.avatar} />
-        </div>
-        <div className="bio-box">
-        <input type="text"
-               defaultValue={this.props.bio} 
-               ref={(input) => this.input = input} />
-        </div>
-      </div>
+      <form action={`/profiles/${this.props.id}`} 
+            method="POST"
+            enctype="multipart/form-data">
+        <input type="submit" value="Upload"  />
+        <input type="hidden" name="_method" value="PUT" />
+        <input type="file" name="profile[avatar]" />    
+      </form>
     )
   }
 }

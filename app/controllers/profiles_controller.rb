@@ -1,12 +1,14 @@
 class ProfilesController < ApplicationController
-
+  protect_from_forgery with: :null_session, only: :update
   def new
   end
 
   def update
-    profile = Profile.find_by(user: params[:session][:user_id])
-    profile.avatar = params[:session][:avatar]
-    if profile.save
+
+    profile = Profile.find_by(id: params[:id])
+    byebug
+    # profile.avatar = params[:session][:avatar]
+    if profile.update(profile_params)
       render json: { status: 'OK' }
     else 
       render json: { error: 'Could not upload image'}
