@@ -14,7 +14,7 @@ class Rebuttal extends React.Component {
     return (
       <div>
         <a onClick={this.onClickFunc} href='#' >Rebuttal</a>
-        {this.state.showReply && < RebuttalComment close={this.onClickFunc} review_id = {this.props.review_id} token = {this.props.token} />}
+        {this.state.showReply && < RebuttalComment close={this.onClickFunc} review_id = {this.props.review_id} token = {this.props.token} addRebuttal = {this.props.addRebuttal} />}
       </div>
     )
   }

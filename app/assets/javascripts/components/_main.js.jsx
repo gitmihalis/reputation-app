@@ -10,6 +10,7 @@ class Main extends React.Component {
       rebuttals: this.props.rebuttals
     };
     this.addReview = this.addReview.bind(this);
+    this.addRebuttal = this.addRebuttal.bind(this);
     this.showNegReviews = this.showNegReviews.bind(this);
     this.showAllReviews = this.showAllReviews.bind(this);
     this.showWrittenReviews = this.showWrittenReviews.bind(this);
@@ -35,6 +36,13 @@ class Main extends React.Component {
       authors: newAuthors,
       review_categories: newCategories,
       written: false
+    });
+  }
+
+  addRebuttal(rebuttalData){
+    this.state.rebuttals[rebuttalData.review_id] = [ { content: rebuttalData.content } ];
+    this.setState({
+      rebuttals: this.state.rebuttals
     });
   }
 
@@ -143,7 +151,7 @@ class Main extends React.Component {
         if (this.props.current_user){
           if (this.props.current_user.id == receiver_id) {
             rebuttal_button = () => {
-              return <Rebuttal review_id = {review_id} token = {this.props.token}/>
+              return <Rebuttal review_id = {review_id} token = {this.props.token} addRebuttal = {this.addRebuttal} />
             }
           }
           if (this.props.current_user.id == review.author_id) {
@@ -157,6 +165,7 @@ class Main extends React.Component {
         rebuttal_comment = () => {
           return this.state.rebuttals[review_id][0]["content"]
         }
+        var rebuttal_button = () => { return null };
       }
       return (
         <div className = "review" key={review.id}>

@@ -19,7 +19,7 @@ var RebuttalComment = React.createClass({
         },
         success: (response) => {
           console.log('it worked!', response);
-          // this.props.addReview(rebuttalObject)
+          this.props.addRebuttal(rebuttalObject);
           i.push(i.last + 1)
       }
     });
