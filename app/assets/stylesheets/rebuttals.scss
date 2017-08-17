@@ -23,6 +23,8 @@ $light-grey: #f1f1f1;
   background-color: $light-grey;
   padding: 10px;
   padding-bottom: 20px;
+  border-top: 2px solid $neg-red;
+  border-left: 1px solid #d0d0d0;
   .circle-frame{
     border-radius: 50%;
     width: 47px;

@@ -276,7 +276,7 @@ class Main extends React.Component {
     //RENDER THE LAYOUT <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     return (
       <div>
-        //PROFILE
+
         <div className = "left-side-bar">
           <Profile
             profile = {this.props.profile}
@@ -294,7 +294,6 @@ class Main extends React.Component {
           </div>
         </div>
 
-        //CONTENT (REVIEWS)
         <div className = "right-box">
         { topButton() }
           <h1 className = "name"> {this.props.receiver.first_name} {this.props.receiver.last_name}</h1>
