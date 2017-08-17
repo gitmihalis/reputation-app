@@ -5,10 +5,14 @@ class Main extends React.Component {
       title: "All Reviews",
       reviews: this.props.reviews,
       authors: this.props.authors,
+      // avatars: this.props.author_avatars,
       written: false,
-      review_categories: this.props.review_categories
+      review_categories: this.props.review_categories,
+      rebuttals: this.props.rebuttals,
+      review_profiles: this.props.review_profiles
     };
     this.addReview = this.addReview.bind(this);
+    this.addRebuttal = this.addRebuttal.bind(this);
     this.showNegReviews = this.showNegReviews.bind(this);
     this.showAllReviews = this.showAllReviews.bind(this);
     this.showWrittenReviews = this.showWrittenReviews.bind(this);
@@ -29,11 +33,22 @@ class Main extends React.Component {
     const newReviews = this.state.reviews.concat(newReview);
     const newAuthors = this.state.authors.concat(newAuthor);
     const newCategories = this.state.review_categories.concat([ {0 : { name: category_name } } ]);
+    this.state.reviews = newReviews;
+    this.state.authors = newAuthors;
+    this.state.categories = newCategories
     this.setState({
       reviews: newReviews,
       authors: newAuthors,
       review_categories: newCategories,
       written: false
+    });
+    window.location.reload()
+  }
+
+  addRebuttal(rebuttalData){
+    this.state.rebuttals[rebuttalData.review_id] = [ { content: rebuttalData.content } ];
+    this.setState({
+      rebuttals: this.state.rebuttals
     });
   }
 
@@ -44,6 +59,8 @@ class Main extends React.Component {
       reviews: this.props.reviewsneg,
       authors: this.props.authorsneg,
       review_categories: this.props.neg_review_categories,
+      rebuttals: this.props.rebuttals,
+      review_profiles: this.props.neg_review_profiles,
       written: false
     });
   }
@@ -55,6 +72,8 @@ class Main extends React.Component {
       reviews: this.props.reviews,
       authors: this.props.authors,
       review_categories: this.props.review_categories,
+      rebuttals: this.props.rebuttals,
+      review_profiles: this.props.review_profiles,
       written: false
     });
   }
@@ -66,91 +85,19 @@ class Main extends React.Component {
       reviews: this.props.reviewswritten,
       authors: this.props.received,
       review_categories: this.props.written_review_categories,
+      rebuttals: this.props.written_rebutted,
+      review_profiles: this.props.written_review_profiles,
       written: true
     });
   }
 
   componentWillMount() {
-    //console.log("")  //GOOD FOR TESTING <<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    //console.log(this.state.review_profiles[0][0].avatar)
   }
 
-  //RENDERED TO THE PAGE
+  //RENDER<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
   render() {
-    //Javascipt to move the review button after scroll
-    $(document).scroll(function() {
-      var y = $(document).scrollTop(),
-          header = $("#scroll-jump");
-      if(y >= 550)  {
-          header.css({position: "fixed", "top" : "0", "left" : "0"});
-      } else {
-          header.css("position", "relative");
-      }
-    });
-
-    //CATEGORY_NAME: Determine the category of the review for display
-    let category_name = (i) => {
-      if (this.state.review_categories[i][0]){
-        return this.state.review_categories[i][0].name
-      }
-      else{
-        return this.state.review_categories.name
-      }
-    }
-
-    //REVIEW_TYPE Display reviews with negative and positive styles
-    const review_type = (review, i, receiver_name) => {
-      var negative_class = null;
-      var negative_icon = () => { return null };
-      if (review.positive == false) { //If negative review, red colour and thumbs down
-        negative_class = "red";
-        negative_icon = () => {
-          return <img src="/assets/icons/thumbs_down_icon.png" width="20px" />
-        }
-      }
-      return(
-        <span className = "reviewing-as">
-          <p className = {negative_class}>
-            {negative_icon()}
-            Reviewed {receiver_name} as a {category_name(i)}
-          </p>
-        </span>
-      )
-    }
-
-    // LIST REVIEWS : Render the reviews (different if written or received)
-    let i = -1;
-    const listReviews = this.state.reviews.map((review) => {
-      i++;
-      var review_date = Date(review.created_at).slice(4, 15)
-      var author_first_name = this.state.authors[i].first_name
-      var author_last_name = this.state.authors[i].last_name
-      var author_id = this.state.authors[i].id
-      var receiver_name = this.props.receiver.first_name
-      if (this.state.written){
-        author_first_name = this.props.receiver.first_name
-        author_last_name = this.props.receiver.last_name
-        receiver_name = this.state.authors[i].first_name
-      }
-      return (
-        <div className = "review" key={review.id}>
-          <span className = "float-right">
-            <p> <img src="/assets/icons/calendar_icon.png" width="16px" /> {review_date} </p>
-          </span>
-          <span className = "float-left">
-            <div className = "circle-frame" />
-          </span>
-            <span className = "reviewer-name">
-              <p><a href = {author_id } > {author_first_name} {author_last_name} </a></p>
-          </span>
-          {review_type(review, i, receiver_name)}
-          <div className = "content">
-            <p>{review.content}</p>
-          </div>
-        </div>
-      )
-    });
-
-
+    //TOP BUTTON - depending on current_user
     const topButton = () => {
       if (this.props.current_user) {
         return(
@@ -176,25 +123,177 @@ class Main extends React.Component {
         )
       }
     };
+    //Javascipt to move the review button after scroll
+    $(document).scroll(function() {
+      var y = $(document).scrollTop(),
+          header = $("#scroll-jump");
+      if(y >= 550)  {
+          header.css({position: "fixed", "top" : "0", "left" : "0"});
+      } else {
+          header.css("position", "relative");
+      }
+    });
 
-    //RENDER THE LAYOUT
+    //CATEGORY_NAME: Determine the category of the review for display
+    let category_name = (i) => {
+      if (this.state.review_categories[i][0]){
+        return this.state.review_categories[i][0].name
+      }
+      else{
+        return this.state.review_categories.name
+      }
+    }
+
+    //REVIEW_TYPE Display reviews with negative and positive styles
+    const review_type = (review, i, receiver_name, receiver_id) => {
+      var negative_class = null;
+      var negative_icon = () => { return null };
+      if (review.positive == false) { //If negative review, red colour and thumbs down
+        negative_class = "red";
+        negative_icon = () => {
+          return <img src="/assets/icons/thumbs_down_icon.png" width="20px" />
+        }
+      }
+      return(
+        <span className = "reviewing-as">
+          <p className = {negative_class}>
+            {negative_icon()}
+            Reviewed <a href = {receiver_id} >{receiver_name}</a> as a {category_name(i)}
+          </p>
+        </span>
+      )
+    }
+
+    // LIST REVIEWS : Render the reviews (different if written or received)
+    let i = -1;
+    const listReviews = this.state.reviews.map((review) => {
+      i++;
+      var review_id = review.id
+      var review_date = Date(review.created_at).slice(4, 15)
+      var reviewer_image = this.state.review_profiles[i][0].avatar.url;
+      var reviewer_status = this.state.review_profiles[i][0].rep_status
+
+      var author_first_name = this.state.authors[i].first_name
+      var author_last_name = this.state.authors[i].last_name
+      var author_id = this.state.authors[i].id
+
+      var receiver_id = this.props.receiver.id
+      var receiver_name = this.props.receiver.first_name
+      var receiver_last_name = this.props.receiver.last_name
+
+      var rebuttal_image = this.props.profile.avatar.url // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+      var rebuttal_button = () => { return null };
+      var rebuttal_comment = () => { return null };
+      var retract_button = () => { return null };
+
+      // IF REVIEW WRITTEN
+      if (this.state.written){ //Variables are different when the reviews are written
+        reviewer_image = this.props.profile.avatar.url;
+        reviewer_status = this.props.profile.rep_status;
+
+        author_first_name = this.props.receiver.first_name
+        author_last_name = this.props.receiver.last_name
+        author_id = this.props.receiver.id
+
+        receiver_id = this.state.authors[i].id
+        receiver_name = this.state.authors[i].first_name
+        receiver_last_name = this.state.authors[i].last_name
+
+        rebuttal_image = this.state.review_profiles[i][0].avatar.url;
+      }
+
+      //If REVIEW NEGATIVE
+      if (!review.positive){
+        //Rebuttal Button
+        if (this.props.current_user){
+          if (this.props.current_user.id == receiver_id) {
+            rebuttal_button = () => {
+              return <Rebuttal review_id = {review_id} token = {this.props.token} addRebuttal = {this.addRebuttal} />
+            }
+          }
+          //Retract Button
+          if (this.props.current_user.id == review.author_id) {
+            retract_button = () => {
+              return "retract!"
+            }
+          }
+        }
+      }
+      //Rebuttal comments
+      if (this.state.rebuttals[review_id] && this.state.rebuttals[review_id][0]){
+        rebuttal_comment = () => {
+          return (
+            <div className = "rebuttal-comment">
+              <div className = "float-left">
+                <div className = "circle-frame" >
+                  <img className = "resize-image" src = {rebuttal_image} />
+                </div>
+              </div>
+              <span className = "rebuttal-name">
+                <p><a href = {receiver_id} >{receiver_name} {receiver_last_name}</a></p>
+              </span>
+              <div className = "content">
+              {this.state.rebuttals[review_id][0]["content"]}
+              </div>
+            </div>
+          )
+        }
+        var rebuttal_button = () => { return null };
+      }
+
+      //THE REVIEW HTML <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+      return (
+        <div className = "review" key={review.id}>
+          <div className = "review-header">
+            <span className = "float-right">
+              <p> <img src="/assets/icons/calendar_icon.png" width="16px" /> {review_date}</p>
+            </span>
+            <div className = "float-left">
+              <div className = "circle-frame" >
+                <img className = "resize-image" src = {reviewer_image} />
+              </div>
+            </div>
+            <div className = "reviewer-info">
+              <a className = "reviewer-name" href = { author_id } > {author_first_name} {author_last_name} </a>
+              <span className = "status">
+                {reviewer_status}
+              </span>
+            </div>
+            {review_type(review, i, receiver_name, receiver_id)}
+           </div>
+          <div className = "content">
+            <p>{review.content}</p>
+            {rebuttal_button()}
+            {retract_button()}
+            {rebuttal_comment()}
+
+          </div>
+        </div>
+      )
+    });
+
+
+    //RENDER THE LAYOUT <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     return (
       <div>
+
         <div className = "left-side-bar">
           <Profile
             profile = {this.props.profile}
             created_at = {this.props.receiver.created_at}
            />
+
           <div className = "select-reviews" onClick={event => { this.showAllReviews() } }>
-            <p><strong>All Reviews </strong></p>
+            <p><strong>All Received Reviews </strong></p>
+          </div>
+          <div className = "select-reviews" onClick={event => { this.showNegReviews() } }>
+            <p><strong>Negative Received Reviews </strong></p>
           </div>
           <div className = "select-reviews" onClick={event => { this.showWrittenReviews() } } >
             <p><strong>Written Reviews </strong></p>
           </div>
-          <div className = "select-reviews" onClick={event => { this.showNegReviews() } }>
-            <p className = "negative" ><strong>Negative Reviews </strong></p>
-          </div>
         </div>
+
         <div className = "right-box">
         { topButton() }
           <h1 className = "name"> {this.props.receiver.first_name} {this.props.receiver.last_name}</h1>
