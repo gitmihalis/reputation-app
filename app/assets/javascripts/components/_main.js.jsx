@@ -300,6 +300,11 @@ class Main extends React.Component {
           <h1 className = "review-type-title" >{this.state.title}</h1>
           { listReviews }
         </div>
+
+
+
+        <ScoreChart totOfReviews={this.props.total_of_reviews} posReviews={this.props.positive_reviews} credScore={this.props.credibility_score}/>
+
       </div>
     );
   }
