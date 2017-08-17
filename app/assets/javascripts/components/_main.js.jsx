@@ -154,10 +154,12 @@ class Main extends React.Component {
       var rebuttal_button = () => { return null };
       var retract_button = () => { return null };
       var rebuttal_comment = () => { return null };
-      var review_image = this.state.review_profiles[i][0].avatar.url;
+      var reviewer_image = this.state.review_profiles[i][0].avatar.url;
+      var reviewer_status = this.state.review_profiles[i][0].rep_status
       console.log(this.state.review_profiles[i][0].avatar.url)
       if (this.state.written){
-        review_image = this.props.profile.avatar.url;
+        reviewer_image = this.props.profile.avatar.url;
+        reviewer_status = this.props.profile.rep_status;
         author_first_name = this.props.receiver.first_name
         author_last_name = this.props.receiver.last_name
         author_id = this.props.receiver.id
@@ -233,12 +235,15 @@ class Main extends React.Component {
             </span>
             <div className = "float-left">
               <div className = "circle-frame" >
-                <img className = "resize-image" src = {review_image} />
+                <img className = "resize-image" src = {reviewer_image} />
               </div>
             </div>
-            <span className = "reviewer-name">
-              <p><a href = { author_id } > {author_first_name} {author_last_name} </a></p>
-            </span>
+            <div className = "reviewer-info">
+              <a className = "reviewer-name" href = { author_id } > {author_first_name} {author_last_name} </a>
+              <span className = "status">
+                {reviewer_status}
+              </span>
+            </div>
             {review_type(review, i, receiver_name, receiver_id)}
            </div>
           <div className = "content">
