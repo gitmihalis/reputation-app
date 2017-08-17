@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     user = User.new(user_params)
     if user.save
       user.create_profile(avatar: 'default_avatar.jpg')
-      flash.now[:success] = "Your new account has been created!" 
+      flash.now[:success] = "Your new account has been created!"
       log_in user
       redirect_to user_path(user)
     else
@@ -24,6 +24,7 @@ class UsersController < ApplicationController
     @review_categories = []
     @written_review_categories = []
     @neg_review_categories = []
+    @rebuttals = {}
 
     @reviews.each do |review|
       @authors.push(review.author)
@@ -36,6 +37,7 @@ class UsersController < ApplicationController
     @reviewsneg.each do |review|
       @authorsneg.push(review.author)
       @neg_review_categories.push(@categories.where({id: review.category_id}))
+      @rebuttals[review.id] = Rebuttal.where({review_id: review.id})
     end
 
     @received = []

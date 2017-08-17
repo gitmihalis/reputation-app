@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get '/register', to: 'users#new'
 
   resources :users, only: [:new, :create, :index, :show, :destroy]
+  resources :rebuttals, only: [:create, :destroy]
   resources :reviews, only: [:create, :destroy]
   resources :profiles, only: [:create, :update, :put]
   namespace :admin do

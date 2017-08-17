@@ -6,7 +6,8 @@ class Main extends React.Component {
       reviews: this.props.reviews,
       authors: this.props.authors,
       written: false,
-      review_categories: this.props.review_categories
+      review_categories: this.props.review_categories,
+      rebuttals: this.props.rebuttals
     };
     this.addReview = this.addReview.bind(this);
     this.showNegReviews = this.showNegReviews.bind(this);
@@ -71,7 +72,8 @@ class Main extends React.Component {
   }
 
   componentWillMount() {
-    // console.log(this.props.current_user)  //GOOD FOR TESTING <<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    // console.log(this.props.rebuttals)
+    //GOOD FOR TESTING <<<<<<<<<<<<<<<<<<<<<<<<<<<<
   }
 
   //RENDERED TO THE PAGE
@@ -101,18 +103,10 @@ class Main extends React.Component {
     const review_type = (review, i, receiver_name) => {
       var negative_class = null;
       var negative_icon = () => { return null };
-      var rebuttal_button = () => { return null };
       if (review.positive == false) { //If negative review, red colour and thumbs down
         negative_class = "red";
         negative_icon = () => {
           return <img src="/assets/icons/thumbs_down_icon.png" width="20px" />
-        }
-        if (this.props.current_user){
-          if (this.props.current_user.id == this.props.receiver.id) {
-            rebuttal_button = () => {
-              return <Rebuttal />
-            }
-          }
         }
       }
       return(
@@ -121,7 +115,6 @@ class Main extends React.Component {
             {negative_icon()}
             Reviewed {receiver_name} as a {category_name(i)}
           </p>
-          {rebuttal_button()}
         </span>
       )
     }
@@ -134,16 +127,41 @@ class Main extends React.Component {
       var author_first_name = this.state.authors[i].first_name
       var author_last_name = this.state.authors[i].last_name
       var author_id = this.state.authors[i].id
+      var receiver_id = this.props.receiver.id
       var receiver_name = this.props.receiver.first_name
+      var review_id = review.id
+      var rebuttal_button = () => { return null };
+      var retract_button = () => { return null };
+      var rebuttal_comment = () => { return null };
       if (this.state.written){
         author_first_name = this.props.receiver.first_name
         author_last_name = this.props.receiver.last_name
+        receiver_id = this.state.authors[i].id
         receiver_name = this.state.authors[i].first_name
+      }
+      if (!review.positive){
+        if (this.props.current_user){
+          if (this.props.current_user.id == receiver_id) {
+            rebuttal_button = () => {
+              return <Rebuttal review_id = {review_id} token = {this.props.token}/>
+            }
+          }
+          if (this.props.current_user.id == review.author_id) {
+            retract_button = () => {
+              return "retract!"
+            }
+          }
+        }
+      }
+      if (this.state.rebuttals[review_id] && this.state.rebuttals[review_id][0]){
+        rebuttal_comment = () => {
+          return this.state.rebuttals[review_id][0]["content"]
+        }
       }
       return (
         <div className = "review" key={review.id}>
           <span className = "float-right">
-            <p> <img src="/assets/icons/calendar_icon.png" width="16px" /> {review_date} </p>
+            <p> <img src="/assets/icons/calendar_icon.png" width="16px" /> {review_date}</p>
           </span>
           <span className = "float-left">
             <div className = "circle-frame" />
@@ -154,6 +172,9 @@ class Main extends React.Component {
           {review_type(review, i, receiver_name)}
           <div className = "content">
             <p>{review.content}</p>
+            {rebuttal_button()}
+            {retract_button()}
+            {rebuttal_comment()}
           </div>
         </div>
       )

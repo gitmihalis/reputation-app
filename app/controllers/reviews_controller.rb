@@ -1,7 +1,7 @@
 class ReviewsController < ApplicationController
     skip_before_action :verify_authenticity_token, if: :json_request?
 
-      def create
+    def create
       @review = Review.new(review_params)
 
       if @review.save
@@ -22,6 +22,6 @@ class ReviewsController < ApplicationController
       end
 
       def review_params
-        params.require(:review).permit(:content, :author_id, :receiver_id, :category_id, :positive, :reference_url, :image_url)
+        params.require(:review).permit(:content, :review_id)
       end
 end
