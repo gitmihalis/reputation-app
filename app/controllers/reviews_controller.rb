@@ -13,6 +13,19 @@ class ReviewsController < ApplicationController
       end
     end
 
+    def update
+      @review = Review.find_by(id: retract_params[:review_id])
+      @review.retracted = retract_params[:retracted]
+
+      if @review.save
+        puts ("yay!")
+        # render json: @review
+      else
+        puts ("oh no!")
+        render json: @review.errors, status: :unprocessable_entity
+      end
+    end
+
     private
 
       protected
@@ -23,5 +36,9 @@ class ReviewsController < ApplicationController
 
       def review_params
         params.require(:review).permit(:content, :author_id, :receiver_id, :reference_url, :positive, :category_id)
+      end
+
+      def retract_params
+        params.require(:retract).permit(:retracted, :review_id)
       end
 end

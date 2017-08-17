@@ -33,15 +33,15 @@ class Main extends React.Component {
     const newReviews = this.state.reviews.concat(newReview);
     const newAuthors = this.state.authors.concat(newAuthor);
     const newCategories = this.state.review_categories.concat([ {0 : { name: category_name } } ]);
-    this.state.reviews = newReviews;
-    this.state.authors = newAuthors;
-    this.state.categories = newCategories
-    this.setState({
-      reviews: newReviews,
-      authors: newAuthors,
-      review_categories: newCategories,
-      written: false
-    });
+    // this.state.reviews = newReviews;
+    // this.state.authors = newAuthors;
+    // this.state.categories = newCategories
+    // this.setState({
+    //   reviews: newReviews,
+    //   authors: newAuthors,
+    //   review_categories: newCategories,
+    //   written: false
+    // });
     window.location.reload()
   }
 
@@ -214,7 +214,7 @@ class Main extends React.Component {
           //Retract Button
           if (this.props.current_user.id == review.author_id) {
             retract_button = () => {
-              return "retract!"
+              return <Retract review_id = {review_id} token = {this.props.token} />
             }
           }
         }
