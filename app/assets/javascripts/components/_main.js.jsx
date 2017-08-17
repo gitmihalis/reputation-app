@@ -5,9 +5,11 @@ class Main extends React.Component {
       title: "All Reviews",
       reviews: this.props.reviews,
       authors: this.props.authors,
+      // avatars: this.props.author_avatars,
       written: false,
       review_categories: this.props.review_categories,
-      rebuttals: this.props.rebuttals
+      rebuttals: this.props.rebuttals,
+      review_profiles: this.props.review_profiles
     };
     this.addReview = this.addReview.bind(this);
     this.addRebuttal = this.addRebuttal.bind(this);
@@ -57,6 +59,8 @@ class Main extends React.Component {
       reviews: this.props.reviewsneg,
       authors: this.props.authorsneg,
       review_categories: this.props.neg_review_categories,
+      rebuttals: this.props.rebuttals,
+      review_profiles: this.props.neg_review_profiles,
       written: false
     });
   }
@@ -68,6 +72,8 @@ class Main extends React.Component {
       reviews: this.props.reviews,
       authors: this.props.authors,
       review_categories: this.props.review_categories,
+      rebuttals: this.props.rebuttals,
+      review_profiles: this.props.review_profiles,
       written: false
     });
   }
@@ -79,12 +85,14 @@ class Main extends React.Component {
       reviews: this.props.reviewswritten,
       authors: this.props.received,
       review_categories: this.props.written_review_categories,
+      rebuttals: this.props.written_rebutted,
+      review_profiles: this.props.written_review_profiles,
       written: true
     });
   }
 
   componentWillMount() {
-    // console.log(this.props.rebuttals)
+    console.log(this.state.review_profiles[0][0].avatar)
     //GOOD FOR TESTING <<<<<<<<<<<<<<<<<<<<<<<<<<<<
   }
 
@@ -146,13 +154,40 @@ class Main extends React.Component {
       var rebuttal_button = () => { return null };
       var retract_button = () => { return null };
       var rebuttal_comment = () => { return null };
+      var review_image = this.state.review_profiles[i][0].avatar.url;
+      console.log(this.state.review_profiles[i][0].avatar.url)
       if (this.state.written){
+        review_image = this.props.profile.avatar.url;
         author_first_name = this.props.receiver.first_name
         author_last_name = this.props.receiver.last_name
         author_id = this.props.receiver.id
         receiver_id = this.state.authors[i].id
         receiver_name = this.state.authors[i].first_name
+        receiver_last_name = this.state.authors[i].last_name
+
+        //REBUTTAL IF WRITTEN
+        if (this.state.rebuttals[review_id] && this.state.rebuttals[review_id][0]){
+          rebuttal_comment = () => {
+            return (
+              <div className = "rebuttal-comment">
+                <div className = "float-left">
+                  <div className = "circle-frame" >
+                    <img className = "resize-image" src = "IMAGE" />
+                  </div>
+                </div>
+                <span className = "rebuttal-name">
+                  <p><a href = {receiver_id} >{receiver_name} {receiver_last_name}</a></p>
+                </span>
+                <div className = "content">
+                {this.state.rebuttals[review_id][0]["content"]}
+                </div>
+              </div>
+            )
+          }
+        }
       }
+
+      //REBUTTAL BUTTON
       if (!review.positive){
         if (this.props.current_user){
           if (this.props.current_user.id == receiver_id) {
@@ -160,6 +195,7 @@ class Main extends React.Component {
               return <Rebuttal review_id = {review_id} token = {this.props.token} addRebuttal = {this.addRebuttal} />
             }
           }
+          //RETRACT BUTTON
           if (this.props.current_user.id == review.author_id) {
             retract_button = () => {
               return "retract!"
@@ -167,12 +203,16 @@ class Main extends React.Component {
           }
         }
       }
+
+      //REBUTTAL
       if (this.state.rebuttals[review_id] && this.state.rebuttals[review_id][0]){
         rebuttal_comment = () => {
           return (
             <div className = "rebuttal-comment">
               <div className = "float-left">
-                <div className = "circle-frame" />
+                <div className = "circle-frame" >
+                  <img className = "resize-image" src = "" />
+                </div>
               </div>
               <span className = "rebuttal-name">
                 <p><a href = {receiver_id} >{receiver_name} {receiver_last_name}</a></p>
@@ -192,7 +232,9 @@ class Main extends React.Component {
               <p> <img src="/assets/icons/calendar_icon.png" width="16px" /> {review_date}</p>
             </span>
             <div className = "float-left">
-              <div className = "circle-frame" />
+              <div className = "circle-frame" >
+                <img className = "resize-image" src = {review_image} />
+              </div>
             </div>
             <span className = "reviewer-name">
               <p><a href = { author_id } > {author_first_name} {author_last_name} </a></p>
@@ -247,13 +289,13 @@ class Main extends React.Component {
            />
 
           <div className = "select-reviews" onClick={event => { this.showAllReviews() } }>
-            <p><strong>All Reviews </strong></p>
+            <p><strong>All Received Reviews </strong></p>
+          </div>
+          <div className = "select-reviews" onClick={event => { this.showNegReviews() } }>
+            <p><strong>Negative Received Reviews </strong></p>
           </div>
           <div className = "select-reviews" onClick={event => { this.showWrittenReviews() } } >
             <p><strong>Written Reviews </strong></p>
-          </div>
-          <div className = "select-reviews" onClick={event => { this.showNegReviews() } }>
-            <p className = "negative" ><strong>Negative Reviews </strong></p>
           </div>
         </div>
         <div className = "right-box">

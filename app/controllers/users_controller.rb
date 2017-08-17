@@ -22,30 +22,37 @@ class UsersController < ApplicationController
     @reviews = @user.received_reviews
     @profile = Profile.where({user_id: @user.id})
     @review_categories = []
-    @written_review_categories = []
+    @review_profiles = []
+    @neg_reviews = Review.where({receiver_id: @user.id, positive: false})
+    @neg_review_profiles = []
     @neg_review_categories = []
     @rebuttals = {}
+    @written_rebutted = {}
+    @written_review_profiles = []
+    @written_review_categories = []
+    @authorsneg = []
+    @received = []
+    @reviewswritten = Review.where({author_id: @user.id})
 
     @reviews.each do |review|
       @authors.push(review.author)
       @review_categories.push(@categories.where({id: review.category_id}))
+      @review_profiles.push(Profile.where({id: review.author_id}))
     end
 
-    @authorsneg = []
-    @reviewsneg = Review.where({receiver_id: @user.id, positive: false})
-
-    @reviewsneg.each do |review|
+    @neg_reviews.each do |review|
       @authorsneg.push(review.author)
       @neg_review_categories.push(@categories.where({id: review.category_id}))
       @rebuttals[review.id] = Rebuttal.where({review_id: review.id})
+      @neg_review_profiles.push(Profile.where({id: review.author_id}))
     end
 
-    @received = []
-    @reviewswritten = Review.where({author_id: @user.id})
 
     @reviewswritten.each do |review|
       @received.push(review.receiver)
       @written_review_categories.push(@categories.where({id: review.category_id}))
+      @written_rebutted[review.id] = Rebuttal.where({review_id: review.id})
+      @written_review_profiles.push(Profile.where({id: review.receiver_id}))
     end
 
     # Calculate credibilty score

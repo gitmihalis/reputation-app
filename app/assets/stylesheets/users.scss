@@ -93,9 +93,9 @@ h1 {
   }
   .circle-frame{
     border-radius: 50%;
-    border: 1px solid black;
     width: 55px;
     height: 55px;
+    overflow: hidden;
   }
   .float-left{
     float: left;

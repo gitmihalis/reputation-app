@@ -25,9 +25,12 @@ $light-grey: #f1f1f1;
   padding-bottom: 20px;
   .circle-frame{
     border-radius: 50%;
-    border: 1px solid black;
-    width: 45px;
-    height: 45px;
+    width: 47px;
+    height: 47px;
+    overflow: hidden;
+    .resize-image{
+      width: 47px;
+    }
   }
   .content{
     padding-left: 65px;
