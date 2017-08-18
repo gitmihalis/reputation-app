@@ -1,4 +1,4 @@
-class ScoreChart extends React.Component {
+class Widget extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
