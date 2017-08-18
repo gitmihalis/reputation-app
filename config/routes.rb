@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get '/register', to: 'users#new'
 
   resources :users, only: [:new, :create, :index, :show, :destroy] do
-    resources :profiles, only: [:show]  # TESTING ***********************
+    resources :profiles, only: [:show]
   end
   resources :rebuttals, only: [:create, :destroy]
   resources :reviews, only: [:create, :destroy]

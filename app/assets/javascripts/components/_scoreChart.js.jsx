@@ -48,7 +48,7 @@ class ScoreChart extends React.Component {
       };
     }
 
-    // if credScore is 'No Reviews' print without percentage sign and change chart color to gray
+    // Print without percentage sign and change chart color to gray if credScore is 'No Reviews'
     if (this.state.credScore == 'No Reviews') {
       content = `${this.state.credScore}`;
       divStyle = {
@@ -70,6 +70,11 @@ class ScoreChart extends React.Component {
       content = `${this.state.credScore} %`;
     }
 
+    // Condition to assign a user status:
+    // 0 - 2 Reviews: New user
+    // 3 - 9 Reviews: Progressing
+    // 10+ Reviews and 75%+ Credibility score: Credible
+    // 10+ Reviews and 75%- Credibility score: Xxxxxxxx
     if (this.state.totOfReviews >= 10 && this.state.credScore >= 75) {
       status = "Credible"
     } else if (this.state.totOfReviews >= 10) {

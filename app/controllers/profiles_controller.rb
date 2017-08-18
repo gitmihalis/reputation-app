@@ -13,7 +13,6 @@ class ProfilesController < ApplicationController
     end
   end
 
-  # TESTING *******************
   def show
     @user = User.find params[:user_id]
     @reviews = @user.received_reviews
@@ -27,13 +26,12 @@ class ProfilesController < ApplicationController
       @total_of_reviews -= 1 if review.retracted  # decrement total of reviews by one if review is retracted
     end
 
-    if @total_of_reviews <= 0
+    if @total_of_reviews <= 0 # Assign credibility score to "No Reviews" if total of reviews is zero
       @credibility_score = "No Reviews"
     else
       @credibility_score = @positive_reviews * 100 / @total_of_reviews
     end
   end
-  # TESTING *******************
 
   private
 
