@@ -4,6 +4,8 @@ $light-grey: #f1f1f1;
 
 .rebuttal-button{
   font-family: Lato;
+  text-transform: uppercase;
+  display: inline-block;
   color: $neg-red;
   font-size: 0.7em;
   padding: 3px 10px;
@@ -13,9 +15,16 @@ $light-grey: #f1f1f1;
   box-shadow: 1px 2px 4px rgba(0, 0, 0, .2);
   background-color: $neg-red;
   color: white;
+  margin: -10px 0 10px 10px;
   &:hover{
     background-color: $light-red;
     color: $neg-red;
+  }
+}
+
+.rebuttal-textarea{
+  textarea{
+    width: 70%;
   }
 }
 
