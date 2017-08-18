@@ -1,4 +1,4 @@
-class Rebuttal extends React.Component {
+class Retract extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -14,11 +14,11 @@ class Rebuttal extends React.Component {
     return (
       <div>
         <a onClick={this.onClickFunc} href='#' >
-          <div className = "rebuttal-button">
-            <img src="/assets/icons/scale_icon.png" width="20px" /> Rebuttal
+          <div className='retract-button' >
+            <img src="/assets/icons/check_icon_green.png" width="20px" /> Retract Review
           </div>
         </a>
-        {this.state.showReply && < RebuttalComment close={this.onClickFunc} review_id = {this.props.review_id} token = {this.props.token} addRebuttal = {this.props.addRebuttal} />}
+        {this.state.showReply && < RetractConfirm close={this.onClickFunc} review_id = {this.props.review_id} token = {this.props.token} reLoad = {this.props.reLoad} />}
       </div>
     )
   }

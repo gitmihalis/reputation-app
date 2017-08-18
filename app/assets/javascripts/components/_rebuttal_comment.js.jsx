@@ -34,7 +34,7 @@ var RebuttalComment = React.createClass({
     //List the categories in the FORM select dropdown
     return (
       <div>
-        <div>
+        <div className = "rebuttal-textarea">
           <textarea rows='5' ref='rebuttal' placeholder='Defend your reputation...' />
         </div>
         <div>

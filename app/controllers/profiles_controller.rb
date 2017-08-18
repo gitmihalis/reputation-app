@@ -1,15 +1,15 @@
 class ProfilesController < ApplicationController
-
+  protect_from_forgery with: :null_session, only: :update
   def new
   end
 
   def update
-    profile = Profile.find_by(user: params[:session][:user_id])
-    profile.avatar = params[:session][:avatar]
-    if profile.save
-      render json: { status: 'OK' }
+    profile = Profile.find_by(id: params[:id])
+    user = profile.user
+    if profile.update(profile_params)
+      redirect_to user_path(user) , notice: 'Profile was successfully updated.'
     else
-      render json: { error: 'Could not upload image'}
+      redirect_to user_path(user), notice: 'Oh no! Profile was not updated.' 
     end
   end
 
@@ -36,6 +36,6 @@ class ProfilesController < ApplicationController
   private
 
   def profile_params
-    params.require(:profile).permit(:bio, :avatar)
+    params.fetch(:profile).permit(:bio, :avatar)
   end
 end

@@ -15,15 +15,21 @@ class Profile extends React.Component {
   render() {
 
     return(
+    <div>
       <div>
         <div className = "avatar">
           <img className = "resize-image" src = {this.state.avatar} />
         </div>
-        <div className = "bio-box">
-          <p className = "date-joined"> <strong>Joined: {Date(this.state.created_at).slice(4, 15)}</strong> </p>
-          <p> {this.state.bio}</p>
+          <div className = "bio-box">
+            <p className = "date-joined"> <strong>Joined: {Date(this.state.created_at).slice(4, 15)}</strong> </p>
+            <p> {this.state.bio}</p>
+          </div>
+        </div>
+        <div className="bio-box">
+          <p className="date-joined"> <strong>Joined: {Date(props.created).slice(4,15)} </strong> </p>
+          <ProfileForm formToken={props.formToken} id={props.profileId}/>
         </div>
       </div>
-    );
-  }
+  );
+}
 }

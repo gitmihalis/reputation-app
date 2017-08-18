@@ -8,6 +8,11 @@ $true-green: #00A185;
 $dark-true-green: #008075;
 $light-grey: #eee;
 
+$brand-green: #00a085;
+$neg-red: #b54343;
+$light-grey: #e1e1e1;
+$medium-grey: #aeaeae;
+
 ////////////////////
 // IMPORT FONTS
 @import url('https://fonts.googleapis.com/css?family=Lato');
@@ -24,83 +29,7 @@ $light-grey: #eee;
 @import 'welcome';
 @import 'rebuttals';
 @import 'widgets';
+@import 'retract';
+@import 'review_form';
+@import 'reviews';
 
-/* The Modal (background) */
-.modal {
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
-
-/* Modal Content/Box */
-.modal-content {
-    background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
-    padding: 20px;
-    border: 1px solid #888;
-    width: 60%; /* Could be more or less, depending on screen size */
-}
-
-/* The Close Button */
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-.center-form {
-    margin: auto;
-    width: 85%;
-}
-
-.review-form textarea {
-    -webkit-box-sizing: border-box;
-       -moz-box-sizing: border-box;
-            box-sizing: border-box;
-  width: 100%;
-}
-
-.review-form select {
-    background: #FFFFFF url('down-arrow.png') no-repeat right;
-    font-size: 1em;
-    text-overflow: '';
-    padding-left: 10px;
-    padding-right: 10px;
-    height: 35px;
-    color: #525252;
-    margin-bottom: 10px;
-}
-.review-form button {
--webkit-appearance:none;
-box-shadow: none !important;
-    -moz-appearance: none;
-    appearance: none;
-  background-color: white;
-  color: $brand-green;
-  font-size: 1.2em;
-  border-radius: 7px;
-  border: 3px solid $brand-green;
-  text-transform: uppercase;
-  text-decoration: none;
-  padding: 10px 15px;
-  vertical-align: middle;
-  margin: 20px;
-  &:hover{
-    background-color: $brand-green;
-    color: white;
-  }
-}

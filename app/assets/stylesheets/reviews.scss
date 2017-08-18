@@ -1,3 +1,71 @@
-// Place all the styles related to the Reviews controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.review{
+  border: 1px solid #cfcfcf;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  margin: 20px 0;
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, .2);
+  .review-header{
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    border-bottom: 1px solid #cfcfcf;
+    background-color: #f1f1f1;
+    padding: 10px;
+    padding-bottom: 20px;
+  }
+  .reviewer-info{
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #414141;
+    text-decoration: none;
+    padding-top: 7px;
+    .reviewer-name{
+      &:hover{
+        text-decoration: underline;
+      }
+    }
+    .status{
+      font-family: Lato;
+      color: #8c8c8c;
+      text-transform: uppercase;
+      font-size: 0.5em;
+      padding: 2px 5px;
+      border: 1px solid $medium-grey;
+      border-radius: 5px;
+      background-color: $light-grey;
+    }
+  }
+  .reviewing-as{
+    color: $brand-green;
+    p{
+      padding: 5px;
+      margin: 0;
+    }
+    a{
+        &:hover{
+        text-decoration: underline;
+      }
+    }
+  }
+  .content{
+    padding: 10px;
+    font-family: Lato;
+    padding-bottom: 10px;
+    /*border-bottom: 2px solid $brand-green;*/
+  }
+  .circle-frame{
+    border-radius: 50%;
+    width: 55px;
+    height: 55px;
+    overflow: hidden;
+  }
+  .float-left{
+    float: left;
+    padding-right: 15px;
+  }
+  .float-right{
+    float: right;
+  }
+  .red{
+    color: $neg-red;
+  }
+}

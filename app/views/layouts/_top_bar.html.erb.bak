@@ -1,0 +1,27 @@
+<header class="navigation clearfix">
+    <div class="brand">
+      <%= link_to "C", '/', id: "logo" %>
+    </div>
+    <nav>
+
+      <ul class="nav-list  pull-left">
+        <li><%= link_to "Search", users_path %></li>
+      <ul>
+
+      <ul class="nav-list rightmost">
+        <% if current_user %>
+          <li>
+            <%= image_tag @profile.avatar, class: "circle tinytar" %> 
+            <%= current_user.username %>
+            <ul class="nav-list">
+              <li><%= link_to 'Profile', user_path(current_user) %></li>
+              <li><%= link_to "Logout", logout_path, class: "menu-border" %></li>
+            </ul>
+          </li>
+          <% else %>
+            <li class="menu-item"><%= link_to "Login", login_path, class: "menu-border" %></li>
+          <% end %>
+      </ul>
+
+    </nav>
+</header>
