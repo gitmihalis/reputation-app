@@ -216,8 +216,17 @@ class Main extends React.Component {
       //If REVIEW NEGATIVE
       if (!review.positive){
         //Rebuttal Button
+        if (review.retracted == true){
+          retract_button = () => {
+            return (
+              <div className='retracted' >
+                <img src="/assets/icons/check_icon_grey.png" width="20px" /> Retracted
+              </div>
+            )
+          }
+        }
         if (this.props.current_user){
-          if (this.props.current_user.id == receiver_id) {
+          if (this.props.current_user.id == receiver_id && review.retracted == false) {
             rebuttal_button = () => {
               return <Rebuttal review_id = {review_id} token = {this.props.token} addRebuttal = {this.addRebuttal} />
             }
@@ -227,15 +236,6 @@ class Main extends React.Component {
             if (review.retracted == false){
               retract_button = () => {
                 return <Retract review_id = {review_id} token = {this.props.token} reLoad = {this.reLoad} />
-              }
-            }
-            if (review.retracted == true){
-              retract_button = () => {
-                return (
-                  <div className='retracted' >
-                    <img src="/assets/icons/check_icon_grey.png" width="20px" /> Retracted
-                  </div>
-                )
               }
             }
           }
