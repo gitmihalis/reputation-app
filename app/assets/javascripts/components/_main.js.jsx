@@ -2,6 +2,7 @@ class Main extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      isCurrentUser: true,
       title: "All Reviews",
       reviews: this.props.reviews,
       authors: this.props.authors,
@@ -360,6 +361,7 @@ class Main extends React.Component {
       <div>
 
         <div className = "left-side-bar">
+
           <Profile
             profile = {this.props.profile}
             created_at = {this.props.receiver.created_at}

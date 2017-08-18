@@ -1,5 +1,6 @@
-<!-- Profile Pages -->
 
+<!-- Profile Pages -->
+  <%= render 'users/partials/profile'%>
 <%= react_component("Main", {
     reviews: @reviews,
     authors: @authors,
@@ -10,7 +11,7 @@
     token: form_authenticity_token,
     current_user: current_user,
     receiver: @user,
-    profile: @profile[0],
+    profile: @profile,
     categories: @categories,
     review_categories: @review_categories,
     written_review_categories: @written_review_categories,

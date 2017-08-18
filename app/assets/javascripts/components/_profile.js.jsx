@@ -24,6 +24,10 @@ class Profile extends React.Component {
           <p> {this.state.bio}</p>
         </div>
       </div>
-    );
-  }
+      <div className="bio-box">
+        <p className="date-joined"> <strong>Joined: {Date(props.created).slice(4,15)} </strong> </p>
+        <ProfileForm formToken={props.formToken} id={props.profileId}/>
+      </div>
+    </div>
+  );
 }

@@ -19,8 +19,10 @@ class UsersController < ApplicationController
     @categories = Category.all
     @authors = []
     @user = User.find params[:id]
+
+    @profile = @user.profile
     @reviews = @user.received_reviews.order(created_at: :desc)
-    @profile = Profile.where({user_id: @user.id})
+
     @review_categories = []
     @review_profiles = []
     @neg_reviews = Review.where({receiver_id: @user.id, positive: false}).order(created_at: :desc)
