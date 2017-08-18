@@ -1,15 +1,29 @@
-<header class="navigation">
-    <div class="brand">
-      <%= link_to "C", '/', id: "logo" %>
-    </div>
-    <nav>
-      <ul class="nav-list">
-        <% if current_user %>
-          <li class="menu-item"><%= link_to 'Profile', user_path(current_user) %><li>
-          <li class="menu-item"><%= link_to "Logout", logout_path, class: "menu-border" %></li>
-        <% else %>
-          <li class="menu-item"><%= link_to "Login", login_path, class: "menu-border" %></li>
-        <% end %>
-      </ul>
-    </nav>
-</header>
+<div class="header">
+  <div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
+  <%= link_to "C", '/', id: "logo", class:"pure-menu-heading" %>
+
+  <ul class="pure-menu-list">
+
+    <li class="pure-menu-item">
+      <%= link_to 'Lookup', users_path, class:"pure-menu-link" %>
+    </li>
+
+    <% if logged_in? %>
+      <li class="pure-menu-item">
+        <%= link_to "My Profile", user_path(current_user), class: "pure-menu-link" %>
+      </li>
+      <li class="pure-menu-item">
+        <%= link_to "Logout", logout_path, class: "pure-menu-link" %>
+      </li>
+    <% else %>
+      <li class="pure-menu-item">
+        <%= link_to "Log in", login_path, class: "pure-menu-link" %>
+      </li>
+      <li class="pure-menu-item">
+        <%= link_to "Sign up", register_path, class: "pure-menu-link" %>
+      </li>
+    <% end %>
+
+    </ul>
+  </div>
+</div>
