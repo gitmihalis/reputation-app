@@ -105,23 +105,27 @@ class Main extends React.Component {
   render() {
     //TOP BUTTON - depending on current_user
     const topButton = () => {
+      // Display review button if logged in.
       if (this.props.current_user) {
-        return(
-          <div id = "scroll-jump">
-          <ReviewBox
-            addReview = {this.addReview}
-            reviews = {this.state.reviews}
-            token = {this.props.token}
-            categories = {this.props.categories}
-            current_user = {this.props.current_user}
-            receiver = {this.props.receiver}
-            />
-          </div>
-        )
+        //Do not display review button if it is the current user's own profile
+        if (this.props.current_user.id !== this.props.receiver.id) {
+          return(
+            <div id = "scroll-jump">
+            <ReviewBox
+              addReview = {this.addReview}
+              reviews = {this.state.reviews}
+              token = {this.props.token}
+              categories = {this.props.categories}
+              current_user = {this.props.current_user}
+              receiver = {this.props.receiver}
+              />
+            </div>
+          )
+        }
       } else {
         return (
         <div id = "scroll-jump">
-          <a href="/login" className = "write-review-button"> Login </a>
+          <a href="/login" className = "write-review-button"> Login to Review </a>
           <span className = "must-be-member" >
             You must be a <a href = "/register">Credible Member</a> to leave a review
           </span>
