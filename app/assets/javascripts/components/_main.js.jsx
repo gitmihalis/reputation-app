@@ -10,7 +10,8 @@ class Main extends React.Component {
       review_categories: this.props.review_categories,
       rebuttals: this.props.rebuttals,
       review_profiles: this.props.review_profiles,
-      filter: null
+      filter: null,
+      title_class: "green-title",
     };
     this.addReview = this.addReview.bind(this);
     this.addRebuttal = this.addRebuttal.bind(this);
@@ -68,7 +69,8 @@ class Main extends React.Component {
       review_categories: this.props.neg_review_categories,
       rebuttals: this.props.rebuttals,
       review_profiles: this.props.neg_review_profiles,
-      written: false
+      written: false,
+      title_class: "red-title"
     });
   }
 
@@ -81,7 +83,8 @@ class Main extends React.Component {
       review_categories: this.props.review_categories,
       rebuttals: this.props.rebuttals,
       review_profiles: this.props.review_profiles,
-      written: false
+      written: false,
+      title_class: "green-title"
     });
   }
 
@@ -94,7 +97,8 @@ class Main extends React.Component {
       review_categories: this.props.written_review_categories,
       rebuttals: this.props.written_rebutted,
       review_profiles: this.props.written_review_profiles,
-      written: true
+      written: true,
+      title_class: "green-title"
     });
   }
 
@@ -383,7 +387,7 @@ class Main extends React.Component {
               {listCategories}
             </select>
           </span>
-          <h1 className = "review-type-title" >{this.state.title}</h1>
+          <h1 className = {this.state.title_class} >{this.state.title}</h1>
           { listReviews }
         </div>
       </div>

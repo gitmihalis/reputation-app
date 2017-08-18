@@ -26,9 +26,15 @@ h1 {
   margin-left: 25px;
 }
 
-.review-type-title{
+.green-title{
+  color: $brand-green;
   font-size: 1.5em;
   border-bottom: 2px solid $brand-green;
+}
+.red-title{
+  color: $neg-red;
+  font-size: 1.5em;
+  border-bottom: 2px solid $neg-red;
 }
 
 .right-box{
