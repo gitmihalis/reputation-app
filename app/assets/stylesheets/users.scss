@@ -1,7 +1,4 @@
-
 @import url('https://fonts.googleapis.com/css?family=Lato');
-$brand-green: #00a085;
-$neg-red: #b54343;
 
 body{
   font-family: Lato;
@@ -25,9 +22,15 @@ h1 {
   margin-left: 25px;
 }
 
-.review-type-title{
+.green-title{
+  color: $brand-green;
   font-size: 1.5em;
   border-bottom: 2px solid $brand-green;
+}
+.red-title{
+  color: $neg-red;
+  font-size: 1.5em;
+  border-bottom: 2px solid $neg-red;
 }
 
 .right-box{
@@ -45,53 +48,6 @@ h1 {
   height: 100%;
   float: left;
   padding-left: 3%;
-}
-
-
-.review{
-  .reviewer-name{
-    padding-top: 10px;
-    font-size: 1.1em;
-    font-weight: bold;
-    color: #414141;
-    text-decoration: none;
-    p{
-      padding: 10px 0 0 0 ;
-      margin: 0;
-    }
-    &:hover{
-      text-decoration: underline;
-    }
-  }
-  .reviewing-as{
-    color: $brand-green;
-    p{
-      padding: 0;
-      margin: 0;
-    }
-  }
-  .content{
-    font-family: Lato-light;
-    padding-bottom: 10px;
-    border-bottom: 2px solid $brand-green;
-    margin-bottom: 20px;
-  }
-  .circle-frame{
-    border-radius: 50%;
-    border: 1px solid black;
-    width: 55px;
-    height: 55px;
-  }
-  .float-left{
-    float: left;
-    padding-right: 15px;
-  }
-  .float-right{
-    float: right;
-  }
-  .red{
-    color: $neg-red;
-  }
 }
 
 .name{
@@ -152,13 +108,3 @@ h1 {
 .resize-image{
   width: inherit;
 }
-
-.registration {
-  height: 100vh;
-}
-.registration > .wrapper {
-  width: 90%;
-  max-width: 340px;
-  margin: 2vh auto;
-}
-

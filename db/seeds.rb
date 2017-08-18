@@ -161,6 +161,42 @@ review6 = category1.reviews.create!({
   image_url: nil,
   reference_url: nil
 })
+review7 = category1.reviews.create!({
+  author: user1,
+  receiver: user2,
+  content: "Bad review",
+  positive: false,
+  retracted: false,
+  image_url: nil,
+  reference_url: nil
+})
+review8 = category1.reviews.create!({
+  author: user1,
+  receiver: user2,
+  content: "Bad review",
+  positive: false,
+  retracted: false,
+  image_url: nil,
+  reference_url: nil
+})
+review9 = category1.reviews.create!({
+  author: user1,
+  receiver: user2,
+  content: "Bad review",
+  positive: false,
+  retracted: false,
+  image_url: nil,
+  reference_url: nil
+})
+review10 = category1.reviews.create!({
+  author: user1,
+  receiver: user2,
+  content: "Bad review",
+  positive: false,
+  retracted: false,
+  image_url: nil,
+  reference_url: nil
+})
 
 puts "Seeding rebuttal data..."
 

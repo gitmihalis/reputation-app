@@ -6,11 +6,12 @@ Rails.application.routes.draw do
   get '/register', to: 'users#new'
 
   resources :users, only: [:new, :create, :index, :show, :destroy]
-  resources :reviews, only: [:create, :destroy]
+  resources :rebuttals, only: [:create, :destroy]
+  resources :reviews, only: [:create, :destroy, :put, :update]
   resources :profiles, only: [:create, :update, :put]
   namespace :admin do
-    root to: 'reviews#index'
-    resources :reviews, only: [:index, :destroy, :edit]
+  root to: 'reviews#index'
+    resources :reviews, only: [:index, :destroy, :edit, :update]
     resources :users, only: [:index, :destroy]
     resources :categories, only: [:index, :new, :create, :destroy]
     resources :flags, only: [:index]
