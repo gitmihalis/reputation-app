@@ -101,7 +101,7 @@ class Main extends React.Component {
     //console.log(this.state.review_profiles[0][0].avatar)
   }
 
-  //RENDER<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+  //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> RENDER <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
   render() {
     //TOP BUTTON - depending on current_user
     const topButton = () => {
@@ -140,12 +140,12 @@ class Main extends React.Component {
       }
     });
 
-    //CATEGORY_NAME: Determine the category of the review for display
-    let category_name = (i) => {
-      if (this.state.review_categories[i][0]){
-        return this.state.review_categories[i][0].name
+    //CATEGORY_NAME: Determine the category name of the specific review for display
+    let category_name = (review_i) => {
+      if (this.state.review_categories[review_i][0]){ //If there's more than 1 review
+        return this.state.review_categories[review_i][0].name
       }
-      else{
+      else { //If there's only 1 review
         return this.state.review_categories.name
       }
     }
@@ -154,12 +154,12 @@ class Main extends React.Component {
     const review_type = (review, i, receiver_name, receiver_id) => {
       var negative_class = null;
       var negative_icon = () => { return null };
-      if (review.positive == false) { //If negative review, red colour and thumbs down
+      if (!review.positive) { //If negative review, red colour and thumbs down
         negative_class = "red";
         negative_icon = () => {
           return <img src="/assets/icons/thumbs_down_icon.png" width="20px" />
         }
-        if (review.retracted == true ){
+        if (review.retracted){ //If negative review and retracted
           negative_class = "grey";
           negative_icon = () => {
             return <img src="/assets/icons/thumbs_down_grey_icon.png" width="20px" />
@@ -176,7 +176,7 @@ class Main extends React.Component {
       )
     }
 
-    // LIST REVIEWS : Render the reviews (different if written or received)
+// >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  LIST REVIEWS <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     let i = -1;
     const listReviews = this.state.reviews.map((review) => {
       i++;
@@ -193,12 +193,12 @@ class Main extends React.Component {
       var receiver_name = this.props.receiver.first_name
       var receiver_last_name = this.props.receiver.last_name
 
-      var rebuttal_image = this.props.profile.avatar.url // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+      var rebuttal_image = this.props.profile.avatar.url
       var rebuttal_button = () => { return null };
       var rebuttal_comment = () => { return null };
       var retract_button = () => { return null };
 
-      // IF REVIEW WRITTEN
+      // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  Written Reviews <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
       if (this.state.written){ //Variables are different when the reviews are written
         reviewer_image = this.props.profile.avatar.url;
         reviewer_status = this.props.profile.rep_status;
@@ -214,7 +214,7 @@ class Main extends React.Component {
         rebuttal_image = this.state.review_profiles[i][0].avatar.url;
       }
 
-      //If REVIEW NEGATIVE
+      // >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>  Negative Reviews <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
       if (!review.positive){
         //Rebuttal Button
         if (review.retracted == true){
@@ -264,14 +264,17 @@ class Main extends React.Component {
         var rebuttal_button = () => { return null };
       }
 
-      const review_html = (review_id, review_date, reviewer_image, receiver_name, receiver_id) => {
-        return(
-          HTML
-        )
-      };
 
-      //THE REVIEW HTML <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-      if (this.state.filter < 1){
+      //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> THE REVIEW RENDERING <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+      // FOR LATER REFACTORING THE REPETITION BELOW
+      // const review_html = (review_id, review_date, reviewer_image, receiver_name, receiver_id) => {
+      //   return(
+      //     HTML
+      //   )
+      // };
+
+      if (this.state.filter < 1){ //FILTERING - no selected filter
           return (
             <div className = "review" key={review.id}>
 
@@ -302,7 +305,7 @@ class Main extends React.Component {
             </div>
           )
                 }
-        if (review.category_id == this.state.filter){
+        if (review.category_id == this.state.filter){ //FILERTING - selected one of the filters
           return (
             <div className = "review" key={review.id}>
 
@@ -337,7 +340,8 @@ class Main extends React.Component {
     });
 
 
-    //RENDER THE LAYOUT <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>THE LAYOUT <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
     const listCategories = this.props.categories.map((category) => {
       return (
         <option key={category.id} value={category.id}>{category.name}</option>
@@ -370,7 +374,7 @@ class Main extends React.Component {
           <span> Filter Reviews: </span>
           <span>
             <select onChange={e => this.setState({ filter: e.target.value || null }) }>
-              <option value={null}></option>
+              <option value = {0} >View All</option>
               {listCategories}
             </select>
           </span>
