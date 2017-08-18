@@ -56,7 +56,7 @@ class UsersController < ApplicationController
     end
 
     # Calculate credibilty score
-    @total_of_reviews = @reviews.size
+    @total_of_reviews = @reviews.count
 
     @positive_reviews = 0
     @reviews.each do |review|
