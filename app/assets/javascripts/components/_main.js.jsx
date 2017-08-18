@@ -362,11 +362,6 @@ class Main extends React.Component {
 
         <div className = "left-side-bar">
 
-          <Profile
-            profile = {this.props.profile}
-            created_at = {this.props.receiver.created_at}
-           />
-
           <div className = "select-reviews" onClick={event => { this.showAllReviews() } }>
             <p><strong>All Received Reviews </strong></p>
           </div>
