@@ -5,7 +5,7 @@
         <div class="avatar">
           <%= image_tag @profile.avatar %>
           <% if current_user %>
-            <fieldset class="pure-group">
+            <fieldset>
               <%= form_tag profile_path(@profile), method: :put, multipart: true, class: "pure-form" do %>
                 <%= file_field_tag 'profile[avatar]', required: true, class: "pure-input-1" %>
                 <%= submit_tag "upload image", class: "pure-button pure-button-primary" %>
@@ -18,13 +18,15 @@
 
       <div>
         <%= form_tag profile_path(@profile), method: :put, class: "pure-form" do %>
-          <fieldset class="pure-group">
-            <%= text_area_tag 'profile[bio]', @profile.bio, class: "pure-input-1-2"%>
-            <% if current_user %>
-              <%= submit_tag "save bio", class: "pure-button pure-button-primary" %><br/>
-            <% end %>
-          </fieldset>
-        <% end %>
+          <fieldset>
+          <% if current_user %>
+            <%= text_area_tag 'profile[bio]', @profile.bio, class: "pure-input-1-2" %>
+            <%= submit_tag "save bio", class: "pure-button pure-button-primary" %>
+          <% else %>
+            <%= text_area_tag 'profile[bio]', @profile.bio, class: "pure-input-1-2", disabled: true %>
+          <% end %>
+        </fieldset>
+      <% end %>
       </div>
     </div>
   </div>
