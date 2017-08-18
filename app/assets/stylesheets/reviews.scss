@@ -57,6 +57,9 @@
     width: 55px;
     height: 55px;
     overflow: hidden;
+  .resize-image{
+    width: inherit;
+    }
   }
   .float-left{
     float: left;

@@ -73,6 +73,9 @@ class Main extends React.Component {
       written: false,
       title_class: "red-title"
     });
+    $("#all").removeClass("clicked");
+    $("#written").removeClass("clicked");
+    $("#negative").addClass("clicked").addClass("red");
   }
 
   //ALL REVIEWS
@@ -87,6 +90,9 @@ class Main extends React.Component {
       written: false,
       title_class: "green-title"
     });
+    $("#all").addClass("clicked");
+    $("#written").removeClass("clicked");
+    $("#negative").removeClass("clicked").removeClass("red");
   }
 
   //WRITTEN REVIEWS
@@ -101,6 +107,9 @@ class Main extends React.Component {
       written: true,
       title_class: "green-title"
     });
+    $("#all").removeClass("clicked");
+    $("#written").addClass("clicked");
+    $("#negative").removeClass("clicked").removeClass("red");
   }
 
   componentWillMount() {
@@ -116,7 +125,6 @@ class Main extends React.Component {
         //Do not display review button if it is the current user's own profile
         if (this.props.current_user.id !== this.props.receiver.id) {
           return(
-            <div id = "scroll-jump">
             <ReviewBox
               addReview = {this.addReview}
               reviews = {this.state.reviews}
@@ -124,29 +132,63 @@ class Main extends React.Component {
               categories = {this.props.categories}
               current_user = {this.props.current_user}
               receiver = {this.props.receiver}
-              />
-            </div>
+            />
           )
         }
       } else {
         return (
         <div id = "scroll-jump">
-          <a href="/login" className = "write-review-button"> Login to Review </a>
-          <span className = "must-be-member" >
-            You must be a <a href = "/register">Credible Member</a> to leave a review
-          </span>
+          <a href="/login">
+            <div className = "write-review-button">
+              Login to Review
+            </div>
+          </a>
         </div>
         )
       }
     };
     //Javascipt to move the review button after scroll
+
     $(document).scroll(function() {
       var y = $(document).scrollTop(),
-          header = $("#scroll-jump");
-      if(y >= 550)  {
-          header.css({position: "fixed", "top" : "0", "left" : "0"});
+          header = $("#fade-button");
+      if(y >= 115)  {
+          header.css({
+            "position" : "fixed",
+            "top" : "0px",
+            "left" : "5%",
+            "-webkit-animation-duration" : "0.7s",
+            "animation-duration" : "0.7s",
+            "-webkit-animation-fill-mode" : "both",
+            "animation-fill-mode": "both"
+          });
+          header.removeClass("hidden");
+          header.removeClass("fadeOut");
+          header.addClass("fadeIn");
       } else {
-          header.css("position", "relative");
+          header.css({
+            "position" : "fixed",
+            "top" : "0px",
+            "left" : "5%"
+          });
+          header.removeClass("fadeIn");
+          header.addClass("fadeOut");
+      }
+    });
+
+    $(document).scroll(function() {
+      var y = $(document).scrollTop(),
+          header = $("#review-nav");
+      if(y >= 71)  {
+          header.css({
+            position: "fixed", "top" : "-0px",
+            width: "inherit"
+          });
+      } else {
+          header.css({
+            position: "absolute", "top" : "71px",
+            width: "inherit"
+          });
       }
     });
 
@@ -359,33 +401,56 @@ class Main extends React.Component {
     });
     return (
       <div>
-
-        <div className = "left-side-bar">
-
-          <div className = "select-reviews" onClick={event => { this.showAllReviews() } }>
-            <p><strong>All Received Reviews </strong></p>
+          <div id = "fade-button" className = "hidden button-left">
+            { topButton() }
           </div>
-          <div className = "select-reviews" onClick={event => { this.showNegReviews() } }>
-            <p><strong>Negative Received Reviews </strong></p>
+        <span className = "right-box">
+          <div className = "fixed-nav" id = "review-nav" >
+              <div id = "all"
+                className = "select-reviews clicked"
+                onClick={event => {
+                    $('html, body').animate({ scrollTop: 0 }, 'medium');
+                    this.showAllReviews();
+                  }
+                }>
+                <p><strong>All Reviews </strong></p>
+              </div>
+              <div id = "negative"
+                className = "select-reviews"
+                onClick={event => {
+                    $('html, body').animate({ scrollTop: 0 }, 'medium');
+                    this.showNegReviews();
+                  }
+                }>
+                <p><strong>Negative Reviews </strong></p>
+              </div>
+              <div id = "written"
+                className = "select-reviews"
+                onClick={event => {
+                    $('html, body').animate({ scrollTop: 0 }, 'medium');
+                    this.showWrittenReviews();
+                  }
+                }>
+                <p><strong>Written Reviews </strong></p>
+              </div>
+            <div className = "filter">
+              <select onChange={e => this.setState({ filter: e.target.value || null }) }>
+                <option value = {0} >Filter...</option>
+                {listCategories}
+                <option value = {0} >View All</option>
+              </select>
+            </div>
           </div>
-          <div className = "select-reviews" onClick={event => { this.showWrittenReviews() } } >
-            <p><strong>Written Reviews </strong></p>
-          </div>
-        </div>
-
+        </span>
         <div className = "right-box">
-        { topButton() }
-          <h1 className = "name"> {this.props.receiver.first_name} {this.props.receiver.last_name}</h1>
-
-          <span> Filter Reviews: </span>
-          <span>
-            <select onChange={e => this.setState({ filter: e.target.value || null }) }>
-              <option value = {0} >View All</option>
-              {listCategories}
-            </select>
-          </span>
-          <h1 className = {this.state.title_class} >{this.state.title}</h1>
-          { listReviews }
+          <div className = "content">
+            <div className ="button-top">
+              { topButton() }
+            </div>
+            <h1 className = "name"> {this.props.receiver.first_name} {this.props.receiver.last_name}</h1>
+            <h1 className = {this.state.title_class} >{this.state.title}</h1>
+            { listReviews }
+          </div>
         </div>
       </div>
     );
