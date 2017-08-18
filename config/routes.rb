@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   # sign up a new user
   get '/register', to: 'users#new'
 
-  resources :users, only: [:new, :create, :index, :show, :destroy]
+  resources :users, only: [:new, :create, :index, :show, :destroy] do
+    resources :profiles, only: [:show]  # TESTING ***********************
+  end
   resources :rebuttals, only: [:create, :destroy]
   resources :reviews, only: [:create, :destroy]
   resources :profiles, only: [:create, :update, :put]
@@ -18,7 +20,7 @@ Rails.application.routes.draw do
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-   # these routes are for showing users a login form, logging them in, and logging them out.
+  # these routes are for showing users a login form, logging them in, and logging them out.
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy'

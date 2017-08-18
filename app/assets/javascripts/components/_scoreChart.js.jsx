@@ -12,8 +12,8 @@ class ScoreChart extends React.Component {
     let divStyle = {};
     let content = '';
 
-    // if positive reviews are above 50% chart background color is red and slices one and two colors are green
-    // otherwise, chart background color is green and slices one and two colors are red
+    // chart background color is red and slices one and two colors are green if positive reviews are above 50%,
+    // otherwise chart background color is green and slices one and two colors are red
     if (this.state.credScore >= 50) {
       angle = (100 - this.state.credScore) * 360 / 100;
       rotation = 270 - angle;

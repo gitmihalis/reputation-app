@@ -302,8 +302,10 @@ class Main extends React.Component {
         </div>
 
 
-
+        // TESTING **************
+        // DELETE IF USER/ID/PROFILE/ID WORKS
         <ScoreChart totOfReviews={this.props.total_of_reviews} posReviews={this.props.positive_reviews} credScore={this.props.credibility_score}/>
+        // TESTING **************
 
       </div>
     );

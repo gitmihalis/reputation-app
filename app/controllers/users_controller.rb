@@ -55,6 +55,8 @@ class UsersController < ApplicationController
       @written_review_profiles.push(Profile.where({id: review.receiver_id}))
     end
 
+    # TESTING *************************
+    # IF IT WORKS DELETE WIDGET FORM USERS
     # Calculate credibilty score
     @total_of_reviews = @reviews.count
 
@@ -70,6 +72,7 @@ class UsersController < ApplicationController
       @credibility_score = @positive_reviews * 100 / @total_of_reviews
     end
 
+    # TESTING *************************
   end
 
   private # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
