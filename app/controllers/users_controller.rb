@@ -3,6 +3,11 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  def index
+    @users = User.all
+    @profiles = Profile.all
+  end
+
   def create
     user = User.new(user_params)
     if user.save
@@ -57,13 +62,6 @@ class UsersController < ApplicationController
       @written_review_profiles.push(Profile.where({id: review.receiver_id}))
     end
 
-    # Calculate credibilty score
-    @total_of_reviews = @reviews.size
-    @positive_reviews = 0
-    @reviews.each do |review|
-      review.positive ? @positive_reviews += 1 : nil
-    end
-    @credibility_score = @positive_reviews * 100 / @total_of_reviews
   end
 
   private # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

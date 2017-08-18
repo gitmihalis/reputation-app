@@ -387,6 +387,7 @@ class Main extends React.Component {
           <h1 className = {this.state.title_class} >{this.state.title}</h1>
           { listReviews }
         </div>
+
       </div>
     );
   }
