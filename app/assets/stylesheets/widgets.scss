@@ -3,6 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
+/* Donut chart style*/
 .card {
   float: left;
   background: #fff;
@@ -60,3 +61,46 @@
   line-height: 150px;
   color: #139838;
 }
+
+/* Widget style */
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-template-rows: repeat(2, 50px);
+}
+
+.box1 {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 3;
+}
+
+.box2 {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+
+.box3 {
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+
+.total-reviews {
+  color: #4caf50;
+  font-size: 60px;
+}
+.status {
+  color: #7fa955;
+  font-size: 30px;
+  padding-left: 65px;
+}
+
+.margin-right {
+  margin-right: 10px;
+}
+

@@ -3,6 +3,7 @@ class ScoreChart extends React.Component {
     super(props);
     this.state = {
       credScore: this.props.credScore,
+      totOfReviews: this.props.totOfReviews
     }
   }
 
@@ -11,6 +12,7 @@ class ScoreChart extends React.Component {
     let rotation = 0;
     let divStyle = {};
     let content = '';
+    let status = '';
 
     // chart background color is red and slices one and two colors are green if positive reviews are above 50%,
     // otherwise chart background color is green and slices one and two colors are red
@@ -46,7 +48,7 @@ class ScoreChart extends React.Component {
       };
     }
 
-    // if credScore is 'No Reviews' print without percentage sign
+    // if credScore is 'No Reviews' print without percentage sign and change chart color to gray
     if (this.state.credScore == 'No Reviews') {
       content = `${this.state.credScore}`;
       divStyle = {
@@ -68,14 +70,32 @@ class ScoreChart extends React.Component {
       content = `${this.state.credScore} %`;
     }
 
+    if (this.state.totOfReviews >= 10 && this.state.credScore >= 75) {
+      status = "Credible"
+    } else if (this.state.totOfReviews >= 10) {
+      status = "Xxxxxxxx"
+    } else if (this.state.totOfReviews <= 2) {
+      status = "New User"
+    } else {
+      status = "Progressing"
+    }
+
     return (
-      <div className="card">
-        <div className="donut-chart chart2" style={divStyle.chart2}>
-          <div className="slice one" style={divStyle.sOne}></div>
-          <div className="slice two" style={divStyle.sTwo}></div>
-          <div className="chart-center" >
-            <span style={divStyle.contentSpan}>{content}</span>
+      <div>
+        <div className="wrapper box1 card">
+          <div className="donut-chart chart2" style={divStyle.chart2}>
+            <div className="slice one" style={divStyle.sOne}></div>
+            <div className="slice two" style={divStyle.sTwo}></div>
+            <div className="chart-center" >
+              <span style={divStyle.contentSpan}>{content}</span>
+            </div>
           </div>
+        </div>
+        <div className="wrapper box2 total-reviews">
+          <p>{this.state.totOfReviews} Reviews</p>
+        </div>
+        <div className="wrapper box3 status">
+          <p><img className="margin-right" src="/assets/icons/thumbs_down_icon.png" width="32px"/>{status}</p>
         </div>
       </div>
     )
