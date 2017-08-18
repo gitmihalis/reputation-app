@@ -13,6 +13,9 @@ h1 {
   color: $brand-green;
 }
 
+.content{
+  padding: 15px;
+}
 .must-be-member{
   float: right;
   font-size: 0.8em;
@@ -47,47 +50,150 @@ h1 {
   display: inline;
   height: 100%;
   float: left;
+  position: fixed;
   padding-left: 3%;
 }
 
 .name{
+  padding-top: 0px;
   color: #414141;
-  font-size: 2.5em;
+  font-size: 2.2em;
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
 }
 
-.bio-box {
+@-webkit-keyframes fadeIn {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+}
+@keyframes fadeIn {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+}
+.fadeIn {
+  -webkit-animation-name: fadeIn;
+  animation-name: fadeIn;
+}
+
+@-webkit-keyframes fadeOut {
+  100% {opacity: 0;}
+  0% {opacity: 1;}
+}
+@keyframes fadeOut {
+  100% {opacity: 0;}
+  0% {opacity: 1;}
+}
+.fadeOut {
+  -webkit-animation-name: fadeOut;
+  animation-name: fadeOut;
+}
+
+.inner-bio-box{
+    width: 90%;
+    margin: auto;
+  }
+
+.bio-box{
+  padding-top: 15px;
+  padding-bottom: 15px;
   color: #292929;
   font-size: 0.9em;
   line-height: 1.7em;
   background-color: #ebebeb;
-  padding: 5px 20px;
+  width: 100%;
+  margin: auto;
+    border: none;
+    overflow: auto;
+    outline: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    resize: none;
   .date-joined{
-  color: #a6a6a6;
+    color: #a6a6a6;
   }
+}
+fieldset {
+  border: 0;
+  padding: 0;
+  background-color: #ebebeb;
+  width: 99.2%;
+}
+
+.hidden{
+  position: absolute;
+  z-index: -1;
+  visibility: hidden;
+}
+
+.button-top{
+  margin: 80px 0px 0px 0px;
+}
+
+.button-left{
+  margin: 20px 3%;
 }
 
 .write-review-button{
-  background-color: white;
+  background-color: transparent;
   color: $brand-green;
   font-size: 1.2em;
   border-radius: 7px;
   border: 2px solid $brand-green;
   text-transform: uppercase;
   text-decoration: none;
-  padding: 10px 15px;
   vertical-align: middle;
-  margin: 20px;
+  padding: 10px 15px;
   float: right;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
   &:hover{
     background-color: $brand-green;
     color: white;
   }
 }
 
+.filter{
+  background-color: #ebebeb;
+  select{
+    -webkit-border-radius: 0px;
+    background-color: transparent;
+    border-radius: 0px;
+    border: none;
+    padding: 10px;
+  }
+}
+
+.fixed-nav{
+  position: absolute;
+  width: inherit;
+  z-index: 1;
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, .2);
+  background-color: white;
+  border: 1px solid #cfcfcf;
+  border-top: none;
+
+}
+
+#nav a {
+  -webkit-transition: all 0.5s ease;
+}
+
+  .red{
+    color: $neg-red;
+  }
+  .clicked{
+    background-color: #ebebeb;
+  }
 .select-reviews{
+  width: 33.3%;
+  display: inline-block;
   text-align: center;
   border-bottom: 4px solid #ebebeb;
-  padding: 15px 0;
+  padding: 7px 0;
   p{
     margin: 0;
     padding: 0;
@@ -101,10 +207,11 @@ h1 {
 }
 
 .avatar{
-  width: 100%;
-  overflow: hidden;
-}
-
-.resize-image{
-  width: inherit;
-}
+    width: 100%;
+    padding-bottom: 105%;
+    height: 0;
+    overflow: hidden;
+  .resize-image{
+    width: 100%;
+    }
+  }
