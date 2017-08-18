@@ -9,13 +9,14 @@ class Main extends React.Component {
       written: false,
       review_categories: this.props.review_categories,
       rebuttals: this.props.rebuttals,
-      review_profiles: this.props.review_profiles
+      review_profiles: this.props.review_profiles,
     };
     this.addReview = this.addReview.bind(this);
     this.addRebuttal = this.addRebuttal.bind(this);
     this.showNegReviews = this.showNegReviews.bind(this);
     this.showAllReviews = this.showAllReviews.bind(this);
     this.showWrittenReviews = this.showWrittenReviews.bind(this);
+    this.reLoad = this.reLoad.bind(this);
   }
 
   //ADD REVIEW
@@ -50,6 +51,10 @@ class Main extends React.Component {
     this.setState({
       rebuttals: this.state.rebuttals
     });
+  }
+
+  reLoad(){
+    window.location.reload()
   }
 
   //NEGATIVE REVIEWS
@@ -153,6 +158,12 @@ class Main extends React.Component {
         negative_icon = () => {
           return <img src="/assets/icons/thumbs_down_icon.png" width="20px" />
         }
+        if (review.retracted == true ){
+          negative_class = "grey";
+          negative_icon = () => {
+            return <img src="/assets/icons/thumbs_down_grey_icon.png" width="20px" />
+          }
+        }
       }
       return(
         <span className = "reviewing-as">
@@ -213,8 +224,19 @@ class Main extends React.Component {
           }
           //Retract Button
           if (this.props.current_user.id == review.author_id) {
-            retract_button = () => {
-              return <Retract review_id = {review_id} token = {this.props.token} />
+            if (review.retracted == false){
+              retract_button = () => {
+                return <Retract review_id = {review_id} token = {this.props.token} reLoad = {this.reLoad} />
+              }
+            }
+            if (review.retracted == true){
+              retract_button = () => {
+                return (
+                  <div className='retracted' >
+                    <img src="/assets/icons/check_icon_grey.png" width="20px" /> Retracted
+                  </div>
+                )
+              }
             }
           }
         }

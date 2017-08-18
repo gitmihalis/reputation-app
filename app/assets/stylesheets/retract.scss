@@ -1,0 +1,62 @@
+$light-green: #afd6cf;
+
+.retract-button{
+  font-family: Lato;
+  color: $neg-red;
+  text-transform: uppercase;
+  font-size: 0.7em;
+  padding: 7px 10px;
+  border: 1px solid $brand-green;
+  margin-bottom: 10px;
+  display: inline-block;
+  border-radius: 5px;
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, .2);
+  background-color: $light-grey;
+  color: $brand-green;
+  &:hover{
+    border: 1px solid $brand-green;
+    background-color: $light-green;
+    color: $brand-green;
+  }
+}
+
+.retract-box{
+  margin-bottom: 10px;
+  .verify-retract{
+    font-size: 0.8em;
+  }
+
+  .confirm-retract-button{
+    font-family: Lato;
+    color: #8c8c8c;
+    text-transform: uppercase;
+    font-size: 0.5em;
+    padding: 2px 5px;
+    border: 1px solid $medium-grey;
+    border-radius: 5px;
+    background-color: $light-grey;
+    box-shadow: 1px 2px 4px rgba(0, 0, 0, .2);
+    &:hover{
+      border: 1px solid $brand-green;
+      background-color: $light-green;
+      color: $brand-green;
+    }
+  }
+}
+
+.retracted{
+  font-family: Lato;
+  border: 1px solid $medium-grey;
+  background-color: $light-grey;
+  color: $medium-grey;
+  text-transform: uppercase;
+  font-size: 0.7em;
+  margin: 10px 0;
+  padding: 10px 10px;
+  width: 95px;
+  border-radius: 5px;
+}
+
+.grey{
+  color: $medium-grey;
+}

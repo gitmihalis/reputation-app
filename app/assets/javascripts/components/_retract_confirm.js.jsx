@@ -17,7 +17,7 @@ var RetractConfirm = React.createClass({
         },
         success: (response) => {
           console.log('it worked!', response);
-          // this.props.addRebuttal(rebuttalObject);
+          this.props.reLoad();
       }
     });
   },
@@ -30,13 +30,11 @@ var RetractConfirm = React.createClass({
   render() {
     //List the categories in the FORM select dropdown
     return (
-      <div>
-        <div>
-          <p>Are you sure?</p>
-        </div>
-        <div>
-          <button onClick={this.onClick}>Confirm Retract</button>
-        </div>
+      <div className = 'retract-box'>
+          <span className='verify-retract'>Are you sure? </span>
+        <span>
+          <button className='confirm-retract-button' onClick={this.onClick}>Yes, Confirm Retract</button>
+        </span>
       </div>
     )
   }
