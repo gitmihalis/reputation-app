@@ -10,6 +10,7 @@ class Main extends React.Component {
       review_categories: this.props.review_categories,
       rebuttals: this.props.rebuttals,
       review_profiles: this.props.review_profiles,
+      filter: null
     };
     this.addReview = this.addReview.bind(this);
     this.addRebuttal = this.addRebuttal.bind(this);
@@ -263,39 +264,85 @@ class Main extends React.Component {
         var rebuttal_button = () => { return null };
       }
 
+      const review_html = (review_id, review_date, reviewer_image, receiver_name, receiver_id) => {
+        return(
+          HTML
+        )
+      };
+
       //THE REVIEW HTML <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-      return (
-        <div className = "review" key={review.id}>
-          <div className = "review-header">
-            <span className = "float-right">
-              <p> <img src="/assets/icons/calendar_icon.png" width="16px" /> {review_date}</p>
-            </span>
-            <div className = "float-left">
-              <div className = "circle-frame" >
-                <img className = "resize-image" src = {reviewer_image} />
+      if (this.state.filter < 1){
+          return (
+            <div className = "review" key={review.id}>
+
+              <div className = "review-header">
+                <span className = "float-right">
+                  <p> <img src="/assets/icons/calendar_icon.png" width="16px" /> {review_date}</p>
+                </span>
+                <div className = "float-left">
+                  <div className = "circle-frame" >
+                    <img className = "resize-image" src = {reviewer_image} />
+                  </div>
+                </div>
+                <div className = "reviewer-info">
+                  <a className = "reviewer-name" href = { author_id } > {author_first_name} {author_last_name} </a>
+                  <span className = "status">
+                    {reviewer_status}
+                  </span>
+                </div>
+                {review_type(review, i, receiver_name, receiver_id)}
+               </div>
+              <div className = "content">
+                <p>{review.content}</p>
+                {rebuttal_button()}
+                {retract_button()}
+                {rebuttal_comment()}
+
               </div>
             </div>
-            <div className = "reviewer-info">
-              <a className = "reviewer-name" href = { author_id } > {author_first_name} {author_last_name} </a>
-              <span className = "status">
-                {reviewer_status}
-              </span>
-            </div>
-            {review_type(review, i, receiver_name, receiver_id)}
-           </div>
-          <div className = "content">
-            <p>{review.content}</p>
-            {rebuttal_button()}
-            {retract_button()}
-            {rebuttal_comment()}
+          )
+                }
+        if (review.category_id == this.state.filter){
+          return (
+            <div className = "review" key={review.id}>
 
-          </div>
-        </div>
-      )
+              <div className = "review-header">
+                <span className = "float-right">
+                  <p> <img src="/assets/icons/calendar_icon.png" width="16px" /> {review_date}</p>
+                </span>
+                <div className = "float-left">
+                  <div className = "circle-frame" >
+                    <img className = "resize-image" src = {reviewer_image} />
+                  </div>
+                </div>
+                <div className = "reviewer-info">
+                  <a className = "reviewer-name" href = { author_id } > {author_first_name} {author_last_name} </a>
+                  <span className = "status">
+                    {reviewer_status}
+                  </span>
+                </div>
+                {review_type(review, i, receiver_name, receiver_id)}
+               </div>
+              <div className = "content">
+                <p>{review.content}</p>
+                {rebuttal_button()}
+                {retract_button()}
+                {rebuttal_comment()}
+
+              </div>
+            </div>
+          )
+
+      }
     });
 
 
     //RENDER THE LAYOUT <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    const listCategories = this.props.categories.map((category) => {
+      return (
+        <option key={category.id} value={category.id}>{category.name}</option>
+      )
+    });
     return (
       <div>
 
@@ -319,6 +366,14 @@ class Main extends React.Component {
         <div className = "right-box">
         { topButton() }
           <h1 className = "name"> {this.props.receiver.first_name} {this.props.receiver.last_name}</h1>
+
+          <span> Filter Reviews: </span>
+          <span>
+            <select onChange={e => this.setState({ filter: e.target.value || null }) }>
+              <option value={null}></option>
+              {listCategories}
+            </select>
+          </span>
           <h1 className = "review-type-title" >{this.state.title}</h1>
           { listReviews }
         </div>
