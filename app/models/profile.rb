@@ -3,5 +3,5 @@ class Profile < ApplicationRecord
   mount_uploader :avatar, AvatarUploader
 
   validates :user_id, presence: true
-  validates :bio, presence: true
+  # validates :bio, presence: true
 end
