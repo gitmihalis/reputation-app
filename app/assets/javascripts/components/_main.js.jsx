@@ -152,11 +152,11 @@ class Main extends React.Component {
     $(document).scroll(function() {
       var y = $(document).scrollTop(),
           header = $("#fade-button");
-      if(y >= 115)  {
+      if(y >= 205)  {
           header.css({
             "position" : "fixed",
-            "top" : "0px",
-            "left" : "5%",
+            "top" : "10px",
+            "left" : "2%",
             "-webkit-animation-duration" : "0.7s",
             "animation-duration" : "0.7s",
             "-webkit-animation-fill-mode" : "both",
@@ -168,25 +168,39 @@ class Main extends React.Component {
       } else {
           header.css({
             "position" : "fixed",
-            "top" : "0px",
-            "left" : "5%"
+            "top" : "10px",
+            "left" : "2%"
           });
           header.removeClass("fadeIn");
           header.addClass("fadeOut");
       }
     });
 
+    // $(document).scroll(function() {
+    //   var y = $(document).scrollTop(),
+    //       header = $(".left-side-bar");
+    //   if(y >= 71)  {
+    //       header.css({
+    //         position: "fixed", "top" : "-0px",
+    //       });
+    //   } else {
+    //       header.css({
+    //         position: "absolute", "top" : "71px",
+    //       });
+    //   }
+    // });
+
     $(document).scroll(function() {
       var y = $(document).scrollTop(),
           header = $("#review-nav");
-      if(y >= 71)  {
+      if(y >= 62)  {
           header.css({
-            position: "fixed", "top" : "-0px",
+            position: "fixed", "top" : "0px",
             width: "inherit"
           });
       } else {
           header.css({
-            position: "absolute", "top" : "71px",
+            position: "absolute", "top" : "62px",
             width: "inherit"
           });
       }
