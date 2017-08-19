@@ -373,6 +373,10 @@ class Main extends React.Component {
           </div>
         </div>
 
+        <div>
+          <Widget totOfReviews={this.props.totOfReviews} posReviews={this.props.posReviews} credScore={this.props.credScore} />
+        </div>
+
         <div className = "right-box">
         { topButton() }
           <h1 className = "name"> {this.props.receiver.first_name} {this.props.receiver.last_name}</h1>
