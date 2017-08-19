@@ -441,7 +441,6 @@ class Main extends React.Component {
               </select>
             </div>
           </div>
-        </div>
 
         <div>
           <Widget totOfReviews={this.props.totOfReviews} posReviews={this.props.posReviews} credScore={this.props.credScore} />
