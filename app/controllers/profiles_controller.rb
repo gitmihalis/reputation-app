@@ -4,12 +4,21 @@ class ProfilesController < ApplicationController
   end
 
   def update
+    byebug
+    if session[:user_id].to_i != params[:id].to_i
+      redirect_to logout_path
+      puts "^ Unauthorized profile update from current_user:#{current_user.id}"
+      return
+    end
+
     profile = Profile.find_by(id: params[:id])
     user = profile.user
     if profile.update(profile_params)
       redirect_to user_path(user) , notice: 'Profile was successfully updated.'
+      return
     else
       redirect_to user_path(user), notice: 'Oh no! Profile was not updated.' 
+      return
     end
   end
 
