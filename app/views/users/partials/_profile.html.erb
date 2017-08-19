@@ -5,7 +5,7 @@
         <div class="avatar">
             <%= image_tag @profile.avatar, class: "resize-image" %>
         </div>
-          <% if current_user %>
+          <% if current_user.id == @profile.user.id %>
             <fieldset class = "remove-style">
               <%= form_tag profile_path(@profile), method: :put, class: "pure-form", multipart: true do %>
                 <%= file_field_tag 'profile[avatar]', class: "pure-input-1", required: true %>
@@ -19,7 +19,7 @@
       <div>
         <%= form_tag profile_path(@profile), method: :put, class: "pure-form" do %>
           <fieldset class = "remove-style">
-          <% if current_user %>
+          <% if current_user%>
             <div class = "inner-bio-box">
               <p class="date-joined"> <strong>Joined: <%= @profile.created_at %></strong> </p>
               <%= text_area_tag 'profile[bio]', @profile.bio, class: "pure-input-1-2 bio-box" %>
