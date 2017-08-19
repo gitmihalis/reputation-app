@@ -19,7 +19,7 @@
       <div>
         <%= form_tag profile_path(@profile), method: :put, class: "pure-form" do %>
           <fieldset class = "remove-style">
-          <% if current_user%>
+          <% if current_user.id == @profile.user.id %>
             <div class = "inner-bio-box">
               <p class="date-joined"> <strong>Joined: <%= @profile.created_at %></strong> </p>
               <%= text_area_tag 'profile[bio]', @profile.bio, class: "pure-input-1-2 bio-box" %>
