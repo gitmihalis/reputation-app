@@ -190,21 +190,21 @@ class Main extends React.Component {
       }
     });
 
-    $(document).scroll(function() {
-      var y = $(document).scrollTop(),
-          header = $("#review-nav");
-      if(y >= 71)  {
-          header.css({
-            position: "fixed", "top" : "-0px",
-            width: "inherit"
-          });
-      } else {
-          header.css({
-            position: "absolute", "top" : "71px",
-            width: "inherit"
-          });
-      }
-    });
+    // $(document).scroll(function() {
+    //   var y = $(document).scrollTop(),
+    //       header = $("#review-nav");
+    //   if(y >= 71)  {
+    //       header.css({
+    //         position: "fixed", "top" : "-0px",
+    //         width: "inherit"
+    //       });
+    //   } else {
+    //       header.css({
+    //         position: "absolute", "top" : "71px",
+    //         width: "inherit"
+    //       });
+    //   }
+    // });
 
     //CATEGORY_NAME: Determine the category name of the specific review for display
     let category_name = (review_i) => {
