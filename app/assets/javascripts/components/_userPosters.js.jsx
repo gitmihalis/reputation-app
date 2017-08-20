@@ -9,7 +9,7 @@ class UserPosters extends React.Component {
       posters.push(<UserPoster user={user} key={user.id} profile={this.props.profiles[user.id - 1]} />);
     });
     return (
-      <div>
+      <div className = "outer-box">
         {posters}
       </div>
     );
