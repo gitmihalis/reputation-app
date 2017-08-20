@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :rebuttals, only: [:create, :destroy]
   resources :reviews, only: [:create, :destroy, :put, :update]
   resources :profiles, only: [:create, :update, :put]
+
   namespace :admin do
   root to: 'reviews#index'
     resources :reviews, only: [:index, :destroy, :edit, :update]
@@ -18,6 +19,14 @@ Rails.application.routes.draw do
     resources :categories, only: [:index, :new, :create, :destroy]
     resources :flags, only: [:index]
   end
+
+# TESTING TESTING TESTING TESTING TESTING
+  namespace :embed do
+    # resources :users, only: [:show] do
+      resources :profiles  , only: :show, path:""
+    # end
+  end
+# TESTING TESTING TESTING TESTING TESTING
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   # these routes are for showing users a login form, logging them in, and logging them out.
