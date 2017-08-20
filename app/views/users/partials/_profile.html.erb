@@ -3,7 +3,8 @@
     <div>
       <div>
         <div class="avatar">
-            <%= image_tag @profile.avatar, class: "resize-image" %>
+            <% avatar = @profile.avatar.url.nil? ? 'user-female.png' : @profile.avatar.url %>
+            <%= image_tag avatar, class: "resize-image" %>
         </div>
           <% if current_user && current_user.id == @profile.user.id %>
             <fieldset class = "remove-style">
