@@ -22,9 +22,7 @@ Rails.application.routes.draw do
 
 # TESTING TESTING TESTING TESTING TESTING
   namespace :embed do
-    # resources :users, only: [:show] do
-      resources :profiles  , only: :show, path:""
-    # end
+    resources :profiles  , only: :show, path:""
   end
 # TESTING TESTING TESTING TESTING TESTING
 

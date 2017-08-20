@@ -1,7 +1,4 @@
 class Embed::ProfilesController < ApplicationController
-  # layout false
-  after_action :allow_iframe
-
   def show
     @user = User.find params[:id]
     @reviews = @user.received_reviews
@@ -20,11 +17,7 @@ class Embed::ProfilesController < ApplicationController
     else
       @credibility_score = @positive_reviews * 100 / @total_of_reviews
     end
+
   end
 
-  private
-
-  def allow_iframe
-    response.headers.except! 'X-Frame-Options'
-  end
 end

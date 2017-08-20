@@ -86,7 +86,7 @@ class Widget extends React.Component {
     }
 
     return (
-      <div>
+      <div id="widget">
         <div className="wrapper box1 card">
           <div className="donut-chart chart2" style={divStyle.chart2}>
             <div className="slice one" style={divStyle.sOne}></div>

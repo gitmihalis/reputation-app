@@ -6,6 +6,9 @@ window.onload = () => {
   // iFrame
   const iframe = document.createElement('iframe');
   document.body.appendChild(iframe);
-  iframe.style.display = 'none';
+  iframe.width = 560;
+  iframe.height = 315;
+  iframe.border = 0;
   iframe.src = "http://0.0.0.0:3000/embed/" + id;
+
 }

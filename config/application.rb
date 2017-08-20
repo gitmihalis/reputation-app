@@ -20,6 +20,10 @@ module Credible
     end
   end
 
+  config.action_dispatch.default_headers = {
+    'X-Frame-Options' => 'ALLOWALL'
+  }
+
 # TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING
 
 
