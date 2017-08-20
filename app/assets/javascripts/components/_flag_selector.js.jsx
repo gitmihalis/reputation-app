@@ -20,7 +20,7 @@ var FlagSelector = React.createClass({
         },
         success: (response) => {
           console.log('it worked!', response);
-          // this.props.addFlag(flagObject);
+          this.props.addFlag(flagObject);
           i.push(i.last + 1)
       }
     });

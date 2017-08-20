@@ -15,6 +15,7 @@ class Main extends React.Component {
       title_class: "green-title",
       flags: this.props.flags
     };
+    this.addFlag = this.addFlag.bind(this);
     this.addReview = this.addReview.bind(this);
     this.addRebuttal = this.addRebuttal.bind(this);
     this.showNegReviews = this.showNegReviews.bind(this);
@@ -60,10 +61,11 @@ class Main extends React.Component {
   }
 
   addFlag(flagData){
-    this.state.flags[flagData.review_id] = [ { reason: flagData.reason, user_id: flagData.reason.user_id } ];
+    this.state.flags[flagData.review_id] = [ { reason: flagData.reason, user_id: flagData.user_id, review_id: flagData.review_id } ];
     this.setState({
       flags: this.state.flags
     });
+    console.log("flag")
   }
 
   reLoad(){
