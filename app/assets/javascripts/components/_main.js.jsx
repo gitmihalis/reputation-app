@@ -333,23 +333,25 @@ class Main extends React.Component {
       // Flags
       // if (this.state.flags[review_id] && this.state.flags[review_id][0]){
         var flag = () => {
-          if (this.state.flags[review_id][0]){
-            // console.log(this.state.flags[review_id].length)
-            for (var i = 0; i < this.state.flags[review_id].length; i++){
-              if (this.state.flags[review_id][i]["user_id"] == this.props.current_user.id){
-                return(
-                  <img src = "/assets/icons/flag_red_icon.png" width = "20px" />
-                )
-              } else {
-                return (
-                  <Flag review_id = {review_id} token = {this.props.token} addFlag = {this.addFlag} current_user_id = {this.props.current_user.id} />
-                )
+          if (this.props.current_user){
+            if (this.state.flags[review_id][0]){
+              // console.log(this.state.flags[review_id].length)
+              for (var i = 0; i < this.state.flags[review_id].length; i++){
+                if (this.state.flags[review_id][i]["user_id"] == this.props.current_user.id){
+                  return(
+                    <img src = "/assets/icons/flag_red_icon.png" width = "20px" />
+                  )
+                } else {
+                  return (
+                    <Flag review_id = {review_id} token = {this.props.token} addFlag = {this.addFlag} current_user_id = {this.props.current_user.id} />
+                  )
+                }
               }
+            } else {
+              return (
+                <Flag review_id = {review_id} token = {this.props.token} addFlag = {this.addFlag} current_user_id = {this.props.current_user.id} />
+              )
             }
-          } else {
-            return (
-              <Flag review_id = {review_id} token = {this.props.token} addFlag = {this.addFlag} current_user_id = {this.props.current_user.id} />
-            )
           }
         }
 
