@@ -336,7 +336,7 @@ class Main extends React.Component {
             for (var i = 0; i < this.state.flags[review_id].length; i++){
               if (this.state.flags[review_id][i]["user_id"] == this.props.current_user.id){
                 return(
-                  "Flagged"
+                  <img src = "/assets/icons/flag_red_icon.png" width = "20px" />
                 )
               } else {
                 return (

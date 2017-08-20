@@ -15,7 +15,7 @@ class Flag extends React.Component {
       <div>
         <a onClick={this.onClickFunc} href='#' >
           <div className = "flag-button">
-            <img src="/assets/icons/scale_icon.png" width="20px" /> Flag
+            <img src = "/assets/icons/flag_light_grey_icon.png" width = "20px" className = "flag" />
           </div>
         </a>
         {this.state.showReply && < FlagSelector close={this.onClickFunc} review_id = {this.props.review_id} token = {this.props.token} addFlag = {this.props.addFlag} current_user_id = {this.props.current_user_id} />}
