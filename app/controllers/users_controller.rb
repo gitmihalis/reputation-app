@@ -33,6 +33,9 @@ class UsersController < ApplicationController
     @neg_reviews = Review.where({receiver_id: @user.id, positive: false}).order(created_at: :desc)
     @neg_review_profiles = []
     @neg_review_categories = []
+    @flags = {}
+    @written_flagged = {}
+    @neg_flags = {}
     @rebuttals = {}
     @written_rebutted = {}
     @written_review_profiles = []
@@ -45,6 +48,7 @@ class UsersController < ApplicationController
       @authors.push(review.author)
       @review_categories.push(@categories.where({id: review.category_id}))
       @review_profiles.push(Profile.where({id: review.author_id}))
+      @flags[review.id] = Flag.where({review_id: review.id})
     end
 
     @neg_reviews.each do |review|
@@ -52,6 +56,7 @@ class UsersController < ApplicationController
       @neg_review_categories.push(@categories.where({id: review.category_id}))
       @rebuttals[review.id] = Rebuttal.where({review_id: review.id})
       @neg_review_profiles.push(Profile.where({id: review.author_id}))
+      @neg_flags[review.id] = Flag.where({review_id: review.id})
     end
 
 
@@ -60,6 +65,7 @@ class UsersController < ApplicationController
       @written_review_categories.push(@categories.where({id: review.category_id}))
       @written_rebutted[review.id] = Rebuttal.where({review_id: review.id})
       @written_review_profiles.push(Profile.where({id: review.receiver_id}))
+      @written_flagged[review.id] = Flag.where({review_id: review.id})
     end
 
 

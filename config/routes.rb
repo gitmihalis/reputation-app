@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     resources :profiles, only: [:show]
   end
   resources :rebuttals, only: [:create, :destroy]
+  resources :flags, only: [:create, :destroy]
   resources :reviews, only: [:create, :destroy, :put, :update]
   resources :profiles, only: [:create, :update, :put]
   namespace :admin do

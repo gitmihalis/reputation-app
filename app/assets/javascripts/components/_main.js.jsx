@@ -13,6 +13,7 @@ class Main extends React.Component {
       review_profiles: this.props.review_profiles,
       filter: null,
       title_class: "green-title",
+      flags: this.props.flags
     };
     this.addReview = this.addReview.bind(this);
     this.addRebuttal = this.addRebuttal.bind(this);
@@ -21,6 +22,7 @@ class Main extends React.Component {
     this.showWrittenReviews = this.showWrittenReviews.bind(this);
     this.reLoad = this.reLoad.bind(this);
   }
+
 
   //ADD REVIEW
   addReview(reviewData){
@@ -57,6 +59,13 @@ class Main extends React.Component {
     });
   }
 
+  addFlag(flagData){
+    this.state.flags[flagData.review_id] = [ { reason: flagData.reason, user_id: flagData.reason.user_id } ];
+    this.setState({
+      flags: this.state.flags
+    });
+  }
+
   reLoad(){
     window.location.reload()
   }
@@ -71,7 +80,8 @@ class Main extends React.Component {
       rebuttals: this.props.rebuttals,
       review_profiles: this.props.neg_review_profiles,
       written: false,
-      title_class: "red-title"
+      title_class: "red-title",
+      flags: this.props.neg_flags
     });
     $("#all").removeClass("clicked");
     $("#written").removeClass("clicked");
@@ -88,7 +98,8 @@ class Main extends React.Component {
       rebuttals: this.props.rebuttals,
       review_profiles: this.props.review_profiles,
       written: false,
-      title_class: "green-title"
+      title_class: "green-title",
+      flags: this.props.flags
     });
     $("#all").addClass("clicked");
     $("#written").removeClass("clicked");
@@ -105,7 +116,8 @@ class Main extends React.Component {
       rebuttals: this.props.written_rebutted,
       review_profiles: this.props.written_review_profiles,
       written: true,
-      title_class: "green-title"
+      title_class: "green-title",
+      flags: this.props.written_flagged
     });
     $("#all").removeClass("clicked");
     $("#written").addClass("clicked");
@@ -113,7 +125,7 @@ class Main extends React.Component {
   }
 
   componentWillMount() {
-    //console.log(this.state.review_profiles[0][0].avatar)
+    //console.log(this.state.rebuttals[7])
   }
 
   //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> RENDER <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -316,6 +328,42 @@ class Main extends React.Component {
         var rebuttal_button = () => { return null };
       }
 
+      // Flags
+      // if (this.state.flags[review_id] && this.state.flags[review_id][0]){
+        var flag = () => {
+          if (this.state.flags[review_id][0]){
+            // console.log(this.state.flags[review_id].length)
+            for (var i = 0; i < this.state.flags[review_id].length; i++){
+              if (this.state.flags[review_id][i]["user_id"] == this.props.current_user.id){
+                return(
+                  "Flagged"
+                )
+              } else {
+                return (
+                  <Flag review_id = {review_id} token = {this.props.token} addFlag = {this.addFlag} current_user_id = {this.props.current_user.id} />
+                )
+              }
+            }
+          } else {
+            return (
+              <Flag review_id = {review_id} token = {this.props.token} addFlag = {this.addFlag} current_user_id = {this.props.current_user.id} />
+            )
+          }
+        }
+
+        // var flag = () => {
+        //   console.log()
+        //   if (this.state.flags[review_id][0] && ( this.state.flags[review_id][0]["user_id"] == this.props.current_user.id )){
+        //       return(
+        //         <div> Flagged </div>
+        //       )
+        //   } else {
+        //     return(
+        //       <Flag review_id = {review_id} token = {this.props.token} addFlag = {this.addFlag} current_user_id = {this.props.current_user.id} />
+        //     )
+        //   }
+        // }
+
 
       //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> THE REVIEW RENDERING <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
@@ -352,7 +400,7 @@ class Main extends React.Component {
                 {rebuttal_button()}
                 {retract_button()}
                 {rebuttal_comment()}
-
+                {flag()}
               </div>
             </div>
           )
@@ -399,6 +447,8 @@ class Main extends React.Component {
         <option key={category.id} value={category.id}>{category.name}</option>
       )
     });
+
+
     return (
       <div>
           <div id = "fade-button" className = "hidden button-left">
