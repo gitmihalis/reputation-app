@@ -164,11 +164,16 @@ class Main extends React.Component {
 
   //SHARE BUTTON - depending on current_user
   const embedButton = () => {
-    // Display share button if logged in AND is the current user's own profile
-    if (this.props.current_user.id == this.props.receiver.id) {
-      return(
-        <EmbedBox current_user = {this.props.current_user}/>
-      )
+    // Display share button if logged in
+    if (this.props.current_user) {
+      // Display share button if logged in AND is the current user's own profile
+      if (this.props.current_user.id == this.props.receiver.id) {
+        return(
+          <EmbedBox current_user = {this.props.current_user}/>
+        )
+      }
+    } else {
+      return
     }
   };
 
