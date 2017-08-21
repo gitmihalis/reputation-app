@@ -33,6 +33,8 @@ gem 'turbolinks', '~> 5.0', '>= 5.0.1'
 gem 'react-rails'
 gem 'carrierwave'
 gem 'rmagick'
+# Handle Cross-Origin Resource Sharing (CORS)
+gem 'rack-cors'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
