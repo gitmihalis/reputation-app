@@ -27,29 +27,6 @@ class Main extends React.Component {
 
   //ADD REVIEW
   addReview(reviewData){
-    // PLEASE DO NOT DELETE YET
-    //Put all categories into a key-value pair for reference
-    // const categories_and_id = {}
-    // const categories = this.props.categories.map((category) => {
-    //   categories_and_id[category.id] = category.name
-    // });
-    // var category_name = categories_and_id[reviewData.category_id]
-
-    // //Change the state to include the new review
-    // const newReview = reviewData;
-    // const newAuthor = {first_name: this.props.current_user.first_name, last_name: this.props.current_user.last_name };
-    // const newReviews = this.state.reviews.concat(newReview);
-    // const newAuthors = this.state.authors.concat(newAuthor);
-    // const newCategories = this.state.review_categories.concat([ {0 : { name: category_name } } ]);
-    // this.state.reviews = newReviews;
-    // this.state.authors = newAuthors;
-    // this.state.categories = newCategories
-    // this.setState({
-    //   reviews: newReviews,
-    //   authors: newAuthors,
-    //   review_categories: newCategories,
-    //   written: false
-    // });
     window.location.reload()
   }
 
@@ -190,21 +167,6 @@ class Main extends React.Component {
       }
     });
 
-    // $(document).scroll(function() {
-    //   var y = $(document).scrollTop(),
-    //       header = $("#review-nav");
-    //   if(y >= 71)  {
-    //       header.css({
-    //         position: "fixed", "top" : "-0px",
-    //         width: "inherit"
-    //       });
-    //   } else {
-    //       header.css({
-    //         position: "absolute", "top" : "71px",
-    //         width: "inherit"
-    //       });
-    //   }
-    // });
 
     //CATEGORY_NAME: Determine the category name of the specific review for display
     let category_name = (review_i) => {
@@ -331,7 +293,6 @@ class Main extends React.Component {
       }
 
       // Flags
-      // if (this.state.flags[review_id] && this.state.flags[review_id][0]){
       var flag = () => {
         if (this.props.current_user){
           if (this.state.flags[review_id][0]){
@@ -383,13 +344,6 @@ class Main extends React.Component {
 
 
       //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> THE REVIEW RENDERING <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-
-      // FOR LATER REFACTORING THE REPETITION BELOW
-      // const review_html = (review_id, review_date, reviewer_image, receiver_name, receiver_id) => {
-      //   return(
-      //     HTML
-      //   )
-      // };
 
       if (this.state.filter < 1){ //FILTERING - no selected filter
           return (
