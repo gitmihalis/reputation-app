@@ -13,14 +13,3 @@ permit_params :positive, :retracted, :image_url, :reference_url
 # end
 
 end
-
-t.text     "content"
-t.boolean  "positive",      default: true
-t.boolean  "retracted",     default: false
-t.string   "image_url"
-t.string   "reference_url"
-t.integer  "author_id"
-t.integer  "category_id"
-t.integer  "receiver_id"
-t.datetime "created_at",                    null: false
-t.datetime "updated_at",                    null: false
