@@ -166,27 +166,27 @@ class Main extends React.Component {
     $(document).scroll(function() {
       var y = $(document).scrollTop(),
           header = $("#fade-button");
-      if(y >= 115)  {
+      if(y >= 250)  {
           header.css({
             "position" : "fixed",
-            "top" : "0px",
-            "left" : "5%",
-            "-webkit-animation-duration" : "0.7s",
-            "animation-duration" : "0.7s",
+            "top" : "125px",
+            "right" : "48px",
+            "-webkit-animation-duration" : "0.5s",
+            "animation-duration" : "0.5s",
             "-webkit-animation-fill-mode" : "both",
             "animation-fill-mode": "both"
           });
           header.removeClass("hidden");
-          header.removeClass("fadeOut");
           header.addClass("fadeIn");
       } else {
           header.css({
             "position" : "fixed",
-            "top" : "0px",
-            "left" : "5%"
+            "top" : "125px",
+            "right" : "48px"
           });
           header.removeClass("fadeIn");
-          header.addClass("fadeOut");
+          header.addClass("hidden");
+
       }
     });
 
@@ -526,7 +526,7 @@ class Main extends React.Component {
               { topButton() }
             </div>
             <h1 className = "name"> {this.props.receiver.first_name} {this.props.receiver.last_name}</h1>
-            <h1 className = {this.state.title_class} >{this.state.title}</h1>
+            <h2 className = {this.state.title_class} >{this.state.title}</h2>
             { listReviews }
           </div>
         </div>

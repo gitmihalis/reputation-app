@@ -18,18 +18,21 @@
       </div>
 
       <div>
-        <%= form_tag profile_path(@profile), method: :put, class: "pure-form" do %>
+        <%= form_tag profile_path(@profile), method: :put do %>
           <fieldset class = "remove-style">
           <% if current_user && current_user.id == @profile.user.id %>
             <div class = "inner-bio-box">
-              <p class="date-joined"> <strong>Joined: <%= @profile.created_at %></strong> </p>
-              <%= text_area_tag 'profile[bio]', @profile.bio, class: "pure-input-1-2 bio-box" %>
+              <div class="date-joined"> <strong>Joined: <%= @profile.created_at.strftime("%B, %Y") %></strong> </div>
+              <%= text_area_tag 'profile[bio]', @profile.bio, class: "bio-box" %>
               <%= submit_tag "save bio" %>
             </div>
           <% else %>
             <div class = "inner-bio-box">
-              <p class="date-joined"> <strong>Joined: <%= @profile.created_at %></strong> </p>
-              <%= text_area_tag 'profile[bio]', @profile.bio, class: "pure-input-1-2 bio-box", disabled: true %>
+              <div class="date-joined">
+                @<%= @user.username %></br>
+                <strong>Joined: <%= @profile.created_at.strftime("%B, %Y") %></strong>
+              </div>
+              <%= text_area_tag 'profile[bio]', @profile.bio, class: "bio-box", disabled: true %>
             <div>
           <% end %>
         </fieldset>
