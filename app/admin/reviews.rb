@@ -2,7 +2,7 @@ ActiveAdmin.register Review do
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
-# permit_params :list, :of, :attributes, :on, :model
+permit_params :positive, :retracted, :image_url, :reference_url
 #
 # or
 #
@@ -13,3 +13,14 @@ ActiveAdmin.register Review do
 # end
 
 end
+
+t.text     "content"
+t.boolean  "positive",      default: true
+t.boolean  "retracted",     default: false
+t.string   "image_url"
+t.string   "reference_url"
+t.integer  "author_id"
+t.integer  "category_id"
+t.integer  "receiver_id"
+t.datetime "created_at",                    null: false
+t.datetime "updated_at",                    null: false
