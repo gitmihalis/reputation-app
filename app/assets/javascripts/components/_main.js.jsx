@@ -515,7 +515,7 @@ class Main extends React.Component {
             </div>
           </div>
 
-        <div>
+        <div className = "widget-profile">
           <Widget totOfReviews={this.props.totOfReviews} posReviews={this.props.posReviews} credScore={this.props.credScore} />
         </div>
 
