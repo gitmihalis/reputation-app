@@ -8,7 +8,7 @@ class ReviewModal extends React.Component {
       <div className="modal-content">
         <span className="close" onClick={this.props.close}>&times;</span>
         <div className = "center-form">
-          <h1>Write Review</h1>
+          <h1 className = "write-review-title">Write Review</h1>
           < ReviewForm
             addReview = {this.props.addReview}
             reviews = {this.props.reviews}

@@ -72,6 +72,7 @@
   padding: 10px;
   z-index: 1;
   opacity: 0.0;
+  overflow: scroll;
   &:hover{
     opacity: 1.0;
   }

@@ -27,29 +27,6 @@ class Main extends React.Component {
 
   //ADD REVIEW
   addReview(reviewData){
-    // PLEASE DO NOT DELETE YET
-    //Put all categories into a key-value pair for reference
-    // const categories_and_id = {}
-    // const categories = this.props.categories.map((category) => {
-    //   categories_and_id[category.id] = category.name
-    // });
-    // var category_name = categories_and_id[reviewData.category_id]
-
-    // //Change the state to include the new review
-    // const newReview = reviewData;
-    // const newAuthor = {first_name: this.props.current_user.first_name, last_name: this.props.current_user.last_name };
-    // const newReviews = this.state.reviews.concat(newReview);
-    // const newAuthors = this.state.authors.concat(newAuthor);
-    // const newCategories = this.state.review_categories.concat([ {0 : { name: category_name } } ]);
-    // this.state.reviews = newReviews;
-    // this.state.authors = newAuthors;
-    // this.state.categories = newCategories
-    // this.setState({
-    //   reviews: newReviews,
-    //   authors: newAuthors,
-    //   review_categories: newCategories,
-    //   written: false
-    // });
     window.location.reload()
   }
 
@@ -182,45 +159,30 @@ class Main extends React.Component {
     $(document).scroll(function() {
       var y = $(document).scrollTop(),
           header = $("#fade-button");
-      if(y >= 115)  {
+      if(y >= 320)  {
           header.css({
             "position" : "fixed",
-            "top" : "0px",
-            "left" : "5%",
-            "-webkit-animation-duration" : "0.7s",
-            "animation-duration" : "0.7s",
+            "top" : "125px",
+            "right" : "48px",
+            "-webkit-animation-duration" : "0.5s",
+            "animation-duration" : "0.5s",
             "-webkit-animation-fill-mode" : "both",
             "animation-fill-mode": "both"
           });
           header.removeClass("hidden");
-          header.removeClass("fadeOut");
           header.addClass("fadeIn");
       } else {
           header.css({
             "position" : "fixed",
-            "top" : "0px",
-            "left" : "5%"
+            "top" : "125px",
+            "right" : "48px"
           });
           header.removeClass("fadeIn");
-          header.addClass("fadeOut");
+          header.addClass("hidden");
+
       }
     });
 
-    // $(document).scroll(function() {
-    //   var y = $(document).scrollTop(),
-    //       header = $("#review-nav");
-    //   if(y >= 71)  {
-    //       header.css({
-    //         position: "fixed", "top" : "-0px",
-    //         width: "inherit"
-    //       });
-    //   } else {
-    //       header.css({
-    //         position: "absolute", "top" : "71px",
-    //         width: "inherit"
-    //       });
-    //   }
-    // });
 
     //CATEGORY_NAME: Determine the category name of the specific review for display
     let category_name = (review_i) => {
@@ -235,15 +197,18 @@ class Main extends React.Component {
     //REVIEW_TYPE Display reviews with negative and positive styles
     const review_type = (review, i, receiver_name, receiver_id) => {
       var negative_class = null;
-      var negative_icon = () => { return null };
+      var thumb_icon = () => {
+        return <img src="/assets/icons/thumbs_up_icon.png" width="20px" />
+      };
+
       if (!review.positive) { //If negative review, red colour and thumbs down
         negative_class = "red";
-        negative_icon = () => {
+        thumb_icon = () => {
           return <img src="/assets/icons/thumbs_down_icon.png" width="20px" />
         }
         if (review.retracted){ //If negative review and retracted
           negative_class = "grey";
-          negative_icon = () => {
+          thumb_icon = () => {
             return <img src="/assets/icons/thumbs_down_grey_icon.png" width="20px" />
           }
         }
@@ -251,7 +216,7 @@ class Main extends React.Component {
       return(
         <span className = "reviewing-as">
           <p className = {negative_class}>
-            {negative_icon()}
+            {thumb_icon()}
             Reviewed <a href = {receiver_id} >{receiver_name}</a> as a {category_name(i)}
           </p>
         </span>
@@ -347,7 +312,6 @@ class Main extends React.Component {
       }
 
       // Flags
-      // if (this.state.flags[review_id] && this.state.flags[review_id][0]){
       var flag = () => {
         if (this.props.current_user){
           if (this.state.flags[review_id][0]){
@@ -400,13 +364,6 @@ class Main extends React.Component {
 
       //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> THE REVIEW RENDERING <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
-      // FOR LATER REFACTORING THE REPETITION BELOW
-      // const review_html = (review_id, review_date, reviewer_image, receiver_name, receiver_id) => {
-      //   return(
-      //     HTML
-      //   )
-      // };
-
       if (this.state.filter < 1){ //FILTERING - no selected filter
           return (
             <div className = "review" key={review.id}>
@@ -432,6 +389,7 @@ class Main extends React.Component {
                 {review_type(review, i, receiver_name, receiver_id)}
                </div>
               <div className = "content">
+                {review.reference_url}
                 <p>{review.content}</p>
                 {rebuttal_button()}
                 {retract_button()}
@@ -531,7 +489,7 @@ class Main extends React.Component {
             </div>
           </div>
 
-        <div>
+        <div className = "widget-profile">
           <Widget totOfReviews={this.props.totOfReviews} posReviews={this.props.posReviews} credScore={this.props.credScore} />
           { embedButton() }
         </div>
@@ -543,11 +501,10 @@ class Main extends React.Component {
               { topButton() }
             </div>
             <h1 className = "name"> {this.props.receiver.first_name} {this.props.receiver.last_name}</h1>
-            <h1 className = {this.state.title_class} >{this.state.title}</h1>
+            <h2 className = {this.state.title_class} >{this.state.title}</h2>
             { listReviews }
           </div>
         </div>
-
       </div>
     );
   }
