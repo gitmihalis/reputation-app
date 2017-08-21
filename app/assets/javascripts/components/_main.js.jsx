@@ -373,6 +373,7 @@ class Main extends React.Component {
                 {review_type(review, i, receiver_name, receiver_id)}
                </div>
               <div className = "content">
+                {review.reference_url}
                 <p>{review.content}</p>
                 {rebuttal_button()}
                 {retract_button()}
