@@ -8,14 +8,17 @@ class SearchBar extends React.Component {
     this.props.onFilterTextInput(e.target.value);
   }
 
+
   render() {
     return (
-      <input
-        type="text"
-        placeholder="Search Name"
-        value={this.props.filterText}
-        onChange={this.handleFilterTextInputChange}
-      />
+      <div className = "search-bar-outer-box">
+        <input className = "search-bar"
+          type="text"
+          placeholder="Search Names..."
+          value={this.props.filterText}
+          onChange={this.handleFilterTextInputChange}
+        />
+      </div>
     );
   }
 }

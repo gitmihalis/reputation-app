@@ -129,7 +129,7 @@ fieldset {
 }
 
 .button-top{
-  margin: 80px 0px 0px 0px;
+  margin: 0px 0px 0px 0px;
 }
 
 .button-left{
@@ -168,7 +168,9 @@ fieldset {
 }
 
 .fixed-nav{
-  position: absolute;
+/*  position: absolute;*/
+  position: fixed;
+  top: 62px;
   width: inherit;
   z-index: 1;
   box-shadow: 1px 2px 4px rgba(0, 0, 0, .2);

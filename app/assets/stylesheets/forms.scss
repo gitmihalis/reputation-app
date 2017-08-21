@@ -1,7 +1,8 @@
 .form {
   margin-top: 40px;
   border-radius: 6px;
-  overflow: hidden;
+  /* overflow conflicts with display of Registration form and hides it from being displayed */
+  // overflow: hidden;
   // opacity: 0;
 
   #submit { 
