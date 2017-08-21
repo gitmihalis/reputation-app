@@ -12,22 +12,18 @@ module Credible
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
 
-# TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING
-  config.middleware.use Rack::Cors do
-    allow do
-      origins '*'
-      resource '*', :headers => :any, :methods => [:get, :post, :options]
+    # Allow GET, POST or OPTIONS requests from any origin on any resource
+    config.middleware.use Rack::Cors do
+      allow do
+        origins '*'
+        resource '*', :headers => :any, :methods => [:get, :post, :options]
+      end
     end
-  end
 
-  config.action_dispatch.default_headers = {
-    'X-Frame-Options' => 'ALLOWALL'
-  }
-
-# TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING
-
-
-
+    # Set X-Frame-Options to ALLOWALL instead of SAMEORIGIN
+    config.action_dispatch.default_headers = {
+      'X-Frame-Options' => 'ALLOWALL'
+    }
 
   end
 end

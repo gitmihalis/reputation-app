@@ -1,7 +1,7 @@
 window.onload = () => {
   // Params
   const scriptPram = document.getElementById('load_widget');
-  const id = scriptPram.getAttribute('data-page');
+  const id = scriptPram.getAttribute('data');
 
   // iFrame
   const iframe = document.createElement('iframe');

@@ -147,6 +147,17 @@ class Main extends React.Component {
         )
       }
     };
+
+  //SHARE BUTTON - depending on current_user
+  const embedButton = () => {
+    // Display share button if logged in AND is the current user's own profile
+    if (this.props.current_user.id == this.props.receiver.id) {
+      return(
+        <EmbedBox current_user = {this.props.current_user}/>
+      )
+    }
+  };
+
     //Javascipt to move the review button after scroll
 
     $(document).scroll(function() {
@@ -444,6 +455,7 @@ class Main extends React.Component {
 
         <div>
           <Widget totOfReviews={this.props.totOfReviews} posReviews={this.props.posReviews} credScore={this.props.credScore} />
+          { embedButton() }
         </div>
 
         </span>
