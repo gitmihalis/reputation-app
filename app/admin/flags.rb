@@ -11,5 +11,12 @@ ActiveAdmin.register Flag do
 #   permitted << :other if params[:action] == 'create' && current_user.admin?
 #   permitted
 # end
+index do
+  column :reason
+  column :review
+  column :user
+  column :created_at
+  actions
+end
 
 end
