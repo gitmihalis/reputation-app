@@ -143,7 +143,7 @@ class Main extends React.Component {
     $(document).scroll(function() {
       var y = $(document).scrollTop(),
           header = $("#fade-button");
-      if(y >= 250)  {
+      if(y >= 320)  {
           header.css({
             "position" : "fixed",
             "top" : "125px",
@@ -181,15 +181,18 @@ class Main extends React.Component {
     //REVIEW_TYPE Display reviews with negative and positive styles
     const review_type = (review, i, receiver_name, receiver_id) => {
       var negative_class = null;
-      var negative_icon = () => { return null };
+      var thumb_icon = () => {
+        return <img src="/assets/icons/thumbs_up_icon.png" width="20px" />
+      };
+
       if (!review.positive) { //If negative review, red colour and thumbs down
         negative_class = "red";
-        negative_icon = () => {
+        thumb_icon = () => {
           return <img src="/assets/icons/thumbs_down_icon.png" width="20px" />
         }
         if (review.retracted){ //If negative review and retracted
           negative_class = "grey";
-          negative_icon = () => {
+          thumb_icon = () => {
             return <img src="/assets/icons/thumbs_down_grey_icon.png" width="20px" />
           }
         }
@@ -197,7 +200,7 @@ class Main extends React.Component {
       return(
         <span className = "reviewing-as">
           <p className = {negative_class}>
-            {negative_icon()}
+            {thumb_icon()}
             Reviewed <a href = {receiver_id} >{receiver_name}</a> as a {category_name(i)}
           </p>
         </span>
@@ -484,7 +487,6 @@ class Main extends React.Component {
             { listReviews }
           </div>
         </div>
-
       </div>
     );
   }

@@ -37,8 +37,8 @@ var RebuttalComment = React.createClass({
         <div className = "rebuttal-textarea">
           <textarea rows='5' ref='rebuttal' placeholder='Defend your reputation...' />
         </div>
-        <div>
-          <button onClick={this.onClick}>Submit</button>
+        <div className = "submit-confirm-outer">
+          <button className = "submit-confirm-button" onClick={this.onClick}>Submit</button>
         </div>
       </div>
     )
