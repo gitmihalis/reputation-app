@@ -12,12 +12,17 @@ Rails.application.routes.draw do
   resources :flags, only: [:create, :destroy]
   resources :reviews, only: [:create, :destroy, :put, :update]
   resources :profiles, only: [:create, :update, :put]
+
   namespace :admin do
   root to: 'reviews#index'
     resources :reviews, only: [:index, :destroy, :edit, :update]
     resources :users, only: [:index, :destroy]
     resources :categories, only: [:index, :new, :create, :destroy]
     resources :flags, only: [:index]
+  end
+
+  namespace :embed do
+    resources :profiles  , only: :show, path:""
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
