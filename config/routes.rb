@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  ActiveAdmin.routes(self)
   root 'welcome#index'
   get 'welcome/index'
   # sign up a new user
