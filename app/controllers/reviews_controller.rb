@@ -26,6 +26,16 @@ class ReviewsController < ApplicationController
       end
     end
 
+    def destroy
+      @review = Review.find params[:id]
+      if @review.destroy
+        puts ("yay!")
+      else
+        puts ("oh no!")
+        render json: @review.errors, status: :unprocessable_entity
+      end
+    end
+
     private
 
       protected

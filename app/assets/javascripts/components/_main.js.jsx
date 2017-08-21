@@ -332,41 +332,54 @@ class Main extends React.Component {
 
       // Flags
       // if (this.state.flags[review_id] && this.state.flags[review_id][0]){
-        var flag = () => {
-          if (this.props.current_user){
-            if (this.state.flags[review_id][0]){
-              // console.log(this.state.flags[review_id].length)
-              for (var i = 0; i < this.state.flags[review_id].length; i++){
-                if (this.state.flags[review_id][i]["user_id"] == this.props.current_user.id){
-                  return(
-                    <img src = "/assets/icons/flag_red_icon.png" width = "20px" />
-                  )
-                } else {
-                  return (
-                    <Flag review_id = {review_id} token = {this.props.token} addFlag = {this.addFlag} current_user_id = {this.props.current_user.id} />
-                  )
-                }
+      var flag = () => {
+        if (this.props.current_user){
+          if (this.state.flags[review_id][0]){
+            // console.log(this.state.flags[review_id].length)
+            for (var i = 0; i < this.state.flags[review_id].length; i++){
+              if (this.state.flags[review_id][i]["user_id"] == this.props.current_user.id){
+                return(
+                  <img src = "/assets/icons/flag_red_icon.png" width = "20px" />
+                )
+              } else {
+                return (
+                  <Flag
+                  review_id = {review_id}
+                  token = {this.props.token}
+                  addFlag = {this.addFlag}
+                  current_user_id = {this.props.current_user.id}
+                  />
+                )
               }
-            } else {
-              return (
-                <Flag review_id = {review_id} token = {this.props.token} addFlag = {this.addFlag} current_user_id = {this.props.current_user.id} />
-              )
             }
+          } else {
+            return (
+              <Flag
+              review_id = {review_id}
+              token = {this.props.token}
+              addFlag = {this.addFlag}
+              current_user_id = {this.props.current_user.id}
+              />
+            )
           }
         }
+      }
 
-        // var flag = () => {
-        //   console.log()
-        //   if (this.state.flags[review_id][0] && ( this.state.flags[review_id][0]["user_id"] == this.props.current_user.id )){
-        //       return(
-        //         <div> Flagged </div>
-        //       )
-        //   } else {
-        //     return(
-        //       <Flag review_id = {review_id} token = {this.props.token} addFlag = {this.addFlag} current_user_id = {this.props.current_user.id} />
-        //     )
-        //   }
-        // }
+      // Delete
+      var delete_button = () => {
+        if (this.props.current_user){
+          if (author_id == this.props.current_user.id){
+            return(
+              <Delete
+              review_id = {review_id}
+              token = {this.props.token}
+              reLoad = {this.reLoad}
+              current_user_id = {this.props.current_user.id}
+              />
+            )
+          }
+        }
+      }
 
 
       //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> THE REVIEW RENDERING <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -383,9 +396,12 @@ class Main extends React.Component {
             <div className = "review" key={review.id}>
 
               <div className = "review-header">
-                <span className = "float-right">
+                <div className = "float-right">
+                  {delete_button()}
+                </div>
+                <div className = "float-right review-date">
                   <p> <img src="/assets/icons/calendar_icon.png" width="16px" /> {review_date}</p>
-                </span>
+                </div>
                 <div className = "float-left">
                   <div className = "circle-frame" >
                     <img className = "resize-image" src = {reviewer_image} />
@@ -414,6 +430,9 @@ class Main extends React.Component {
             <div className = "review" key={review.id}>
 
               <div className = "review-header">
+                <div className = "float-right">
+                  {delete_button()}
+                </div>
                 <span className = "float-right">
                   <p> <img src="/assets/icons/calendar_icon.png" width="16px" /> {review_date}</p>
                 </span>
@@ -435,7 +454,7 @@ class Main extends React.Component {
                 {rebuttal_button()}
                 {retract_button()}
                 {rebuttal_comment()}
-
+                {flag()}
               </div>
             </div>
           )
