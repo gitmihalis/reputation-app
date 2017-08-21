@@ -19,6 +19,7 @@ $medium-grey: #aeaeae;
 
 //////////////////////
 // IMPORT STYLES
+@import 'active_admin';
 @import 'normalize';
 @import 'layout';
 @import 'shared';
@@ -36,5 +37,5 @@ $medium-grey: #aeaeae;
 @import 'flags';
 @import 'search';
 @import 'homepage';
-@import 'active_admin';
+
 
