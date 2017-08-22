@@ -24,8 +24,7 @@ class FilterableUsers extends React.Component {
           onFilterTextInput={this.handleFilterTextInput}
         />
         <UserPosters
-          users={this.props.users}
-          profiles={this.props.profiles}
+          profile_details={this.props.profile_details}
           filterText={this.state.filterText}
         />
       </div>

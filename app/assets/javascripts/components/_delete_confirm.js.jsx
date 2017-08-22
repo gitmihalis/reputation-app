@@ -23,7 +23,7 @@ var DeleteConfirm = React.createClass({
   render() {
     return (
       <div>
-        <button onClick={this.onClick}>Confirm</button>
+        <button className = "submit-confirm-button" onClick={this.onClick}>Confirm</button>
       </div>
     )
   }
