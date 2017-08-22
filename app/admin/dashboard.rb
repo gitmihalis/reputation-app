@@ -1,4 +1,7 @@
 ActiveAdmin.register_page "Dashboard" do
+  
+  sql = "SELECT review_id, COUNT(*) FROM flags GROUP BY review_id ORDER BY COUNT DESC"
+  important_flags_array = ActiveRecord::Base.connection.execute(sql)
 
   menu priority: 1, label: proc{ I18n.t("active_admin.dashboard") }
 
@@ -16,18 +19,23 @@ ActiveAdmin.register_page "Dashboard" do
       column do
         panel "Recent Flags" do
           ul do
-            Flag.take(20).map do |flag|
-              li link_to("For review #{flag.review_id}", admin_flag_path(flag))
+            Flag.order(:created_at).last(10).map do |flag|
+              li link_to("#{flag.created_at.strftime("%m/%d/%y")}", admin_flag_path(flag))
             end
           end
         end
       end
 
-    #   column do
-    #     panel "Info" do
-    #       para "Welcome to ActiveAdmin."
-    #     end
-    #   end
+      column do
+        panel "Important Issues!" do
+          ul do
+            important_flags_array.each do |hash|
+              li link_to "REVIEW:#{hash["review_id"]} has #{hash["count"]} flags", admin_review_path(hash["review_id"])
+              # li link_to("Review: #{review_id} has #{flag_count} flags", admin_review_path(review_id))
+            end
+          end
+        end
+      end
     end
   end # content
 end
