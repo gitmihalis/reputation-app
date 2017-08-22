@@ -5,7 +5,11 @@ Rails.application.routes.draw do
   # sign up a new user
   get '/register', to: 'users#new'
 
-  resources :users, only: [:new, :create, :index, :show, :destroy] do
+  # TESTING TESTING TESTING TESTING TESTING TESTING
+  get '/users/:username', to: 'users#show'
+  # TESTING TESTING TESTING TESTING TESTING TESTING
+
+  resources :users, only: [:new, :create, :index, :show, :destroy], param: :username do
     resources :profiles, only: [:show]
   end
   resources :rebuttals, only: [:create, :destroy]

@@ -14,6 +14,7 @@ class UsersController < ApplicationController
         user_id: user.id,
         user_first_name: user.first_name,
         user_last_name: user.last_name,
+        user_username: user.username,
         profile: Profile.where({user_id: user.id})
       }
     end
@@ -35,7 +36,13 @@ class UsersController < ApplicationController
 
     @categories = Category.all
     @authors = []
-    @user = User.find params[:id]
+    # @user = User.find params[:id]
+
+    # TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING
+
+    @user = User.find_by username: params[:username]
+
+    # TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING
 
     @profile = @user.profile
     @reviews = @user.received_reviews.order(created_at: :desc)

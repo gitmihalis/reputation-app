@@ -15,6 +15,7 @@ class UserPosters extends React.Component {
           bio = {this.props.profile_details[i]["profile"][0]["bio"]}
           rep_status = {this.props.profile_details[i]["profile"][0]["rep_status"]}
           avatar = {this.props.profile_details[i]["profile"][0]["avatar"]["url"]}
+          username = {this.props.profile_details[i]["user_username"]}
           />
         );
       }

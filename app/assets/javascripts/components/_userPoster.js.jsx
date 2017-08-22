@@ -7,7 +7,7 @@ class UserPoster extends React.Component {
     const status = `${this.props.rep_status}`
     return (
         <div className = "search-user-card">
-        <a href={`/users/${this.props.id}`}>
+        <a href={`/users/${this.props.username}`}>
           <div id = {this.props.id} className = "search-bio-box">
             {bio}
           </div>
