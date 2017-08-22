@@ -98,7 +98,7 @@ class Widget extends React.Component {
         </div>
         <div className = "widget-block-left">
           <div className="widget-name">
-            <span>Name Last</span>
+            <span>{this.props.receiver.first_name} {this.props.receiver.last_name}</span>
           </div>
           <div className="total-reviews">
             <span>{this.state.totOfReviews} Reviews</span>

@@ -559,7 +559,7 @@ class Main extends React.Component {
         </span>
         <div className = "right-box">
         <div className = "widget-profile">
-          <Widget totOfReviews={this.props.totOfReviews} posReviews={this.props.posReviews} credScore={this.props.credScore} />
+          <Widget totOfReviews={this.props.totOfReviews} posReviews={this.props.posReviews} credScore={this.props.credScore} receiver={this.props.receiver}/>
             { embedButton() }
         </div>
         <div className = "settings-button">
