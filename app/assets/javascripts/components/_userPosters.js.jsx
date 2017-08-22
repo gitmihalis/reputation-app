@@ -21,6 +21,7 @@ class UserPosters extends React.Component {
         );
       }
     }
+
     return (
       <div className = "outer-box">
         {posters}

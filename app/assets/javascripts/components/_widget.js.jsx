@@ -74,11 +74,11 @@ class Widget extends React.Component {
     // 0 - 2 Reviews: New user
     // 3 - 9 Reviews: Progressing
     // 10+ Reviews and 75%+ Credibility score: Credible
-    // 10+ Reviews and 75%- Credibility score: Xxxxxxxx
+    // 10+ Reviews and 75%- Credibility score: Inconsistent
     if (this.state.totOfReviews >= 10 && this.state.credScore >= 75) {
       status = "Credible"
     } else if (this.state.totOfReviews >= 10) {
-      status = "Xxxxxxxx"
+      status = "Inconsistent"
     } else if (this.state.totOfReviews <= 2) {
       status = "New User"
     } else {

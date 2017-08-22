@@ -16,6 +16,7 @@ class FilterableUsers extends React.Component {
   }
 
   render() {
+
     return (
       <div>
         <SearchBar
