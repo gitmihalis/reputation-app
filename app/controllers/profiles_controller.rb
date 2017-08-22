@@ -4,7 +4,6 @@ class ProfilesController < ApplicationController
   end
 
   def update
-    byebug
     if session[:user_id].to_i != params[:id].to_i
       redirect_to logout_path
       puts "^ Unauthorized profile update from current_user:#{current_user.id}"
