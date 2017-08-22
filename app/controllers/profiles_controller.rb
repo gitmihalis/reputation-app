@@ -10,10 +10,10 @@ class ProfilesController < ApplicationController
     # :rep_status is true if equal to 'New User', 'Progressing', 'Credible', or 'Incosistent'
     if rep_status_params[:rep_status] != nil
         if profile.update(rep_status_params)
-            redirect_to user_path(user) , notice: 'Profile was successfully updated.'
+            redirect_to user_path(user)
           return
         else
-          redirect_to user_path(user), notice: 'Oh no! Profile was not updated.'
+          redirect_to user_path(user)
           return
         end
     end
