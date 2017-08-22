@@ -15,6 +15,11 @@
       <li class="pure-menu-item">
         <%= link_to "Logout", logout_path, class: "pure-menu-link" %>
       </li>
+      <% if logged_in_admin? %>
+        <li class="pure-menu-item">
+          <%= link_to image_tag('icons8-ssl.png'), '/admin' %>
+        </li>
+      <% end %>
     <% else %>
       <li class="pure-menu-item">
         <%= link_to "Log in", login_path, class: "pure-menu-link" %>
@@ -22,6 +27,7 @@
       <li class="pure-menu-item">
         <%= link_to "Sign up", register_path, class: "pure-menu-link" %>
       </li>
+      
     <% end %>
 
     </ul>
