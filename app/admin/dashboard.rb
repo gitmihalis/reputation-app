@@ -31,7 +31,6 @@ ActiveAdmin.register_page "Dashboard" do
           ul do
             important_flags_array.each do |hash|
               li link_to "REVIEW:#{hash["review_id"]} has #{hash["count"]} flags", admin_review_path(hash["review_id"])
-              # li link_to("Review: #{review_id} has #{flag_count} flags", admin_review_path(review_id))
             end
           end
         end
