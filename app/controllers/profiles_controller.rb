@@ -7,7 +7,7 @@ class ProfilesController < ApplicationController
     profile = Profile.find_by(id: params[:id])
     user = profile.user
 
-    # :rep_status is true if equal to 'New User' || 'Progressing' || 'Credible' || 'Xxxxxx'
+    # :rep_status is true if equal to 'New User', 'Progressing', 'Credible', or 'Incosistent'
     if rep_status_params[:rep_status] != nil
         if profile.update(rep_status_params)
             redirect_to user_path(user) , notice: 'Profile was successfully updated.'
