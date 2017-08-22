@@ -3,7 +3,7 @@ class Review < ApplicationRecord
   belongs_to :author, class_name: 'User', foreign_key: "author_id"
   belongs_to :receiver, class_name: 'User', foreign_key: "receiver_id"
   has_one :rebuttal
-  has_many :flags
+  has_many :flags, dependent: :destroy
 
   validates :content, presence: true
   validates :image_url, format: { with: /\A[\w-]+\.(jpe?g|png|gif)\z/ }, allow_nil: true

@@ -19,7 +19,7 @@ ActiveAdmin.register_page "Dashboard" do
       column do
         panel "Recent Flags" do
           ul do
-            Flag.order(:created_at).last(10).map do |flag|
+            Flag.order(:created_at).last(55).map do |flag|
               li link_to("#{flag.created_at.strftime("%m/%d/%y")}", admin_flag_path(flag))
             end
           end
@@ -29,7 +29,7 @@ ActiveAdmin.register_page "Dashboard" do
       column do
         panel "Important Issues!" do
           ul do
-            important_flags_array.each do |hash|
+            important_flags_array.take(55).each do |hash|
               li link_to "REVIEW:#{hash["review_id"]} has #{hash["count"]} flags", admin_review_path(hash["review_id"])
             end
           end
