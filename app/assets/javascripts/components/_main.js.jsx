@@ -116,6 +116,7 @@ class Main extends React.Component {
         //Do not display review button if it is the current user's own profile
         if (this.props.current_user.id !== this.props.receiver.id) {
           return(
+            <div>
             <ReviewBox
               addReview = {this.addReview}
               reviews = {this.state.reviews}
@@ -124,6 +125,7 @@ class Main extends React.Component {
               current_user = {this.props.current_user}
               receiver = {this.props.receiver}
             />
+            </div>
           )
         }
       } else {
@@ -140,13 +142,36 @@ class Main extends React.Component {
     };
 
   //SHARE BUTTON - depending on current_user
+  const settings = () =>{
+    // Display share button if logged in
+    if (this.props.current_user) {
+      // Display share button if logged in AND is the current user's own profile
+      if (this.props.current_user.id == this.props.receiver.id) {
+        return(
+          <Settings
+            reLoad = {this.reLoad}
+            first_name = {this.props.current_user.first_name}
+            last_name = {this.props.current_user.last_name}
+            email = {this.props.current_user.email}
+            token = {this.props.token}
+            current_user = {this.props.current_user}
+            password = {this.props.receiver.password}
+            password_confirmation = {this.props.receiver.password_confirmation}
+          />
+        )
+      }
+    }
+  }
+
   const embedButton = () => {
     // Display share button if logged in
     if (this.props.current_user) {
       // Display share button if logged in AND is the current user's own profile
       if (this.props.current_user.id == this.props.receiver.id) {
         return(
+          <div>
           <EmbedBox current_user = {this.props.current_user}/>
+          </div>
         )
       }
     } else {
@@ -448,16 +473,6 @@ class Main extends React.Component {
 
     return (
       <div>
-          <Settings
-            reLoad = {this.reLoad}
-            first_name = {this.props.current_user.first_name}
-            last_name = {this.props.current_user.last_name}
-            email = {this.props.current_user.email}
-            token = {this.props.token}
-            current_user = {this.props.current_user}
-            password = {this.props.receiver.password}
-            password_confirmation = {this.props.receiver.password_confirmation}
-            />
           <div id = "fade-button" className = "hidden button-left">
             { topButton() }
           </div>
@@ -501,7 +516,10 @@ class Main extends React.Component {
 
         <div className = "widget-profile">
           <Widget totOfReviews={this.props.totOfReviews} posReviews={this.props.posReviews} credScore={this.props.credScore} />
-          { embedButton() }
+            { embedButton() }
+        </div>
+        <div className = "settings-button">
+          { settings() }
         </div>
 
         </span>

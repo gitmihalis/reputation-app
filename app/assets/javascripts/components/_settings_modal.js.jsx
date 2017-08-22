@@ -8,7 +8,7 @@ class SettingsModal extends React.Component {
       <div className="modal-content">
         <span className="close" onClick={this.props.close}>&times;</span>
         <div className = "center-form">
-          <h1 className = "write-review-title">Edit Your Profile</h1>
+          <h1 className = "write-review-title"><img src="/assets/icons/gear_icon.png" width = "35px"/> Settings</h1>
           < SettingsForm
             reLoad = {this.props.reLoad}
             first_name = {this.props.first_name}
