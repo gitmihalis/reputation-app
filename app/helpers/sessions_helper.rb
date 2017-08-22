@@ -24,9 +24,20 @@ module SessionsHelper
     end
   end
 
+
   # Returns true if the user is logged in, false otherwise.
   def logged_in?
     !current_user.nil?
+  end
+
+  # Active admin helper 
+  def logged_in_admin?
+    !current_user.nil? && current_user.admin == true
+  end
+
+  # Active record session helper
+  def authenticate_admin!
+    redirect_to logout_path unless logged_in_admin?
   end
 
   # Forgets a persistent session.
@@ -41,6 +52,13 @@ module SessionsHelper
     forget(current_user)
     session.delete(:user_id)
     @current_user = nil
+  end
+
+  def authenticate_admin_user
+    if !logged_in_admin? 
+      log_out     
+      redirect_to '/'
+    end
   end
 
 end
