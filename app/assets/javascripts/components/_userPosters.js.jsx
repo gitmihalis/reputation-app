@@ -4,8 +4,6 @@ class UserPosters extends React.Component {
 
     const profile_details = (Object.entries(this.props.profile_details))
 
-    console.log(profile_details[0][1]["user_first_name"])
-
     for (var i = 0; i < profile_details.length; i++ ){
       if (!(profile_details[i][1]["user_first_name"].toLowerCase().indexOf(this.props.filterText.toLowerCase()) === -1 &&
         profile_details[i][1]["user_last_name"].toLowerCase().indexOf(this.props.filterText.toLowerCase()) === -1)) {
