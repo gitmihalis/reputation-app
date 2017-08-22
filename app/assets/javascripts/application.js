@@ -14,4 +14,3 @@
 //= require jquery
 //= require components
 //= require active_admin
-
