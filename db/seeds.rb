@@ -67,7 +67,7 @@ user4 = User.create!(
   first_name: "John",
   last_name: "Doe",
   username: "johnD",
-  email: "john@example.com",
+  email: "john@credible.ca",
   password: "password",
   password_confirmation: "password",
   admin: false
@@ -77,7 +77,7 @@ user5 = User.create!(
   first_name: "David",
   last_name: "Mills",
   username: "davidMills",
-  email: "davidMills@example.com",
+  email: "davidMills@credible.ca",
   password: "password",
   password_confirmation: "password",
   admin: false
@@ -87,7 +87,7 @@ user6 = User.create!(
   first_name: "Maggie",
   last_name: "Moss",
   username: "maggieMoss",
-  email: "maggieMoss@example.com",
+  email: "maggieMoss@credible.ca",
   password: "password",
   password_confirmation: "password",
   admin: false
@@ -97,7 +97,7 @@ user7 = User.create!(
   first_name: "Engin",
   last_name: "Arslan",
   username: "enginArslan",
-  email: "enginArslan@example.com",
+  email: "enginArslan@credible.ca",
   password: "password",
   password_confirmation: "password",
   admin: false
@@ -107,7 +107,7 @@ user8 = User.create!(
   first_name: "Nayyir",
   last_name: "Jutha",
   username: "nayyirJutha",
-  email: "nayyirJutha@example.com",
+  email: "nayyirJutha@credible.ca",
   password: "password",
   password_confirmation: "password",
   admin: false
@@ -117,7 +117,7 @@ user9 = User.create!(
   first_name: "Johnny",
   last_name: "Hsiao",
   username: "johnnyHsiao",
-  email: "johnnyHsiao@example.com",
+  email: "johnnyHsiao@credible.ca",
   password: "password",
   password_confirmation: "password",
   admin: false
@@ -127,7 +127,7 @@ user10 = User.create!(
   first_name: "Stosh",
   last_name: "Fabricius",
   username: "stoshFabricius",
-  email: "stoshFabricius@example.com",
+  email: "stoshFabricius@credible.ca",
   password: "password",
   password_confirmation: "password",
   admin: false
@@ -137,7 +137,7 @@ user11 = User.create!(
   first_name: "Xiyang",
   last_name: "Chen",
   username: "xiyangChen",
-  email: "xiyangChen@example.com",
+  email: "xiyangChen@credible.ca",
   password: "password",
   password_confirmation: "password",
   admin: false
@@ -147,7 +147,7 @@ user12 = User.create!(
   first_name: "Thom",
   last_name: "Lamb",
   username: "thomLamb",
-  email: "thomLamb@example.com",
+  email: "thomLamb@credible.ca",
   password: "password",
   password_confirmation: "password",
   admin: false
@@ -157,7 +157,7 @@ user13 = User.create!(
   first_name: "Zach",
   last_name: "Levy",
   username: "zachLevy",
-  email: "zachLevy@example.com",
+  email: "zachLevy@credible.ca",
   password: "password",
   password_confirmation: "password",
   admin: false
@@ -167,7 +167,7 @@ user14 = User.create!(
   first_name: "Justin",
   last_name: "Henderiks",
   username: "justinHenderiks",
-  email: "justinHenderiks@example.com",
+  email: "justinHenderiks@credible.ca",
   password: "password",
   password_confirmation: "password",
   admin: false
@@ -177,7 +177,7 @@ user15 = User.create!(
   first_name: "Monting",
   last_name: "Lin",
   username: "montingLin",
-  email: "montingLin@example.com",
+  email: "montingLin@credible.ca",
   password: "password",
   password_confirmation: "password",
   admin: false
@@ -187,7 +187,7 @@ user16 = User.create!(
   first_name: "Harry",
   last_name: "Mills",
   username: "harryMills",
-  email: "harryMills@example.com",
+  email: "harryMills@credible.ca",
   password: "password",
   password_confirmation: "password",
   admin: false
@@ -197,7 +197,7 @@ user17 = User.create!(
   first_name: "Erica",
   last_name: "Wright",
   username: "ericaWright",
-  email: "ericaWright@example.com",
+  email: "ericaWright@credible.ca",
   password: "password",
   password_confirmation: "password",
   admin: false
@@ -207,7 +207,7 @@ user18 = User.create!(
   first_name: "Cody",
   last_name: "Brouwers",
   username: "codyBrouwers",
-  email: "codyBrouwers@example.com",
+  email: "codyBrouwers@credible.ca",
   password: "password",
   password_confirmation: "password",
   admin: false
@@ -217,7 +217,7 @@ user19 = User.create!(
   first_name: "Robert",
   last_name: "Jackiewicz",
   username: "robertJackiewicz",
-  email: "robertJackiewicz@example.com",
+  email: "robertJackiewicz@credible.ca",
   password: "password",
   password_confirmation: "password",
   admin: false
@@ -227,7 +227,7 @@ user20 = User.create!(
   first_name: "Juan",
   last_name: "Gonzalez",
   username: "juanGonzalez",
-  email: "juanGonzalez@example.com",
+  email: "juanGonzalez@credible.ca",
   password: "password",
   password_confirmation: "password",
   admin: false
@@ -237,7 +237,7 @@ user21 = User.create!(
   first_name: "Alex",
   last_name: "Wilmer",
   username: "alexWilmer",
-  email: "alexWilmer@example.com",
+  email: "alexWilmer@credible.ca",
   password: "password",
   password_confirmation: "password",
   admin: false
@@ -247,7 +247,7 @@ user22 = User.create!(
   first_name: "Laith",
   last_name: "Azer",
   username: "laithAzer",
-  email: "laithAzer@example.com",
+  email: "laithAzer@credible.ca",
   password: "password",
   password_confirmation: "password",
   admin: false
@@ -257,7 +257,7 @@ user23 = User.create!(
   first_name: "Fabio",
   last_name: "Neves",
   username: "fabioNeves",
-  email: "fabioNeves@example.com",
+  email: "fabioNeves@credible.ca",
   password: "password",
   password_confirmation: "password",
   admin: false
@@ -267,7 +267,7 @@ user24 = User.create!(
   first_name: "Chriscelle",
   last_name: "Dela Cruz",
   username: "chriscelleCruz",
-  email: "chriscelleCruz@example.com",
+  email: "chriscelleCruz@credible.ca",
   password: "password",
   password_confirmation: "password",
   admin: false
@@ -277,7 +277,7 @@ user25 = User.create!(
   first_name: "Iskender",
   last_name: "Piyale-Sheard",
   username: "iskenderSheard",
-  email: "iskenderSheard@example.com",
+  email: "iskenderSheard@credible.ca",
   password: "password",
   password_confirmation: "password",
   admin: false
@@ -287,7 +287,7 @@ user26 = User.create!(
   first_name: "Sumiya",
   last_name: "Abdirashid",
   username: "sumiyaAbdirashid",
-  email: "sumiyaAbdirashid@example.com",
+  email: "sumiyaAbdirashid@credible.ca",
   password: "password",
   password_confirmation: "password",
   admin: false
@@ -297,7 +297,7 @@ user27 = User.create!(
   first_name: "Kelly",
   last_name: "Barber",
   username: "kellyBarber",
-  email: "kellyBarber@example.com",
+  email: "kellyBarber@credible.ca",
   password: "password",
   password_confirmation: "password",
   admin: false
@@ -307,7 +307,7 @@ user28 = User.create!(
   first_name: "Ayesha",
   last_name: "Khan",
   username: "ayeshaKhan",
-  email: "ayeshaKhan@example.com",
+  email: "ayeshaKhan@credible.ca",
   password: "password",
   password_confirmation: "password",
   admin: false
@@ -317,7 +317,7 @@ user29 = User.create!(
   first_name: "Vlad",
   last_name: "Duta",
   username: "vladDuta",
-  email: "vladDuta@example.com",
+  email: "vladDuta@credible.ca",
   password: "password",
   password_confirmation: "password",
   admin: false
@@ -327,7 +327,7 @@ user30 = User.create!(
   first_name: "Tom",
   last_name: "Chen",
   username: "tomChen",
-  email: "tomChen@example.com",
+  email: "tomChen@credible.ca",
   password: "password",
   password_confirmation: "password",
   admin: false
@@ -337,7 +337,7 @@ user31 = User.create!(
   first_name: "Kevin",
   last_name: "Kuttumkal",
   username: "kevinKuttumkal",
-  email: "kevinKuttumkal@example.com",
+  email: "kevinKuttumkal@credible.ca",
   password: "password",
   password_confirmation: "password",
   admin: false
@@ -347,7 +347,7 @@ user32 = User.create!(
   first_name: "Victor",
   last_name: "Festa",
   username: "victorFesta",
-  email: "victorFesta@example.com",
+  email: "victorFesta@credible.ca",
   password: "password",
   password_confirmation: "password",
   admin: false
@@ -357,7 +357,7 @@ user33 = User.create!(
   first_name: "John",
   last_name: "Tolentino",
   username: "johnTolentino",
-  email: "johnTolentino@example.com",
+  email: "johnTolentino@credible.ca",
   password: "password",
   password_confirmation: "password",
   admin: false
@@ -367,7 +367,7 @@ user34 = User.create!(
   first_name: "Jonathan",
   last_name: "Lam",
   username: "jonathanLam",
-  email: "jonathanLam@example.com",
+  email: "jonathanLam@credible.ca",
   password: "password",
   password_confirmation: "password",
   admin: false
@@ -377,7 +377,7 @@ user35 = User.create!(
   first_name: "Arnold",
   last_name: "Chan",
   username: "arnoldChan",
-  email: "arnoldChan@example.com",
+  email: "arnoldChan@credible.ca",
   password: "password",
   password_confirmation: "password",
   admin: false
@@ -387,7 +387,7 @@ user36 = User.create!(
   first_name: "Marcos",
   last_name: "Silva",
   username: "marcosSilva",
-  email: "marcosSilva@example.com",
+  email: "marcosSilva@credible.ca",
   password: "password",
   password_confirmation: "password",
   admin: false
@@ -397,7 +397,7 @@ user37 = User.create!(
   first_name: "Tak",
   last_name: "Ng",
   username: "takNg",
-  email: "takNg@example.com",
+  email: "takNg@credible.ca",
   password: "password",
   password_confirmation: "password",
   admin: false
@@ -408,25 +408,25 @@ puts "Seeding profile data..."
 user1.create_profile({
   bio: "Whatevah!",
   avatar: open_asset('eduardoM.jpeg'),
-  rep_status: "credible"
+  # rep_status: "credible"
 })
 
 user2.create_profile({
   bio: "Nice to see you!",
   avatar: open_asset('lauraP.jpg'),
-  rep_status: "credible"
+  rep_status: "progressing"
 })
 
 user3.create_profile({
   bio: "Sleeping!",
   avatar: open_asset('mihalisF.jpeg'),
-  rep_status: "suspicious"
+  # rep_status: "suspicious"
 })
 
 user4.create_profile({
   bio: "I'm a seller, trying to empty my apartment!",
   avatar: open_asset('johnD.png'),
-  rep_status: "credible"
+  # rep_status: "credible"
 })
 
 user5.create_profile({
