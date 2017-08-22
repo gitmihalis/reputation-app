@@ -92,4 +92,15 @@
   }
 }
 
+.delete-button{
+  width: 20px;
+  color: $neg-red;
+  font-weight: bold;
+  font-size: 0.8em;
+  opacity: 1.0;
+  &:hover{
+    opacity: 0.7;
+  }
+}
+
 
