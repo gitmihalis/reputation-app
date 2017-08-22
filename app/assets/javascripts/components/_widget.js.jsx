@@ -21,14 +21,14 @@ class Widget extends React.Component {
       rotation = 270 - angle;
       divStyle = {
         chart2: {
-          background: "#da0909",
+          background: "#aa3c3c",
         },
         sOne: {
-          background: "#139838",
+          background: "#00a085",
           transform: `rotate(${rotation}deg`,
         },
         sTwo: {
-          background: "#139838",
+          background: "#00a085",
         }
       };
     } else {
@@ -36,14 +36,14 @@ class Widget extends React.Component {
       rotation = 270 - angle;
       divStyle = {
         chart2: {
-          background: "#139838",
+          background: "#00a085",
         },
         sOne: {
-          background: "#da0909",
+          background: "#aa3c3c",
           transform: `rotate(${rotation}deg`,
         },
         sTwo: {
-          background: "#da0909",
+          background: "#aa3c3c",
         }
       };
     }
@@ -86,8 +86,8 @@ class Widget extends React.Component {
     }
 
     return (
-      <div id="widget">
-        <div className="wrapper box1 card">
+      <div className = "widget-holder" id="widget">
+        <div className="widget-block-right">
           <div className="donut-chart chart2" style={divStyle.chart2}>
             <div className="slice one" style={divStyle.sOne}></div>
             <div className="slice two" style={divStyle.sTwo}></div>
@@ -96,11 +96,16 @@ class Widget extends React.Component {
             </div>
           </div>
         </div>
-        <div className="wrapper box2 total-reviews">
-          <p>{this.state.totOfReviews} Reviews</p>
-        </div>
-        <div className="wrapper box3 status">
-          <p><img className="margin-right" src="/assets/icons/thumbs_down_icon.png" width="32px"/>{status}</p>
+        <div className = "widget-block-left">
+          <div className="widget-name">
+            <span>Name Last</span>
+          </div>
+          <div className="total-reviews">
+            <span>{this.state.totOfReviews} Reviews</span>
+          </div>
+          <div className="widget-status">
+            <span>{status}</span>
+          </div>
         </div>
       </div>
     )
