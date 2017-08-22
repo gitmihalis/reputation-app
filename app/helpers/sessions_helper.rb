@@ -37,7 +37,7 @@ module SessionsHelper
 
   # Active record session helper
   def authenticate_admin!
-    redirect_to login_path unless logged_in_admin?
+    redirect_to logout_path unless logged_in_admin?
   end
 
   # Forgets a persistent session.
@@ -55,7 +55,10 @@ module SessionsHelper
   end
 
   def authenticate_admin_user
-    redirect_to '/login' unless logged_in_admin?
+    if !logged_in_admin? 
+      log_out     
+      redirect_to '/'
+    end
   end
 
 end
