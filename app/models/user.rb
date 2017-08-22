@@ -56,9 +56,9 @@ class User < ApplicationRecord
 
   # TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING
 
-    def to_param
-      username
-    end
+    # def to_param
+    #   username
+    # end
   # TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING
 
 

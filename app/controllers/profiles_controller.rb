@@ -25,16 +25,18 @@ class ProfilesController < ApplicationController
     end
 
     if profile.update(profile_params)
-      redirect_to user_path(user) , notice: 'Profile was successfully updated.'
+      redirect_to user_path(user.username) , notice: 'Profile was successfully updated.'
       return
     else
-      redirect_to user_path(user), notice: 'Oh no! Profile was not updated.'
+      redirect_to user_path(user.username), notice: 'Oh no! Profile was not updated.'
       return
     end
   end
 
   def show
-    @user = User.find params[:user_id]
+    # @user = User.find params[:user_id]
+    @user = User.find_by username: params[:user_username]
+
     @reviews = @user.received_reviews
 
     # Calculate credibilty score

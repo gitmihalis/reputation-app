@@ -26,7 +26,7 @@ class UsersController < ApplicationController
       user.create_profile(avatar: 'default_avatar.jpg')
       flash.now[:success] = "Your new account has been created!"
       log_in user
-      redirect_to user_path(user)
+      redirect_to "user/#{user.username}"
     else
       render 'new'
     end

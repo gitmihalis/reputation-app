@@ -1,14 +1,14 @@
 class Embed::ProfilesController < ApplicationController
   # Display the user's own widget when shared
   def show
+
+    # TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING
+
+
     # @user = User.find params[:id]
-
-    # TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING
-    @user = User.find_by username: params[:username]
-
-    # TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING
-
+    @user = User.find_by username: params[:id]
     @reviews = @user.received_reviews
+    # TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING
 
     # Calculate credibilty score
     @total_of_reviews = @reviews.count

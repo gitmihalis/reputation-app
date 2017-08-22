@@ -4,8 +4,8 @@ class EmbedModal extends React.Component {
   }
 
   render(){
-    const user = this.props.current_user.id;
-    const embedCode = `<script type="text/javascript" id="load_widget" src="http://0.0.0.0:3000/embed.js" data="${user}"></script>`
+    const username = this.props.current_user.username;
+    const embedCode = `<script type="text/javascript" id="load_widget" src="http://0.0.0.0:3000/embed.js" data="${username}"></script>`
 
     return(
     <div id="myModal" className="modal">
