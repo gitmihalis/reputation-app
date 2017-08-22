@@ -13,6 +13,16 @@ class RebuttalsController < ApplicationController
     end
   end
 
+  def destroy
+    @rebuttal = Rebuttal.find params[:id]
+    if @rebuttal.destroy
+      puts ("yay!")
+    else
+      puts ("oh no!")
+      render json: @review.errors, status: :unprocessable_entity
+    end
+  end
+
   private
 
     protected
