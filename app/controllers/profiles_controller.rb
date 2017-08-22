@@ -40,6 +40,8 @@ class ProfilesController < ApplicationController
     # Calculate credibilty score
     @total_of_reviews = @reviews.count
 
+    @user = User.find params[:id]
+
     @positive_reviews = 0
     @reviews.each do |review|
       @positive_reviews += 1 if review.positive  # increment positive reviews by one if review is positive

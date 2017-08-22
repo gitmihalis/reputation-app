@@ -320,7 +320,7 @@ class Main extends React.Component {
         author_username = this.props.receiver.username
 
         receiver_id = this.state.authors[i].id
-        receiver_username = this.state.receiver.username
+        receiver_username = this.state.authors[i].username
         receiver_name = this.state.authors[i].first_name
         receiver_last_name = this.state.authors[i].last_name
 
@@ -487,7 +487,7 @@ class Main extends React.Component {
                     {reviewer_status}
                   </span>
                 </div>
-                {review_type(review, i, receiver_name, receiver_id)}
+                {review_type(review, i, receiver_name, receiver_id, receiver_username)}
                </div>
               <div className = "content">
                 <p>{review.content}</p>
@@ -555,16 +555,16 @@ class Main extends React.Component {
             </div>
           </div>
 
+
+        </span>
+        <div className = "right-box">
         <div className = "widget-profile">
-          <Widget totOfReviews={this.props.totOfReviews} posReviews={this.props.posReviews} credScore={this.props.credScore} />
+          <Widget totOfReviews={this.props.totOfReviews} posReviews={this.props.posReviews} credScore={this.props.credScore} receiver={this.props.receiver}/>
             { embedButton() }
         </div>
         <div className = "settings-button">
           { settings() }
         </div>
-
-        </span>
-        <div className = "right-box">
           <div className = "content">
             <div className ="button-top">
               { topButton() }

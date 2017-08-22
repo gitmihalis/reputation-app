@@ -10,7 +10,7 @@
             <fieldset class = "remove-style">
               <%= form_tag profile_path(@profile), method: :put, class: "pure-form", multipart: true do %>
                 <%= file_field_tag 'profile[avatar]', class: "pure-input-1", required: true %>
-                <%= submit_tag "upload image" %>
+                <%= submit_tag "upload image", class: "submit-confirm-button" %>
               <% end %>
             </fieldset>
           <% end %>
@@ -27,7 +27,7 @@
                 <strong>Joined: <%= @profile.created_at.strftime("%B, %Y") %></strong>
               </div>
               <%= text_area_tag 'profile[bio]', @profile.bio, class: "bio-box" %>
-              <%= submit_tag "save bio" %>
+              <%= submit_tag "save bio", class: "submit-confirm-button" %>
             </div>
           <% else %>
             <div class = "inner-bio-box">
