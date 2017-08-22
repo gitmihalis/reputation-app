@@ -1,7 +1,7 @@
-var DeleteConfirm = React.createClass({
+var UserDeleteConfirm = React.createClass({
   handleClick() {
-    var review_id = this.props.review_id;
-    var url = `/reviews/${review_id}`;
+    var user_id = this.props.user_id;
+    var url = `/users/${user_id}`;
     $.ajax({
       url: url,
       type: 'DELETE',
@@ -10,7 +10,6 @@ var DeleteConfirm = React.createClass({
         },
       success: (response) => {
         console.log('it worked! Deleted', response);
-        this.props.reLoad();
       }
     });
   },
@@ -23,7 +22,8 @@ var DeleteConfirm = React.createClass({
   render() {
     return (
       <div>
-        <button className = "submit-confirm-button" onClick={this.onClick}>Confirm</button>
+        <p> Are you sure? You will lose your online reputation. This action is irreversible. </p>
+        <button className = "submit-confirm-button" onClick={this.onClick}>Confirm Delete Profile</button>
       </div>
     )
   }

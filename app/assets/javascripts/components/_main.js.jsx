@@ -27,29 +27,6 @@ class Main extends React.Component {
 
   //ADD REVIEW
   addReview(reviewData){
-    // PLEASE DO NOT DELETE YET
-    //Put all categories into a key-value pair for reference
-    // const categories_and_id = {}
-    // const categories = this.props.categories.map((category) => {
-    //   categories_and_id[category.id] = category.name
-    // });
-    // var category_name = categories_and_id[reviewData.category_id]
-
-    // //Change the state to include the new review
-    // const newReview = reviewData;
-    // const newAuthor = {first_name: this.props.current_user.first_name, last_name: this.props.current_user.last_name };
-    // const newReviews = this.state.reviews.concat(newReview);
-    // const newAuthors = this.state.authors.concat(newAuthor);
-    // const newCategories = this.state.review_categories.concat([ {0 : { name: category_name } } ]);
-    // this.state.reviews = newReviews;
-    // this.state.authors = newAuthors;
-    // this.state.categories = newCategories
-    // this.setState({
-    //   reviews: newReviews,
-    //   authors: newAuthors,
-    //   review_categories: newCategories,
-    //   written: false
-    // });
     window.location.reload()
   }
 
@@ -132,6 +109,45 @@ class Main extends React.Component {
 
   //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> RENDER <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
   render() {
+
+    let status = "";
+    const totOfReviews = this.state.reviews.length;
+    const credScore = this.props.credScore;
+    const thisUserStatus = this.props.profile.rep_status;
+
+    // Condition to assign a user status:
+    // 0 - 2 Reviews: New user
+    // 3 - 9 Reviews: Progressing
+    // 10+ Reviews and 75%+ Credibility score: Credible
+    // 10+ Reviews and 75%- Credibility score: Inconsistent
+    if (totOfReviews >= 10 && credScore >= 75) {
+      status = "Credible"
+    } else if (totOfReviews >= 10) {
+      status = "Inconsistent"
+    } else if (totOfReviews <= 2) {
+      status = "New User"
+    } else {
+      status = "Progressing"
+    }
+
+    if (thisUserStatus != status) {
+      $.ajax({
+        url: `/profiles/${this.props.profile.id}`,
+        type: 'PUT',
+        headers: {
+          'X-CSRF-Token': this.props.token.toString()
+        },
+        data: {
+          profile: {
+                    rep_status: status,
+                    id: this.props.profile.id },
+          success: (response) => {
+            console.log('it worked!', response);
+          },
+        },
+      });
+    }
+
     //TOP BUTTON - depending on current_user
     const topButton = () => {
       // Display review button if logged in.
@@ -139,6 +155,7 @@ class Main extends React.Component {
         //Do not display review button if it is the current user's own profile
         if (this.props.current_user.id !== this.props.receiver.id) {
           return(
+            <div>
             <ReviewBox
               addReview = {this.addReview}
               reviews = {this.state.reviews}
@@ -147,6 +164,7 @@ class Main extends React.Component {
               current_user = {this.props.current_user}
               receiver = {this.props.receiver}
             />
+            </div>
           )
         }
       } else {
@@ -163,17 +181,38 @@ class Main extends React.Component {
     };
 
   //SHARE BUTTON - depending on current_user
+  const settings = () =>{
+    // Display share button if logged in
+    if (this.props.current_user) {
+      // Display share button if logged in AND is the current user's own profile
+      if (this.props.current_user.id == this.props.receiver.id) {
+        return(
+          <Settings
+            reLoad = {this.reLoad}
+            first_name = {this.props.current_user.first_name}
+            last_name = {this.props.current_user.last_name}
+            email = {this.props.current_user.email}
+            token = {this.props.token}
+            current_user = {this.props.current_user}
+            password = {this.props.receiver.password}
+            password_confirmation = {this.props.receiver.password_confirmation}
+          />
+        )
+      }
+    }
+  }
+
   const embedButton = () => {
     // Display share button if logged in
     if (this.props.current_user) {
       // Display share button if logged in AND is the current user's own profile
       if (this.props.current_user.id == this.props.receiver.id) {
         return(
+          <div>
           <EmbedBox current_user = {this.props.current_user}/>
+          </div>
         )
       }
-    } else {
-      return
     }
   };
 
@@ -182,45 +221,30 @@ class Main extends React.Component {
     $(document).scroll(function() {
       var y = $(document).scrollTop(),
           header = $("#fade-button");
-      if(y >= 115)  {
+      if(y >= 320)  {
           header.css({
             "position" : "fixed",
-            "top" : "0px",
-            "left" : "5%",
-            "-webkit-animation-duration" : "0.7s",
-            "animation-duration" : "0.7s",
+            "top" : "125px",
+            "right" : "48px",
+            "-webkit-animation-duration" : "0.5s",
+            "animation-duration" : "0.5s",
             "-webkit-animation-fill-mode" : "both",
             "animation-fill-mode": "both"
           });
           header.removeClass("hidden");
-          header.removeClass("fadeOut");
           header.addClass("fadeIn");
       } else {
           header.css({
             "position" : "fixed",
-            "top" : "0px",
-            "left" : "5%"
+            "top" : "125px",
+            "right" : "48px"
           });
           header.removeClass("fadeIn");
-          header.addClass("fadeOut");
+          header.addClass("hidden");
+
       }
     });
 
-    // $(document).scroll(function() {
-    //   var y = $(document).scrollTop(),
-    //       header = $("#review-nav");
-    //   if(y >= 71)  {
-    //       header.css({
-    //         position: "fixed", "top" : "-0px",
-    //         width: "inherit"
-    //       });
-    //   } else {
-    //       header.css({
-    //         position: "absolute", "top" : "71px",
-    //         width: "inherit"
-    //       });
-    //   }
-    // });
 
     //CATEGORY_NAME: Determine the category name of the specific review for display
     let category_name = (review_i) => {
@@ -233,17 +257,20 @@ class Main extends React.Component {
     }
 
     //REVIEW_TYPE Display reviews with negative and positive styles
-    const review_type = (review, i, receiver_name, receiver_id) => {
+    const review_type = (review, i, receiver_name, receiver_id, receiver_username) => {
       var negative_class = null;
-      var negative_icon = () => { return null };
+      var thumb_icon = () => {
+        return <img src="/assets/icons/thumbs_up_icon.png" width="20px" />
+      };
+
       if (!review.positive) { //If negative review, red colour and thumbs down
         negative_class = "red";
-        negative_icon = () => {
+        thumb_icon = () => {
           return <img src="/assets/icons/thumbs_down_icon.png" width="20px" />
         }
         if (review.retracted){ //If negative review and retracted
           negative_class = "grey";
-          negative_icon = () => {
+          thumb_icon = () => {
             return <img src="/assets/icons/thumbs_down_grey_icon.png" width="20px" />
           }
         }
@@ -251,8 +278,8 @@ class Main extends React.Component {
       return(
         <span className = "reviewing-as">
           <p className = {negative_class}>
-            {negative_icon()}
-            Reviewed <a href = {receiver_id} >{receiver_name}</a> as a {category_name(i)}
+            {thumb_icon()}
+            Reviewed <a href = {receiver_username} >{receiver_name}</a> as a {category_name(i)}
           </p>
         </span>
       )
@@ -270,8 +297,10 @@ class Main extends React.Component {
       var author_first_name = this.state.authors[i].first_name
       var author_last_name = this.state.authors[i].last_name
       var author_id = this.state.authors[i].id
+      var author_username = this.state.authors[i].username
 
       var receiver_id = this.props.receiver.id
+      var receiver_username = this.props.receiver.username
       var receiver_name = this.props.receiver.first_name
       var receiver_last_name = this.props.receiver.last_name
 
@@ -288,8 +317,10 @@ class Main extends React.Component {
         author_first_name = this.props.receiver.first_name
         author_last_name = this.props.receiver.last_name
         author_id = this.props.receiver.id
+        author_username = this.props.receiver.username
 
         receiver_id = this.state.authors[i].id
+        receiver_username = this.state.receiver.username
         receiver_name = this.state.authors[i].first_name
         receiver_last_name = this.state.authors[i].last_name
 
@@ -335,7 +366,7 @@ class Main extends React.Component {
                 </div>
               </div>
               <span className = "rebuttal-name">
-                <p><a href = {receiver_id} >{receiver_name} {receiver_last_name}</a></p>
+                <p><a href = {receiver_username} >{receiver_name} {receiver_last_name}</a></p>
               </span>
               <div className = "content">
               {this.state.rebuttals[review_id][0]["content"]}
@@ -347,7 +378,6 @@ class Main extends React.Component {
       }
 
       // Flags
-      // if (this.state.flags[review_id] && this.state.flags[review_id][0]){
       var flag = () => {
         if (this.props.current_user){
           if (this.state.flags[review_id][0]){
@@ -400,13 +430,6 @@ class Main extends React.Component {
 
       //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> THE REVIEW RENDERING <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
-      // FOR LATER REFACTORING THE REPETITION BELOW
-      // const review_html = (review_id, review_date, reviewer_image, receiver_name, receiver_id) => {
-      //   return(
-      //     HTML
-      //   )
-      // };
-
       if (this.state.filter < 1){ //FILTERING - no selected filter
           return (
             <div className = "review" key={review.id}>
@@ -424,14 +447,15 @@ class Main extends React.Component {
                   </div>
                 </div>
                 <div className = "reviewer-info">
-                  <a className = "reviewer-name" href = { author_id } > {author_first_name} {author_last_name} </a>
+                  <a className = "reviewer-name" href = { author_username } > {author_first_name} {author_last_name} </a>
                   <span className = "status">
                     {reviewer_status}
                   </span>
                 </div>
-                {review_type(review, i, receiver_name, receiver_id)}
+                {review_type(review, i, receiver_name, receiver_id, receiver_username)}
                </div>
               <div className = "content">
+                {review.reference_url}
                 <p>{review.content}</p>
                 {rebuttal_button()}
                 {retract_button()}
@@ -458,7 +482,7 @@ class Main extends React.Component {
                   </div>
                 </div>
                 <div className = "reviewer-info">
-                  <a className = "reviewer-name" href = { author_id } > {author_first_name} {author_last_name} </a>
+                  <a className = "reviewer-name" href = { author_username } > {author_first_name} {author_last_name} </a>
                   <span className = "status">
                     {reviewer_status}
                   </span>
@@ -531,9 +555,12 @@ class Main extends React.Component {
             </div>
           </div>
 
-        <div>
+        <div className = "widget-profile">
           <Widget totOfReviews={this.props.totOfReviews} posReviews={this.props.posReviews} credScore={this.props.credScore} />
-          { embedButton() }
+            { embedButton() }
+        </div>
+        <div className = "settings-button">
+          { settings() }
         </div>
 
         </span>
@@ -543,11 +570,10 @@ class Main extends React.Component {
               { topButton() }
             </div>
             <h1 className = "name"> {this.props.receiver.first_name} {this.props.receiver.last_name}</h1>
-            <h1 className = {this.state.title_class} >{this.state.title}</h1>
+            <h2 className = {this.state.title_class} >{this.state.title}</h2>
             { listReviews }
           </div>
         </div>
-
       </div>
     );
   }

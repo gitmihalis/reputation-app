@@ -12,6 +12,7 @@
 
 ActiveRecord::Schema.define(version: 20170821162513) do
 
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -47,12 +48,14 @@ ActiveRecord::Schema.define(version: 20170821162513) do
 
   create_table "profiles", force: :cascade do |t|
     t.string   "avatar"
-    t.string   "rep_status"
+    t.string   "rep_status", default: "New User"
     t.text     "bio"
     t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.integer  "users_id"
     t.index ["user_id"], name: "index_profiles_on_user_id", using: :btree
+    t.index ["users_id"], name: "index_profiles_on_users_id", using: :btree
   end
 
   create_table "rebuttals", force: :cascade do |t|
@@ -87,7 +90,4 @@ ActiveRecord::Schema.define(version: 20170821162513) do
     t.string   "username"
   end
 
-  add_foreign_key "flags", "reviews"
-  add_foreign_key "flags", "users"
-  add_foreign_key "profiles", "users"
 end

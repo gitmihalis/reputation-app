@@ -41,7 +41,7 @@ var FlagSelector = React.createClass({
           <option value = "Irrelevant" >Irrelevant</option>
         </select>
         <div>
-          <button onClick={this.onClick}>Submit</button>
+          <button className = "submit-confirm-button" onClick={this.onClick}>Submit</button>
         </div>
       </div>
     )
