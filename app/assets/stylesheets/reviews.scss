@@ -82,8 +82,10 @@
   }
 }
 
-.delete-button{
-  width: 15px;
+.delete-users-button{
+  color: $neg-red;
+  font-weight: bold;
+  font-size: 0.8em;
   opacity: 1.0;
   &:hover{
     opacity: 0.7;

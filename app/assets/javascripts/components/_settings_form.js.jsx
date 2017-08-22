@@ -67,7 +67,7 @@ var SettingsForm = React.createClass({
     var email = this.props.email;
     var password = this.props.password;
     var password_confirmation = this.props.password_confirmation;
-    //THE FORM <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<  ADD IMAGE UPLOAD
+    //THE FORM
     return (
       <div className = "review-form">
         <div>
@@ -86,7 +86,7 @@ var SettingsForm = React.createClass({
           Confirm New Password: <input ref='password_confirmation' placeholder= " " />
         </div>
           <button onClick={this.onClick}>Update</button>
-        <p>DELETE HERE</p>
+        <UserDelete token = {this.props.token} user_id = {this.props.current_user.id} />
       </div>
     )
   }

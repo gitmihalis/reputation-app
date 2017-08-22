@@ -13,6 +13,16 @@ class FlagsController < ApplicationController
     end
   end
 
+  def destroy
+    @flag = Flag.find params[:id]
+    if @flag.destroy
+      puts ("yay!")
+    else
+      puts ("oh no!")
+      render json: @review.errors, status: :unprocessable_entity
+    end
+  end
+
   private
 
     protected

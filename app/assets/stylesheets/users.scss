@@ -267,3 +267,11 @@ fieldset {
   }
 }
 
+.delete-users-text{
+  color: $neg-red;
+  opacity: 1.0;
+  &:hover{
+    opacity: 0.7;
+  }
+}
+

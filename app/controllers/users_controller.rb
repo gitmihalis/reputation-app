@@ -41,6 +41,38 @@ class UsersController < ApplicationController
     end
   end
 
+  def destroy
+    @user = User.find params[:id]
+    @profile = Profile.find_by({user_id: params[:id]})
+    @reviews = Review.where({author_id: params[:id]})
+    @reviews.each do |review|
+      @rebuttal = Rebuttal.find_by({review_id: review.id})
+      if @rebuttal
+        @rebuttal.destroy
+      end
+      @flag = Flag.find_by({review_id: review.id})
+      if @flag
+        @flag.destroy
+      end
+      review.destroy
+    end
+
+    @user_flags = Flag.where({user_id: params[:id]})
+    @user_flags.each do |flag|
+      flag.destroy
+    end
+
+    if @user.destroy
+      if @profile.destroy
+        redirect_to '/'
+        puts ("yay!")
+      end
+    else
+      puts ("oh no!")
+      render json: @review.errors, status: :unprocessable_entity
+    end
+  end
+
 
   def show
 
