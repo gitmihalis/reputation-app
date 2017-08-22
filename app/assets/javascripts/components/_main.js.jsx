@@ -448,6 +448,16 @@ class Main extends React.Component {
 
     return (
       <div>
+          <Settings
+            reLoad = {this.reLoad}
+            first_name = {this.props.current_user.first_name}
+            last_name = {this.props.current_user.last_name}
+            email = {this.props.current_user.email}
+            token = {this.props.token}
+            current_user = {this.props.current_user}
+            password = {this.props.receiver.password}
+            password_confirmation = {this.props.receiver.password_confirmation}
+            />
           <div id = "fade-button" className = "hidden button-left">
             { topButton() }
           </div>

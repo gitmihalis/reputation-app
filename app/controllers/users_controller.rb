@@ -31,6 +31,17 @@ class UsersController < ApplicationController
     end
   end
 
+  def update
+    @user = User.find_by(id: params[:id])
+    if @user.update_attributes(user_update_params)
+      puts "worked!"
+    else
+      puts ("oh no!")
+      render json: @user.errors
+    end
+  end
+
+
   def show
 
     @categories = Category.all
@@ -100,5 +111,9 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:username, :first_name, :last_name, :email, :password, :password_confirmation)
+  end
+
+  def user_update_params
+    params.require(:user_update).permit(:first_name, :last_name, :email, :password, :password_confirmation)
   end
 end
