@@ -109,6 +109,45 @@ class Main extends React.Component {
 
   //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> RENDER <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
   render() {
+
+    let status = "";
+    const totOfReviews = this.state.reviews.length;
+    const credScore = this.props.credScore;
+    const thisUserStatus = this.props.profile.rep_status;
+
+    // Condition to assign a user status:
+    // 0 - 2 Reviews: New user
+    // 3 - 9 Reviews: Progressing
+    // 10+ Reviews and 75%+ Credibility score: Credible
+    // 10+ Reviews and 75%- Credibility score: Xxxxxxxx
+    if (totOfReviews >= 10 && credScore >= 75) {
+      status = "Credible"
+    } else if (totOfReviews >= 10) {
+      status = "Xxxxxxxx"
+    } else if (totOfReviews <= 2) {
+      status = "New User"
+    } else {
+      status = "Progressing"
+    }
+
+    if (thisUserStatus != status) {
+      $.ajax({
+        url: `/profiles/${this.props.profile.id}`,
+        type: 'PUT',
+        headers: {
+          'X-CSRF-Token': this.props.token.toString()
+        },
+        data: {
+          profile: {
+                    rep_status: status,
+                    id: this.props.profile.id },
+          success: (response) => {
+            console.log('it worked!', response);
+          },
+        },
+      });
+    }
+
     //TOP BUTTON - depending on current_user
     const topButton = () => {
       // Display review button if logged in.
@@ -149,8 +188,6 @@ class Main extends React.Component {
           <EmbedBox current_user = {this.props.current_user}/>
         )
       }
-    } else {
-      return
     }
   };
 

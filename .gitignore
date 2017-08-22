@@ -25,3 +25,6 @@
 
 # Ignore uploads
 public/uploads
+public/avatar_uploads
+db/seed_assets
+db/seeds.rb
