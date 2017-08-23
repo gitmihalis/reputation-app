@@ -1,11 +1,17 @@
+
+
 <%= render '/users/partials/top_bar' %>
-<% provide(title: "Log into your account.") %>
+<% provide(title: "Sign up for a new Credible account.") %>
 <div class="login">
 
+  <div class="jumbo">
+    <header class="centered">
+      <img src = '/homepage/credible_logo_color.png' width= "40%" >
+      <h1>Login.</h1>
+    </header>
+  </div>
   <div class="wrapper">
     <%= render 'users/partials/login_form'%>
   </div>
-
 </div>
-
 
