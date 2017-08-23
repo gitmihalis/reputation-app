@@ -24,13 +24,7 @@ class ProfilesController < ApplicationController
       return
     end
 
-    if profile.update(profile_params)
-      redirect_to user_path(user.username) , notice: 'Profile was successfully updated.'
-      return
-    else
-      redirect_to user_path(user.username), notice: 'Oh no! Profile was not updated.'
-      return
-    end
+    profile.update(profile_params)
   end
 
   def show
