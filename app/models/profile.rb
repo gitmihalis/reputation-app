@@ -5,9 +5,4 @@ class Profile < ApplicationRecord
   validates :user_id, presence: true
   # validates :bio, presence: true
 
-# TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING
-  # def to_param
-  #     username
-  #   end
-# TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING
 end

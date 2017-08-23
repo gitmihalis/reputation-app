@@ -5,10 +5,7 @@ Rails.application.routes.draw do
   # sign up a new user
   get '/register', to: 'users#new'
 
-  # TESTING TESTING TESTING TESTING TESTING TESTING
   get '/users/:username', to: 'users#show'
-  # get '/embed/:username', to: 'profiles#show'
-  # TESTING TESTING TESTING TESTING TESTING TESTING
 
   resources :users, only: [:new, :create, :index, :show, :destroy], param: :username do
     resources :profiles, only: [:show]

@@ -6,8 +6,6 @@ class UsersController < ApplicationController
   def index
     @profile_details = {}
 
-
-
     @users = User.all
     @users.each do |user|
       @profile_details[user.id] = {
@@ -36,13 +34,8 @@ class UsersController < ApplicationController
 
     @categories = Category.all
     @authors = []
-    # @user = User.find params[:id]
-
-    # TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING
 
     @user = User.find_by username: params[:username]
-
-    # TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING
 
     @profile = @user.profile
     @reviews = @user.received_reviews.order(created_at: :desc)

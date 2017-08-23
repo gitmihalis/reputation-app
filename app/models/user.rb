@@ -54,13 +54,5 @@ class User < ApplicationRecord
     update_attribute(:remember_digest, nil)
   end
 
-  # TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING
-
-    # def to_param
-    #   username
-    # end
-  # TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING TESTING
-
-
 end
 
