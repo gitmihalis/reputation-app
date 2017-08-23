@@ -10,10 +10,10 @@
   </head>
 
   <body>
-  <%= render 'layouts/top_bar' %>
   <% if !flash.empty? %>
     <%= render 'layouts/flash_messages' %>
   <% end %>
+
     <%= yield %>
   </body>
 </html>

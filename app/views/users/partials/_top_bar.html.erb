@@ -1,0 +1,37 @@
+<div class="header">
+  <div class="home-menu pure-menu-horizontal pure-menu-fixed" style = "padding-bottom: 0;" >
+  <a href = "/" class = "pure-menu-heading logo" ><img src = "/homepage/credible_logo_small.png" height = "35px" >  </a>
+
+  <ul class="pure-menu-list">
+      <% if logged_in_admin? %>
+        <li class="pure-menu-item">
+          <%= link_to image_tag('icons8-ssl.png'), '/admin' %>
+        </li>
+      <% end %>
+
+    <li class="pure-menu-item">
+      <a href = '/users' class= "pure-menu-link">
+        <img src = "/homepage/search_icon_white.png" height = "15px"> Search
+      </a>
+    </li>
+
+    <% if logged_in? %>
+      <li class="pure-menu-item">
+        <%= link_to "My Profile", user_path(current_user.username), class: "pure-menu-link" %>
+      </li>
+      <li class="pure-menu-item">
+        <%= link_to "Logout", logout_path, class: "pure-menu-link login-logout-button" %>
+      </li>
+    <% else %>
+      <li class="pure-menu-item">
+        <%= link_to "Log in", login_path, class: "pure-menu-link" %>
+      </li>
+      <li class="pure-menu-item">
+        <%= link_to "Sign up", register_path, class: "pure-menu-link login-logout-button" %>
+      </li>
+
+    <% end %>
+
+    </ul>
+  </div>
+</div>

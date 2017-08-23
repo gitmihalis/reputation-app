@@ -1,4 +1,6 @@
 <!-- Search Page! -->
 <h1 class = "search-title" >Search Users</h1>
 
+<%= render '/users/partials/top_bar' %>
+
 <%= react_component("FilterableUsers", {profile_details: @profile_details}) %>
