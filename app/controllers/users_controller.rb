@@ -27,6 +27,7 @@ class UsersController < ApplicationController
       log_in user
       redirect_to user_path(user)
     else
+      flash.now[:danger] = user.errors.full_messages
       render 'new'
     end
   end
