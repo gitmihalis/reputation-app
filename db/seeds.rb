@@ -425,6 +425,7 @@ user3.create_profile({
 
 user4.create_profile({
   bio: "I'm a seller, trying to empty my apartment!",
+  avatar: open_asset('johnD.jpeg'),
 })
 
 user5.create_profile({
