@@ -12,7 +12,6 @@ class SessionsController < ApplicationController
       # By testing the relevant value of the params hash, we can now remember or
       # forget the user based on the value of the submission:15
       params[:session][:remember_me] == '1' ? remember(user) : forget(user)
-      flash[:success] = "Welcome back #{user.first_name}"
       redirect_to "/users/#{user.username}"
     else
       flash.now[:danger] = 'Invalid email/password combination'
