@@ -63,7 +63,7 @@ class Widget extends React.Component {
         },
         contentSpan: {
           fontSize: '26px',
-          color: '#139838',
+          color: '#aeaeae',
         }
       };
     } else {
