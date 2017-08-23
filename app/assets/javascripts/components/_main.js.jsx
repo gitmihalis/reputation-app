@@ -455,7 +455,7 @@ class Main extends React.Component {
                 {review_type(review, i, receiver_name, receiver_id, receiver_username)}
                </div>
               <div className = "content">
-                {review.reference_url}
+                <div className = "reference-url" ><a href = {review.reference_url} target = "_blank">{review.reference_url}</a></div>
                 <p>{review.content}</p>
                 {rebuttal_button()}
                 {retract_button()}
