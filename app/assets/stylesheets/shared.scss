@@ -57,3 +57,19 @@
   line-height: 0;
   visibility: hidden;
 }
+
+.alert {
+  text-align: center;
+}
+.alert-danger {
+  background:#CB5050 !important;
+  color: white;
+}
+
+.alert-success {
+  // margin-top: 30px;
+}
+
+.alert-success.form-input {
+  width: 33% !important;
+}
