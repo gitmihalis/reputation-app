@@ -85,8 +85,11 @@ class Widget extends React.Component {
       status = "Progressing"
     }
 
+    let link = `http://localhost:3000/users/${this.props.receiver.username}`
     return (
+      <a href={link} target="_blank">
       <div className = "widget-holder" id="widget">
+
         <div className="widget-block-right">
           <div className="donut-chart chart2" style={divStyle.chart2}>
             <div className="slice one" style={divStyle.sOne}></div>
@@ -108,6 +111,7 @@ class Widget extends React.Component {
           </div>
         </div>
       </div>
+      </a>
     )
   }
 }
