@@ -1,3 +1,11 @@
-    <% flash.each do |name, msg| -%>
-      <%= content_tag :div, msg, class: name %>
-    <% end -%>
+  <% flash.each do |key, messages| %>
+    <div class="alert alert-<%= key %> form-input" role="alert">
+      <% if messages.is_a?(Array) %>
+        <% messages.each do |msg|  %>
+          <p><%= msg %></p>
+        <% end %>
+      <% else %>
+        <%= messages.to_s %>
+      <% end %>
+    </div>
+  <% end %>
