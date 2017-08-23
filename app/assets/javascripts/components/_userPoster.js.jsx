@@ -2,7 +2,11 @@
 class UserPoster extends React.Component {
   render() {
     const name = `${this.props.first_name} ${this.props.last_name}` ;
-    const avatarUrl = `${this.props.avatar}`;
+    let avatarUrl = `${this.props.avatar}`;
+    if (avatarUrl == "null") {
+      avatarUrl = `default_icon.png`
+    }
+
     const bio = `${this.props.bio}` ;
     const status = `${this.props.rep_status}`
     return (
