@@ -371,7 +371,7 @@ class Main extends React.Component {
               <span className = "rebuttal-name">
                 <p><a href = {receiver_username} >{receiver_name} {receiver_last_name}</a></p>
               </span>
-              <div className = "content">
+              <div className = "content-rebuttal">
               {this.state.rebuttals[review_id][0]["content"]}
               </div>
             </div>

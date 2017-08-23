@@ -1,6 +1,6 @@
 <div class="header">
   <div class="home-menu pure-menu-horizontal pure-menu-fixed" style = "padding-bottom: 0;" >
-  <a href = "/" class = "pure-menu-heading logo" ><img src = "/homepage/credible_logo_small.png" height = "35px" >  </a>
+  <a href = "/" class = "pure-menu-heading logo" ><img src = "/homepage/credible_logo_small.png" height = "32px" >  </a>
 
   <ul class="pure-menu-list">
       <% if logged_in_admin? %>
@@ -17,7 +17,7 @@
 
     <% if logged_in? %>
       <li class="pure-menu-item">
-        <%= link_to "My Profile", user_path(current_user.username), class: "pure-menu-link" %>
+        <%= link_to "#{current_user.first_name}", user_path(current_user.username), class: "pure-menu-link" %>
       </li>
       <li class="pure-menu-item">
         <%= link_to "Logout", logout_path, class: "pure-menu-link login-logout-button" %>
