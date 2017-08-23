@@ -24,11 +24,54 @@ class UsersController < ApplicationController
       user.create_profile(avatar: 'default_avatar.jpg')
       flash.now[:success] = "Your new account has been created!"
       log_in user
-      redirect_to "user/#{user.username}"
+      redirect_to user_path(user.username)
     else
       render 'new'
     end
   end
+
+  def update
+    @user = User.find_by({username: params[:username]})
+    if @user.update_attributes(user_update_params)
+      puts "worked!"
+    else
+      puts ("oh no!")
+      render json: @user.errors
+    end
+  end
+
+  def destroy
+    @user = User.find params[:id]
+    @profile = Profile.find_by({user_id: params[:id]})
+    @reviews = Review.where({author_id: params[:id]})
+    @reviews.each do |review|
+      @rebuttal = Rebuttal.find_by({review_id: review.id})
+      if @rebuttal
+        @rebuttal.destroy
+      end
+      @flag = Flag.find_by({review_id: review.id})
+      if @flag
+        @flag.destroy
+      end
+      review.destroy
+    end
+
+    @user_flags = Flag.where({user_id: params[:id]})
+    @user_flags.each do |flag|
+      flag.destroy
+    end
+
+    if @user.destroy
+      if @profile.destroy
+        redirect_to '/'
+        puts ("yay!")
+      end
+    else
+      puts ("oh no!")
+      render json: @review.errors, status: :unprocessable_entity
+    end
+  end
+
 
   def show
 
@@ -100,5 +143,9 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:username, :first_name, :last_name, :email, :password, :password_confirmation)
+  end
+
+  def user_update_params
+    params.require(:user_update).permit(:first_name, :last_name, :email, :password, :password_confirmation)
   end
 end

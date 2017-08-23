@@ -13,4 +13,4 @@
 //= require react_ujs
 //= require jquery
 //= require components
-//= require_tree .
+//= require active_admin

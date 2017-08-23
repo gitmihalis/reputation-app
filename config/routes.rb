@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  ActiveAdmin.routes(self)
   root 'welcome#index'
   get 'welcome/index'
   # sign up a new user
@@ -7,7 +8,7 @@ Rails.application.routes.draw do
 
   get '/users/:username', to: 'users#show'
 
-  resources :users, only: [:new, :create, :index, :show, :destroy], param: :username do
+  resources :users, only: [:new, :create, :index, :show, :destroy, :update], param: :username do
     resources :profiles, only: [:show]
   end
   resources :rebuttals, only: [:create, :destroy]
@@ -15,13 +16,13 @@ Rails.application.routes.draw do
   resources :reviews, only: [:create, :destroy, :put, :update]
   resources :profiles, only: [:create, :update, :put]
 
-  namespace :admin do
-  root to: 'reviews#index'
-    resources :reviews, only: [:index, :destroy, :edit, :update]
-    resources :users, only: [:index, :destroy]
-    resources :categories, only: [:index, :new, :create, :destroy]
-    resources :flags, only: [:index]
-  end
+  # namespace :admin do
+  # root to: 'reviews#index'
+  #   resources :reviews, only: [:index, :destroy, :edit, :update]
+  #   resources :users, only: [:index, :destroy, :update]
+  #   resources :categories, only: [:index, :new, :create, :destroy]
+  #   resources :flags, only: [:index]
+  # end
 
   namespace :embed do
     resources :profiles  , only: :show, path:""

@@ -155,6 +155,7 @@ class Main extends React.Component {
         //Do not display review button if it is the current user's own profile
         if (this.props.current_user.id !== this.props.receiver.id) {
           return(
+            <div>
             <ReviewBox
               addReview = {this.addReview}
               reviews = {this.state.reviews}
@@ -163,6 +164,7 @@ class Main extends React.Component {
               current_user = {this.props.current_user}
               receiver = {this.props.receiver}
             />
+            </div>
           )
         }
       } else {
@@ -179,13 +181,36 @@ class Main extends React.Component {
     };
 
   //SHARE BUTTON - depending on current_user
+  const settings = () =>{
+    // Display share button if logged in
+    if (this.props.current_user) {
+      // Display share button if logged in AND is the current user's own profile
+      if (this.props.current_user.id == this.props.receiver.id) {
+        return(
+          <Settings
+            reLoad = {this.reLoad}
+            first_name = {this.props.current_user.first_name}
+            last_name = {this.props.current_user.last_name}
+            email = {this.props.current_user.email}
+            token = {this.props.token}
+            current_user = {this.props.current_user}
+            password = {this.props.receiver.password}
+            password_confirmation = {this.props.receiver.password_confirmation}
+          />
+        )
+      }
+    }
+  }
+
   const embedButton = () => {
     // Display share button if logged in
     if (this.props.current_user) {
       // Display share button if logged in AND is the current user's own profile
       if (this.props.current_user.id == this.props.receiver.id) {
         return(
+          <div>
           <EmbedBox current_user = {this.props.current_user}/>
+          </div>
         )
       }
     }
@@ -232,7 +257,7 @@ class Main extends React.Component {
     }
 
     //REVIEW_TYPE Display reviews with negative and positive styles
-    const review_type = (review, i, receiver_name, receiver_username) => {
+    const review_type = (review, i, receiver_name, receiver_id, receiver_username) => {
       var negative_class = null;
       var thumb_icon = () => {
         return <img src="/assets/icons/thumbs_up_icon.png" width="20px" />
@@ -426,7 +451,7 @@ class Main extends React.Component {
                     {reviewer_status}
                   </span>
                 </div>
-                {review_type(review, i, receiver_name, receiver_username)}
+                {review_type(review, i, receiver_name, receiver_id, receiver_username)}
                </div>
               <div className = "content">
                 {review.reference_url}
@@ -461,7 +486,7 @@ class Main extends React.Component {
                     {reviewer_status}
                   </span>
                 </div>
-                {review_type(review, i, receiver_name, receiver_id)}
+                {review_type(review, i, receiver_name, receiver_id, receiver_username)}
                </div>
               <div className = "content">
                 <p>{review.content}</p>
@@ -529,13 +554,16 @@ class Main extends React.Component {
             </div>
           </div>
 
-        <div className = "widget-profile">
-          <Widget totOfReviews={this.props.totOfReviews} posReviews={this.props.posReviews} credScore={this.props.credScore} />
-          { embedButton() }
-        </div>
 
         </span>
         <div className = "right-box">
+        <div className = "widget-profile">
+          <Widget totOfReviews={this.props.totOfReviews} posReviews={this.props.posReviews} credScore={this.props.credScore} receiver={this.props.receiver}/>
+            { embedButton() }
+        </div>
+        <div className = "settings-button">
+          { settings() }
+        </div>
           <div className = "content">
             <div className ="button-top">
               { topButton() }

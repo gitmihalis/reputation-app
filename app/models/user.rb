@@ -18,11 +18,6 @@ class User < ApplicationRecord
   validates :email, uniqueness: { case_sensitive: false },
                     presence: { message: "Sorry, email format seems wrong." },
                     format: { with: /\A[_a-zA-Z0-9\\-]+(\.[a-zA-Z0-9\\-]+)*@[a-zA-Z0-9\\-]+(\.[a-zA-Z0-9\\-]+)*(\.[a-z]{2,6})\z/ }
-  validates :password, confirmation: true,
-                       length: { in: 4..16 },
-                       presence: true
-  validates :password_confirmation, presence: { message: "Must be given please." }
-
   has_secure_password
 
   # Returns the hash digest of the given string.
