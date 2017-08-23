@@ -17,6 +17,7 @@ class UserPosters extends React.Component {
           bio = {profile_details[i][1]["profile"][0]["bio"]}
           rep_status = {profile_details[i][1]["profile"][0]["rep_status"]}
           avatar = {profile_details[i][1]["profile"][0]["avatar"]["url"]}
+          username = {profile_details[i][1]["user_username"]}
           />
         );
       }
