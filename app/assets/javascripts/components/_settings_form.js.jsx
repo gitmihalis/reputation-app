@@ -31,7 +31,7 @@ var SettingsForm = React.createClass({
       password = this.refs.password_confirmation.value;
     }
 
-    var url = `/users/${this.props.current_user.id}`;
+    var url = `/users/${this.props.current_user.username}`;
 
     var userObject = {
                         first_name: first_name,

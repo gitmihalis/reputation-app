@@ -17,7 +17,7 @@
 
     <% if logged_in? %>
       <li class="pure-menu-item">
-        <%= link_to "My Profile", user_path(current_user), class: "pure-menu-link" %>
+        <%= link_to "My Profile", user_path(current_user.username), class: "pure-menu-link" %>
       </li>
       <li class="pure-menu-item">
         <%= link_to "Logout", logout_path, class: "pure-menu-link login-logout-button" %>

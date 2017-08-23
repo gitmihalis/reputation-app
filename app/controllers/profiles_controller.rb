@@ -10,10 +10,10 @@ class ProfilesController < ApplicationController
     # :rep_status is true if equal to 'New User', 'Progressing', 'Credible', or 'Incosistent'
     if rep_status_params[:rep_status] != nil
         if profile.update(rep_status_params)
-            redirect_to user_path(user) , notice: 'Profile was successfully updated.'
+            redirect_to user_path(user)
           return
         else
-          redirect_to user_path(user), notice: 'Oh no! Profile was not updated.'
+          redirect_to user_path(user)
           return
         end
     end
@@ -25,16 +25,18 @@ class ProfilesController < ApplicationController
     end
 
     if profile.update(profile_params)
-      redirect_to user_path(user) , notice: 'Profile was successfully updated.'
+      redirect_to user_path(user.username) , notice: 'Profile was successfully updated.'
       return
     else
-      redirect_to user_path(user), notice: 'Oh no! Profile was not updated.'
+      redirect_to user_path(user.username), notice: 'Oh no! Profile was not updated.'
       return
     end
   end
 
   def show
-    @user = User.find params[:user_id]
+    # @user = User.find params[:user_id]
+    @user = User.find_by username: params[:user_username]
+
     @reviews = @user.received_reviews
 
     # Calculate credibilty score

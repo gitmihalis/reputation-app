@@ -6,14 +6,13 @@ class UsersController < ApplicationController
   def index
     @profile_details = {}
 
-
-
     @users = User.all
     @users.each do |user|
       @profile_details[user.id] = {
         user_id: user.id,
         user_first_name: user.first_name,
         user_last_name: user.last_name,
+        user_username: user.username,
         profile: Profile.where({user_id: user.id})
       }
     end
@@ -25,14 +24,14 @@ class UsersController < ApplicationController
       user.create_profile(avatar: 'default_avatar.jpg')
       flash.now[:success] = "Your new account has been created!"
       log_in user
-      redirect_to user_path(user)
+      redirect_to user_path(user.username)
     else
       render 'new'
     end
   end
 
   def update
-    @user = User.find_by(id: params[:id])
+    @user = User.find_by({username: params[:username]})
     if @user.update_attributes(user_update_params)
       puts "worked!"
     else
@@ -78,7 +77,8 @@ class UsersController < ApplicationController
 
     @categories = Category.all
     @authors = []
-    @user = User.find params[:id]
+
+    @user = User.find_by username: params[:username]
 
     @profile = @user.profile
     @reviews = @user.received_reviews.order(created_at: :desc)

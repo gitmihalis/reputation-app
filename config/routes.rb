@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   # sign up a new user
   get '/register', to: 'users#new'
 
-  resources :users, only: [:new, :create, :index, :show, :destroy, :update] do
+  get '/users/:username', to: 'users#show'
+
+  resources :users, only: [:new, :create, :index, :show, :destroy, :update], param: :username do
     resources :profiles, only: [:show]
   end
   resources :rebuttals, only: [:create, :destroy]

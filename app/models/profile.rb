@@ -4,4 +4,5 @@ class Profile < ApplicationRecord
 
   validates :user_id, presence: true
   # validates :bio, presence: true
+
 end
