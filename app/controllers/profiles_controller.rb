@@ -24,7 +24,7 @@ class ProfilesController < ApplicationController
       return
     end
 
-    profile.update(profile_params)
+    if profile.update(profile_params)
       redirect_to user_path(user.username)
       return
     else
