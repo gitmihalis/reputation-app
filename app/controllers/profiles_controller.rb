@@ -25,6 +25,12 @@ class ProfilesController < ApplicationController
     end
 
     profile.update(profile_params)
+      redirect_to user_path(user.username)
+      return
+    else
+      redirect_to user_path(user.username)
+      return
+    end
   end
 
   def show
