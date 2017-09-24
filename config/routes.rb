@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  ActiveAdmin.routes(self)
+  ActiveAdmin.routes(self) rescue ActiveAdmin::DatabaseHitDuringLoad
   root 'welcome#index'
   get 'welcome/index'
   # sign up a new user

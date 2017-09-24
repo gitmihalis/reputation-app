@@ -1,11 +1,9 @@
-
 default: &default
   encoding: unicode
   adapter: postgresql
   pool: 5
   timeout: 5000
-  username: postgres
-  password:
+  username: ubuntu
 
 development:
   <<: *default
