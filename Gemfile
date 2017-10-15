@@ -31,11 +31,10 @@ gem 'bcrypt', '~> 3.1.7'
 # gem 'capistrano-rails', group: :development
 gem 'turbolinks', '~> 5.0', '>= 5.0.1'
 gem 'react-rails'
-gem 'carrierwave'
+gem 'carrierwave', '~> 1.2', '>= 1.2.1'
 gem 'rmagick'
 # Handle Cross-Origin Resource Sharing (CORS)
 gem 'rack-cors'
-
 gem 'activeadmin', github: 'activeadmin'
 
 group :development, :test do
