@@ -32,6 +32,8 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'turbolinks', '~> 5.0', '>= 5.0.1'
 gem 'react-rails'
 gem 'carrierwave', '~> 1.2', '>= 1.2.1'
+gem "fog"
+gem "fog-aws"
 gem 'rmagick'
 # Handle Cross-Origin Resource Sharing (CORS)
 gem 'rack-cors'
